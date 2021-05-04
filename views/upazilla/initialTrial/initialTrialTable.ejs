@@ -1,0 +1,63 @@
+<%if (records.length >0){ %>
+    <table class="table table-bordered table-striped" id="tblCustomers" cellspacing="0" cellpadding="0">
+    <thead>
+    <tr>
+        <th>ক্রমিক নং</th>
+        <th>প্রশিক্ষণার্থীর নাম ও পিতা/স্বামীর নাম</th>
+        <th>গ্রাম/ব্লক</th>
+        <th>কৃষকের/কৃষাণির মোবাইল নম্বর</th>
+        <th>ব্যবহৃত জাতের নাম</th>
+        <th>বীজ অংকুরোদগমের হার</th>
+        <th>প্রদর্শনী স্থাপনের তারিখ</th>
+        <th>প্রদর্শনীর বর্তমান অবস্থা</th>
+        <th>দায়িত্বপ্রাপ্ত উপসহকারী কৃষি কর্মকর্তার নাম ও মোবাইল নং</th>
+        <th>উপ-পরিচালকের মন্তব্য</th>
+        <th>প্রকল্প পরিচালকের মন্তব্য</th>
+        <th>পরিবর্তন</th>
+    </tr>
+    </thead>
+    <tbody>
+        <% records.forEach(function(row,index){ %>
+            <tr>
+                <td><%= index+1 %></td>
+                <td><%= row.name %></td>
+                <td><%= row.vname %></td>
+                <td><%= row.mnum %></td>
+                <td><%= row.breedname %></td>
+                <td><%= row.germinationRate %></td>                
+                <td><%= row.trialdate %></td>
+                <td><%= row.present %></td>
+                <td><%= row.kphone %></td>                
+                <td><%= row.ddComment %></td>
+                <td><%= row.pdComment %></td>
+                <td><a class="btn btn-primary btn-xs" href="/upazilla/initialTrialEdit/<%= row.id %>"><i class="fa fa-edit"></i></a>
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
+<% }else{ %>
+    <table class="table table-bordered table-striped" id="tblCustomers" cellspacing="0" cellpadding="0">
+        <thead>
+        <tr>
+            <th>ক্রমিক নং</th>
+        <th>প্রশিক্ষণার্থীর নাম ও পিতা/স্বামীর নাম</th>
+        <th>গ্রাম/ব্লক</th>
+        <th>কৃষকের/কৃষাণির মোবাইল নম্বর</th>
+        <th>ব্যবহৃত জাতের নাম</th>
+        <th>প্রদর্শনী স্থাপনের তারিখ</th>
+        <th>প্রদর্শনীর বর্তমান অবস্থা</th>
+        <th>দায়িত্বপ্রাপ্ত উপসহকারী কৃষি কর্মকর্তার নাম ও মোবাইল নং</th>
+        <th>উপ-পরিচালকের মন্তব্য</th>
+        <th>প্রকল্প পরিচালকের মন্তব্য</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% records.forEach(function(row){ %>
+            <tr>
+                <td colspan="10">No data Found</td>
+            </tr>
+        <% }) %>
+        </tbody>
+    </table>
+<% } %>

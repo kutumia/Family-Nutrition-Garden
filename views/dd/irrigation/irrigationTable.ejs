@@ -1,0 +1,58 @@
+<%if (records.length >0){ %>
+    <table class="table table-bordered table-striped" id="tblCustomers" cellspacing="0" cellpadding="0">
+    <thead>
+    <tr>
+        <th>ক্রমিক নং</th>
+        <th>জেলার নাম</th>
+        <th>উপজেলার নাম</th>
+        <th>বারিড পাইপের সংখ্যা ও দৈর্ঘ্য</th>
+        <th>বারিড পাইপের অবস্থান( ইউনিয়ন ও গ্রামের অবস্থান)</th>
+        <th>সেচের আওতায় জমির পরিমাণ</th>
+        <th>উপজেলা কৃষি অফিসারের মন্তব্য</th>
+        <th>উপ-পরিচালকের মন্তব্য</th>
+        <th>প্রকল্প পরিচালকের মন্তব্য</th>
+        <th>মন্তব্য করুন</th>
+    </tr>
+    </thead>
+    <tbody>
+        <% records.forEach(function(row,index){ %>
+            <tr>
+                <td><%= index+1 %></td>
+                <td><%= row.district %></td>
+                <td><%= row.upazilla %></td>
+                <td><%= row.pipe %></td>
+                <td><%= row.union %></td>
+                <td><%= row.jomi%></td>
+                <td><%= row.comment %></td>
+                <td><%= row.ddComment %></td>
+                <td><%= row.pdComment %></td>
+                <td><a class="btn btn-primary btn-xs" href="/dd/irrigationEdit/<%= row.id %>"><i class="fa fa-edit"></i></a></td>
+                
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
+<% }else{ %>
+    <table class="table table-bordered table-striped" id="tblCustomers" cellspacing="0" cellpadding="0">
+        <thead>
+        <tr>
+            <th>ক্রমিক নং</th>
+        <th>জেলার নাম</th>
+        <th>উপজেলার নাম</th>
+        <th>বারিড পাইপের সংখ্যা ও দৈর্ঘ্য</th>
+        <th>বারিড পাইপের অবস্থান( ইউনিয়ন ও গ্রামের অবস্থান)</th>
+        <th>সেচের আওতায় জমির পরিমাণ</th>
+        <th>উপজেলা কৃষি অফিসারের মন্তব্য</th>
+        <th>উপ-পরিচালকের মন্তব্য</th>
+        <th>প্রকল্প পরিচালকের মন্তব্য</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% records.forEach(function(row){ %>
+            <tr>
+                <td colspan="10">No data Found</td>
+            </tr>
+        <% }) %>
+        </tbody>
+    </table>
+<% } %>

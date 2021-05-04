@@ -1,0 +1,57 @@
+<%if (records.length >0){ %>
+    <table class="table table-bordered table-striped" id="tblCustomers" cellspacing="0" cellpadding="0">
+    <thead>
+    <tr>
+        <th>ক্রমিক নং</th>
+        <th>কৃষকের/কৃষাণির নাম ও ঠিকানা</th>
+        <th>ফসলের নাম/প্রযুক্তি</th>
+        <th>মাঠ দিবস বাস্তবায়নের তারিখ</th>
+        <th>কৃষকের মন্তব্য</th>
+        <th>উপজেলা কৃষি অফিসারের মন্তব্য</th>
+        <th>উপ-পরিচালকের মন্তব্য</th>
+        <th>প্রকল্প পরিচালকের মন্তব্য</th>
+        <th>পরিবর্তন/মুছুন</th>
+    </tr>
+    </thead>
+    <tbody>
+        <% records.forEach(function(row,index){ %>
+            <tr>
+                <td><%= index+1 %></td>
+                <td><%= row.name %></td>
+                <td><%= row.foshol %></td>
+                <td><%= row.date %></td>
+                <td><%= row.time %></td>
+                <td><%= row.comment %></td>
+                <td><%= row.ddComment %></td>
+                <td><%= row.pdComment %></td>
+                <td><a class="btn btn-primary btn-xs" href="/upazilla/fieldDayEdit/<%= row.id %>"><i class="fa fa-edit"></i></a>
+                    <a class="btn btn-danger btn-xs" href="/upazilla/fieldDayDelete/<%= row.id %>"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
+<% }else{ %>
+    <table class="table table-bordered table-striped" id="tblCustomers" cellspacing="0" cellpadding="0">
+        <thead>
+        <tr>
+            <th>ক্রমিক নং</th>
+        <th>কৃষকের/কৃষাণির নাম ও ঠিকানা</th>
+        <th>ফসলের নাম/প্রযুক্তি</th>
+        <th>মাঠ দিবস বাস্তবায়নের তারিখ</th>
+        <th>কৃষকের মন্তব্য</th>
+        <th>উপজেলা কৃষি অফিসারের মন্তব্য</th>
+        <th>উপ-পরিচালকের মন্তব্য</th>
+        <th>প্রকল্প পরিচালকের মন্তব্য</th>
+        <th>পরিবর্তন/মুছুন</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% records.forEach(function(row){ %>
+            <tr>
+                <td colspan="10">No data Found</td>
+            </tr>
+        <% }) %>
+        </tbody>
+    </table>
+<% } %>
