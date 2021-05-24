@@ -9,7 +9,7 @@
                     <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                         <div class="panel panel-info">
                             <div class="panel-heading">
-                                <div class="panel-title"><h2>সেমিনার তথ্য ফর্ম</h2></div>
+                                <div class="panel-title"><h2>প্রাথমিক প্রতিবেদন ফর্ম</h2></div>
                                 <p><%
                                 if(success !=''){ %>
                                 <%= success %>
@@ -17,42 +17,53 @@
                                 </p>
                                 </div>  
                             <div class="panel-body" >
-                                <form action="/upazilla/agriFairFormPost" id="FieldTrialForm" class="form-horizontal" method="post"  role="form">
+                                <form action="/upazilla/demonstrationInitialFormPost" id="FieldTrialForm" class="form-horizontal" method="post"  role="form">
                                     <div id="signupalert" style="display:none" class="alert alert-danger">
                                         <p>Error:</p>
                                         <span></span>
                                     </div>
 
-                                    <input type="hidden" class="form-control" name="district" placeholder="জেলার নাম" value="<%=dds%>">
-                                    <input type="hidden" class="form-control" name="upazilla" placeholder="উপজেলার নাম" value="<%=upazillas%>">
-                                    
+                                        
                                     <div class="form-group">
-                                        <label for="booth" class="col-md-3 control-label">প্রদর্শিত বুথ/স্টলের সংখ্যা</label>
+                                        <label for="name" class="col-md-3 control-label">কৃষকের নাম ও ঠিকানা</label>
                                         <div class="col-md-9">
-                                        <input type="text" class="form-control" name="booth" placeholder="প্রদর্শিত বুথ/স্টলের সংখ্যা">
+                                            <input type="text" class="form-control" name="name" placeholder="কৃষকের নাম ও ঠিকানা">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="nid" class="col-md-3 control-label">কৃষকের এনআইডি ও মোবাইল নম্বর</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="nid" placeholder="কৃষকের এনআইডি ও মোবাইল নম্বর">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="technology" class="col-md-3 control-label">প্রদর্শিত প্রযুক্তিসমূহ</label>
+                                        <label for="saao" class="col-md-3 control-label">প্রদর্শনী তদারকির দায়িত্বপ্রাপ্ত এসএএও এর নাম ও মোবাইল নম্বর</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="technology" placeholder="প্রদর্শিত প্রযুক্তিসমূহ">
+                                            <input type="text" class="form-control" name="saao" placeholder="প্রদর্শনী তদারকির দায়িত্বপ্রাপ্ত এসএএও এর নাম ও মোবাইল নম্বর">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="name" class="col-md-3 control-label">উদ্বোধকের নাম ও পদবী</label>
+                                        <label for="supply" class="col-md-3 control-label">সরবরাহকৃত উপকরণ (বীজ/চারা,সার,নগদ,অর্থ ইত্যাদি অন্যান্য প্রযোজ্য উপকরণ সামগ্রী)</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="name" placeholder="উদ্বোধকের নাম ও পদবী">
+                                            <input type="text" class="form-control" name="supply" placeholder="সরবরাহকৃত উপকরণ (বীজ/চারা,সার,নগদ,অর্থ ইত্যাদি অন্যান্য প্রযোজ্য উপকরণ সামগ্রী)">
                                         </div>
                                     </div>
 
-                                    
-                                
+                                    <div class="form-group">
+                                        <label for="date" class="col-md-3 control-label">উপকরণ বিতরণের তারিখ</label>
+                                        <div class="col-md-9">
+                                            <input type="date" class="form-control" name="date" placeholder="উপকরণ বিতরণের তারিখ">
+                                        </div>
+                                    </div>
+
                                     <div class="form-group">
                                         <label for="comment" class="col-md-3 control-label">মন্তব্য</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="comment" placeholder="মন্তব্য ">
+                                            <input type="text" class="form-control" name="comment" placeholder="মন্তব্য">
                                         </div>
                                     </div>
 
@@ -66,26 +77,6 @@
                                             <option value="2020">২০২০-২১</option>
                                             <option value="2021">২০২১-২২</option>
                                             <option value="2022">২০২২-২৩</option>
-                                        </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="batch" class="col-md-3 control-label">ব্যাচ নং</label>
-                                        <div class="col-md-9">
-                                            <label for="batch">Choose a batch no:</label>
-                                        <select id="batch" name="batch" required>
-                                            <option value="">Choose batch</option>
-                                            <option value="01">01</option>
-                                            <option value="02">02</option>
-                                            <option value="03">03</option>
-                                            <option value="04">04</option>
-                                            <option value="05">05</option>
-                                            <option value="06">06</option>
-                                            <option value="07">07</option>
-                                            <option value="08">08</option>
-                                            <option value="09">09</option>
-                                            <option value="10">10</option>
                                         </select>
                                         </div>
                                     </div>

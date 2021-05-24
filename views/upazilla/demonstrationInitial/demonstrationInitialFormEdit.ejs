@@ -9,7 +9,7 @@
                     <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                         <div class="panel panel-info">
                             <div class="panel-heading">
-                                <div class="panel-title"><h2>প্রদর্শনী স্থাপনের চূড়ান্ত প্রতিবেদন ফর্ম</h2></div>
+                                <div class="panel-title"><h2>প্রাথমিক প্রতিবেদন ফর্ম</h2></div>
                                 <p><%
                                 if(success !=''){ %>
                                 <%= success %>
@@ -17,54 +17,54 @@
                                 </p>
                                 </div>  
                             <div class="panel-body" >
-                                <form action="/upazilla/finalTrialFormPost/<%= records.id %>" id="FieldTrialForm" class="form-horizontal" method="post"  role="form">
+                                <form action="/upazilla/demonstrationInitialFormEditPost/<%= records.id %>" id="FieldTrialForm" class="form-horizontal" method="post"  role="form">
                                     <div id="signupalert" style="display:none" class="alert alert-danger">
                                         <p>Error:</p>
                                         <span></span>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="trialdate" class="col-md-3 control-label">রোপণ/স্থাপনের তারিখ</label>
+                                        <label for="name" class="col-md-3 control-label">কৃষকের নাম ও ঠিকানা</label>
                                         <div class="col-md-9">
-                                            <input type="date" class="form-control" name="trialdate" placeholder="রোপণ/স্থাপনের তারিখ" >
+                                            <input type="text" class="form-control" name="name" placeholder="কৃষকের নাম ও ঠিকানা" value="<%=records.name%>">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="nid" class="col-md-3 control-label">কৃষকের এনআইডি ও মোবাইল নম্বর</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="nid" placeholder="কৃষকের এনআইডি ও মোবাইল নম্বর" value="<%=records.nid%>">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="cdate" class="col-md-3 control-label">কর্তন ফসল সংগ্রহের তারিখ</label>
+                                        <label for="saao" class="col-md-3 control-label">প্রদর্শনী তদারকির দায়িত্বপ্রাপ্ত এসএএও এর নাম ও মোবাইল নম্বর</label>
                                         <div class="col-md-9">
-                                            <input type="date" class="form-control" name="cdate" placeholder="কর্তন ফসল সংগ্রহের তারিখ ">
+                                            <input type="text" class="form-control" name="saao" placeholder="প্রদর্শনী তদারকির দায়িত্বপ্রাপ্ত এসএএও এর নাম ও মোবাইল নম্বর" value="<%=records.saao%>">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="production" class="col-md-3 control-label">উতপাদন(মেট্রিক টন/হেঃ)</label>
+                                        <label for="supply" class="col-md-3 control-label">সরবরাহকৃত উপকরণ (বীজ/চারা,সার,নগদ,অর্থ ইত্যাদি অন্যান্য প্রযোজ্য উপকরণ সামগ্রী)</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="production" placeholder="উতপাদন(মেট্রিক টন/হেঃ)" >
+                                            <input type="text" class="form-control" name="supply" placeholder="সরবরাহকৃত উপকরণ (বীজ/চারা,সার,নগদ,অর্থ ইত্যাদি অন্যান্য প্রযোজ্য উপকরণ সামগ্রী)" value="<%=records.supply%>">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="bij" class="col-md-3 control-label">চূড়ান্ত সংরক্ষিত বীজের পরিমাণ</label>
+                                        <label for="date" class="col-md-3 control-label">উপকরণ বিতরণের তারিখ</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="bij" placeholder="চূড়ান্ত সংরক্ষিত বীজের পরিমাণ" >
+                                            <input type="date" class="form-control" name="date" placeholder="উপকরণ বিতরণের তারিখ" value="<%=records.date%>">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="fcomment" class="col-md-3 control-label">কৃষকের/কৃষাণির মন্তব্য </label>
+                                        <label for="comment" class="col-md-3 control-label">মন্তব্য</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="fcomment" placeholder="কৃষকের/কৃষাণির মন্তব্য ">
+                                            <input type="text" class="form-control" name="comment" placeholder="মন্তব্য" value="<%=records.comment%>">
                                         </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="kcomment" class="col-md-3 control-label">কর্মকর্তাদের মন্তব্য </label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="kcomment" placeholder="কর্মকর্তাদের মন্তব্য ">
-                                        </div>
-                                    </div>
-
 
                                     <div class="form-group">
                                         <div class="col-md-9">

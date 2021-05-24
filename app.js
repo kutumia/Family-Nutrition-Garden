@@ -64,6 +64,7 @@ app.use('/dd', ddRouter);
 
 
 const db = require("./models");
+const { PORT } = require('./config/db.config');
 db.sequelize.sync().then(function () {
   console.log('DB connection sucessful.');
 }, function (err) {
@@ -75,7 +76,7 @@ db.sequelize.sync().then(function () {
 db.sequelize.sync({ force: false }).then(() => {
   console.log("Drop and re-sync db.");
 }).then(function () {
-  console.log('DB connection sucessful.');
+  console.log('DB connection sucessful.',PORT);
 }, function (err) {
   // catch error here
   console.log(err);

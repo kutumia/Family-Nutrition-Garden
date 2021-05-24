@@ -11,6 +11,10 @@ const machinery = db.machinery;
 const motivation = db.motivation;
 const fieldDay = db.fieldDay;
 const agriFair = db.agriFair;
+const vermiCompostInitial = db.vermiCompostInitial;
+const vermiCompostFinal = db.vermiCompostFinal;
+const demonstrationInitial = db.demonstrationInitial;       
+const demonstrationFinal = db.demonstrationFinal;
 
 const jwt= require('jsonwebtoken');
 const bcrypt= require('bcryptjs'); 
@@ -20,7 +24,7 @@ const express = require('express');
 
 
 module.exports.pdlogin=async(req,res)=>{
-    res.render('pd/login', { title: 'নোয়াখালী, ফেনী, লক্ষীপুর, চট্টগ্রাম ও চাঁদপুর কৃষি উন্নয়ন প্রকল্প এ স্বাগতম',msg:'' });
+    res.render('pd/login', { title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'' });
     res.send("log");
 };
 
@@ -46,11 +50,11 @@ module.exports.pdloginpost=async(req,res)=>{
                         res.redirect('/pd/dashboard');
                     }
                     else{
-                        return res.status(200).render('pd/login', { title: 'নোয়াখালী, ফেনী, লক্ষীপুর, চট্টগ্রাম ও চাঁদপুর কৃষি উন্নয়ন প্রকল্প এ স্বাগতম',msg:'Please provide a username and password' });
+                        return res.status(200).render('pd/login', { title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'Please provide a username and password' });
                     }
                 });
             }else{
-                return res.status(200).render('pd/login', { title: 'নোয়াখালী, ফেনী, লক্ষীপুর, চট্টগ্রাম ও চাঁদপুর কৃষি উন্নয়ন প্রকল্প এ স্বাগতম',msg:'Please provide a username and password' });
+                return res.status(200).render('pd/login', { title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'Please provide a username and password' });
             }
         })
         .catch(err => {
@@ -90,13 +94,13 @@ module.exports.pdloginpost=async(req,res)=>{
 
 module.exports.pdDashboard = async(req,res) => {
     console.log("pddashboard",res.locals.type);
-    res.render('pd/dashboard', { title: 'নোয়াখালী, ফেনী, লক্ষীপুর, চট্টগ্রাম ও চাঁদপুর কৃষি উন্নয়ন প্রকল্প এ স্বাগতম',msg:'Welcome' });
+    res.render('pd/dashboard', { title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'Welcome' });
 };
 //logIn controller end
 
 //signUp controller
 module.exports.pdsignup=async(req,res)=>{
-    res.render('pd/signup', { title: 'নোয়াখালী, ফেনী, লক্ষীপুর, চট্টগ্রাম ও চাঁদপুর কৃষি উন্নয়ন প্রকল্প এ স্বাগতম',msg:'' });
+    res.render('pd/signup', { title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'' });
     res.send("log");
 };
 module.exports.pdsignuppost=async(req,res)=>{
@@ -105,10 +109,10 @@ module.exports.pdsignuppost=async(req,res)=>{
 
         const data = await pd.findAll({ where: {uname: uname} })
         if(data.length > 0){
-            res.render('pd/signup',{title: 'নোয়াখালী, ফেনী, লক্ষীপুর, চট্টগ্রাম ও চাঁদপুর কৃষি উন্নয়ন প্রকল্প এ স্বাগতম',msg:'ERROR: The pd is already enrolled!'})
+            res.render('pd/signup',{title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'ERROR: The pd is already enrolled!'})
         }
         else if(password !== confirmPassword){
-            return res.render('pd/signup',{title: 'নোয়াখালী, ফেনী, লক্ষীপুর, চট্টগ্রাম ও চাঁদপুর কৃষি উন্নয়ন প্রকল্প এ স্বাগতম',msg:'ERROR: Passwords do not match!'})
+            return res.render('pd/signup',{title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'ERROR: Passwords do not match!'})
         }
         else{
             const hashedPassword = await bcrypt.hash(password, 10);
@@ -119,7 +123,7 @@ module.exports.pdsignuppost=async(req,res)=>{
                     password:hashedPassword,
                     pd_id:1
                     })
-                res.render('pd/signup',{title: 'নোয়াখালী, ফেনী, লক্ষীপুর, চট্টগ্রাম ও চাঁদপুর কৃষি উন্নয়ন প্রকল্প এ স্বাগতম',msg:'pd Registered Successfully!'})
+                res.render('pd/signup',{title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'pd Registered Successfully!'})
             }
             catch (err) {
                 console.log(err);
@@ -358,7 +362,7 @@ module.exports.agriFair=async(req,res)=>{
     try{
         var districts=await dd.findAll();
         console.log("inside");
-        res.render('pd/agriFair/agriFair', { title: 'কৃষি মেলা তথ্য',success:'',district:districts });
+        res.render('pd/agriFair/agriFair', { title: 'সেমিনার তথ্য',success:'',district:districts });
     }
     catch(err){
         console.log("outside",err);
@@ -399,7 +403,7 @@ module.exports.agriFairEdit=async(req,res)=>{
     await agriFair.findByPk(req.params.id)
     .then(data => {
         console.log("inside",data);
-        res.render('pd/agriFair/agriFairEdit', { title: 'কৃষি মেলা তথ্য ফর্ম',success:'',records: data });
+        res.render('pd/agriFair/agriFairEdit', { title: 'সেমিনার তথ্য ফর্ম',success:'',records: data });
     })
     .catch(err => {
         console.log("outside",err);
@@ -724,3 +728,191 @@ await fieldDay.update({
     });
 };
 //fieldDay controller end
+//vermiCompostInitial controller
+module.exports.vermiCompostInitial=async(req,res)=>{
+    try{
+        var districts=await dd.findAll();
+        console.log("inside");
+        res.render('pd/vermiCompostInitial/vermiCompostInitial', { title: 'প্রদর্শনীর (ভার্মি কম্পোস্ট) প্রাথমিক প্রতিবেদন',success:'',district:districts });
+    }
+    catch(err){
+        console.log("outside",err);
+        res.render('pd/vermiCompostInitial/vermiCompostInitial', { title: 'প্রদর্শনীর (ভার্মি কম্পোস্ট) প্রাথমিক প্রতিবেদন',success:''});
+    }
+     
+    //  records:result
+
+};
+
+module.exports.vermiCompostInitialFilter=async(req,res)=>{
+    await vermiCompostInitial.findAll({ 
+        where: {year: req.body.year,upazilla_id: req.body.upazilla}
+    })
+    .then(data => {
+        res.render('pd/vermiCompostInitial/vermiCompostInitialTable', {records: data} ,function(err, html) {
+            res.send(html);
+        });
+    })
+    .catch(err => {
+        res.render('pd/vermiCompostInitial/vermiCompostInitialYear', { title: 'প্রদর্শনীর (ভার্মি কম্পোস্ট) প্রাথমিক প্রতিবেদন',success:'', records: err });
+    })
+
+};
+
+module.exports.vermiCompostInitialDistrictFilter=async(req,res)=>{
+    try{
+        // var dds=await dd.findAll({where: {id: req.body.district}});
+        var upazillass=await upazilla.findAll({where: {dd_id: req.body.district}});
+        console.log("inside");
+        res.send(upazillass)
+    }
+    catch(err){
+        console.log("outside",err);
+        res.render('pd/vermiCompostInitial/vermiCompostInitial', { title: 'প্রদর্শনীর (ভার্মি কম্পোস্ট) প্রাথমিক প্রতিবেদন',success:'', upazillas:err });
+    }
+     
+
+};
+//vermiCompostInitial controller end
+
+//vermiCompostFinal controller
+module.exports.vermiCompostFinal=async(req,res)=>{
+    try{
+        var districts=await dd.findAll();
+        console.log("inside");
+        res.render('pd/vermiCompostFinal/vermiCompostFinal', { title: 'প্রদর্শনীর (ভার্মি কম্পোস্ট) চূড়ান্ত প্রতিবেদন',success:'',district:districts });
+    }
+    catch(err){
+        console.log("outside",err);
+        res.render('pd/vermiCompostFinal/vermiCompostFinal', { title: 'প্রদর্শনীর (ভার্মি কম্পোস্ট) চূড়ান্ত প্রতিবেদন',success:''});
+    }
+     
+    //  records:result
+
+};
+
+module.exports.vermiCompostFinalFilter=async(req,res)=>{
+    await vermiCompostFinal.findAll({ 
+        where: {year: req.body.year,upazilla_id: req.body.upazilla}
+    })
+    .then(data => {
+        console.log("data",data);
+        res.render('pd/vermiCompostFinal/vermiCompostTable', {records: data} ,function(err, html) {
+            res.send(html);
+        });
+    })
+    .catch(err => {
+        console.log(err)
+    })
+
+};
+
+module.exports.vermiCompostFinalDistrictFilter=async(req,res)=>{
+    try{
+        // var dds=await dd.findAll({where: {id: req.body.district}});
+        var upazillass=await upazilla.findAll({where: {dd_id: req.body.district}});
+        console.log("inside");
+        res.send(upazillass)
+    }
+    catch(err){
+        console.log("outside",err);
+        res.render('pd/vermiCompostFinal/vermiCompostFinal', { title: 'প্রদর্শনীর (ভার্মি কম্পোস্ট) চূড়ান্ত প্রতিবেদন',success:'', upazillas:err });
+    }
+     
+
+};
+//vermiCompostFinal controller end
+
+//demonstrationInitial controller
+module.exports.demonstrationInitial=async(req,res)=>{
+    try{
+        var districts=await dd.findAll();
+        console.log("inside");
+        res.render('pd/demonstrationInitial/demonstrationInitial', { title: 'প্রদর্শনীর (দানাদার ধরণের) প্রাথমিক প্রতিবেদন',success:'',district:districts });
+    }
+    catch(err){
+        console.log("outside",err);
+        res.render('pd/demonstrationInitial/demonstrationInitial', { title: 'প্রদর্শনীর (দানাদার ধরণের) প্রাথমিক প্রতিবেদন',success:''});
+    }
+     
+    //  records:result
+
+};
+
+module.exports.demonstrationInitialFilter=async(req,res)=>{
+    await demonstrationInitial.findAll({ 
+        where: {year: req.body.year,upazilla_id: req.body.upazilla}
+    })
+    .then(data => {
+        res.render('pd/demonstrationInitial/demonstrationInitialTable', {records: data} ,function(err, html) {
+            res.send(html);
+        });
+    })
+    .catch(err => {
+        res.render('pd/demonstrationInitial/demonstrationInitialYear', { title: 'প্রদর্শনীর (দানাদার ধরণের) প্রাথমিক প্রতিবেদন',success:'', records: err });
+    })
+
+};
+
+module.exports.demonstrationInitialDistrictFilter=async(req,res)=>{
+    try{
+        // var dds=await dd.findAll({where: {id: req.body.district}});
+        var upazillass=await upazilla.findAll({where: {dd_id: req.body.district}});
+        console.log("inside");
+        res.send(upazillass)
+    }
+    catch(err){
+        console.log("outside",err);
+        res.render('pd/demonstrationInitial/demonstrationInitial', { title: 'প্রদর্শনীর (দানাদার ধরণের) প্রাথমিক প্রতিবেদন',success:'', upazillas:err });
+    }
+     
+
+};
+//demonstrationInitial controller end
+
+//demonstrationFinal controller
+module.exports.demonstrationFinal=async(req,res)=>{
+    try{
+        var districts=await dd.findAll();
+        console.log("inside");
+        res.render('pd/demonstrationFinal/demonstrationFinal', { title: 'প্রদর্শনীর (দানাদার ধরণের) চূড়ান্ত প্রতিবেদন',success:'',district:districts });
+    }
+    catch(err){
+        console.log("outside",err);
+        res.render('pd/demonstrationFinal/demonstrationFinal', { title: 'প্রদর্শনীর (দানাদার ধরণের) চূড়ান্ত প্রতিবেদন',success:''});
+    }
+     
+    //  records:result
+
+};
+
+module.exports.demonstrationFinalFilter=async(req,res)=>{
+    await demonstrationFinal.findAll({ 
+        where: {year: req.body.year,upazilla_id: req.body.upazilla}
+    })
+    .then(data => {
+        res.render('pd/demonstrationFinal/demonstrationFinalTable', {records: data} ,function(err, html) {
+            res.send(html);
+        });
+    })
+    .catch(err => {
+        res.render('pd/demonstrationFinal/demonstrationFinalYear', { title: 'প্রদর্শনীর (দানাদার ধরণের) চূড়ান্ত প্রতিবেদন',success:'', records: err });
+    })
+
+};
+
+module.exports.demonstrationFinalDistrictFilter=async(req,res)=>{
+    try{
+        // var dds=await dd.findAll({where: {id: req.body.district}});
+        var upazillass=await upazilla.findAll({where: {dd_id: req.body.district}});
+        console.log("inside");
+        res.send(upazillass)
+    }
+    catch(err){
+        console.log("outside",err);
+        res.render('pd/demonstrationFinal/demonstrationFinal', { title: 'প্রদর্শনীর (দানাদার ধরণের) চূড়ান্ত প্রতিবেদন',success:'', upazillas:err });
+    }
+     
+
+};
+//demonstrationFinal controller end

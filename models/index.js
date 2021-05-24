@@ -31,6 +31,8 @@ db.fieldDay = require("./fieldDay.model.js")(sequelize, Sequelize);
 db.irrigation = require("./irrigation.model.js")(sequelize, Sequelize);
 db.machinery = require("./machinery.model.js")(sequelize, Sequelize);
 db.motivation = require("./motivation.model.js")(sequelize, Sequelize);
-
-
+db.vermiCompostFinal = require("./vermiCompostFinal.model.js")(sequelize, Sequelize);
+db.vermiCompostInitial = require("./vermiCompostInitial.model.js")(sequelize, Sequelize);
+db.demonstrationFinal = require("./demonstrationFinal.model.js")(sequelize, Sequelize);
+db.demonstrationInitial = require("./demonstrationInitial.model.js")(sequelize, Sequelize);
 module.exports = db;

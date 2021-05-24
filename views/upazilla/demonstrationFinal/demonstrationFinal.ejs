@@ -13,7 +13,6 @@
                                 <label for="year">Choose a year:</label>
 
                                 <select id="year" name="year">
-                                    <option value="">Choose year</option>
                                     <option value="2017">২০১৭-১৮</option>
                                     <option value="2018">২০১৮-১৯</option>
                                     <option value="2019">২০১৯-২০</option>
@@ -24,7 +23,12 @@
                                 </select>
                             </div>
                         </div>
-                        
+                        <div class="row mb-2">
+                            <div class="col-md-12">
+                                <a href="/upazilla/demonstrationFinalForm" class="btn btn-success btn-group-sm ">চূড়ান্ত প্রতিবেদন ফর্ম</a>
+                            </div>
+
+                        </div>
 
                         <div class="table-responsive" id="output"></div>
 
@@ -41,15 +45,29 @@
    
 <%- include('../../includes/footer')-%>
 <script>
-        
     $(document).ready(function(){
-        
       $('.dropdown a.test').on("click", function(e){
         $(this).next('ul').toggle();
         e.stopPropagation();
         e.preventDefault();
       });
     });
+</script>
+<script type="text/javascript">
+    $("body").on("click", "#btnExport", function () {
+        html2canvas($('.page-wrap')[0], {
+            onrendered: function (canvas) {
+                var data = canvas.toDataURL();
+                var docDefinition = {
+                    content: [{
+                        image: data,
+                        width: 650
+                    }]
+                };
+                pdfMake.createPdf(docDefinition).download("farmer-details.pdf");
+            }
+        });
+    }); 
 </script>
 
 <script type="text/javascript">
@@ -74,7 +92,7 @@
         var year = $('#year').val();
         $.ajax({
             type: "POST",
-            url: "/upazilla/finalTrialYear",
+            url: "/upazilla/demonstrationFinalYear",
             data: {year: year},
             datatype: "json",
             beforeSend: function() {
@@ -98,7 +116,7 @@
         var year = $('#year').val();
         $.ajax({
             type: "POST",
-            url: "/upazilla/finalTrialYear",
+            url: "/upazilla/demonstrationFinalYear",
             data: {year: year},
             datatype: "json",
             beforeSend: function() {

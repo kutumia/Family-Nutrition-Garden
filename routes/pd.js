@@ -8,7 +8,11 @@ const {pdsignup,pdsignuppost,pdlogin,pdloginpost,pdDashboard,trainedFarmerEditPo
 ,initialTrialEdit,initialTrialEditPost,finalTrialEdit,finalTrialEditPost,agriFairEdit,agriFairEditPost,
     finalTrial,finalTrialFilter,trainedFarmerDistrictFilter,finalTrialDistrictFilter,initialTrialDistrictFilter,
     agriFair,agriFairFilter,irrigation,irrigationFilter,machinery,machineryFilter,motivation,motivationFilter,fieldDay,fieldDayFilter,
-    agriFairDistrictFilter,irrigationDistrictFilter,machineryDistrictFilter,motivationDistrictFilter,fieldDayDistrictFilter
+    agriFairDistrictFilter,irrigationDistrictFilter,machineryDistrictFilter,motivationDistrictFilter,fieldDayDistrictFilter,
+    vermiCompostInitial,vermiCompostInitialFilter,vermiCompostInitialDistrictFilter,
+    vermiCompostFinal,vermiCompostFinalFilter,vermiCompostFinalDistrictFilter,   demonstrationInitial,demonstrationInitialFilter,demonstrationInitialDistrictFilter,
+    demonstrationFinal,demonstrationFinalFilter,demonstrationFinalDistrictFilter,
+    
 } = require('../controllers/pd.controller');
 router.get('/login',pdlogin);
 router.post('/logins',pdloginpost);
@@ -68,5 +72,19 @@ router.post('/fieldDayDistrictFilter',fieldDayDistrictFilter);
 router.get('/fieldDayEdit/:id',fieldDayEdit);
 router.post('/fieldDayEditPost/:id',fieldDayEditPost);
 
+router.get('/vermiCompostInitial',vermiCompostInitial);
+router.post('/vermiCompostInitialFilter',vermiCompostInitialFilter);
+router.post('/vermiCompostInitialDistrictFilter',vermiCompostInitialDistrictFilter);
 
+router.get('/vermiCompostFinal',vermiCompostFinal);
+router.post('/vermiCompostFinalFilter',vermiCompostFinalFilter);
+router.post('/vermiCompostFinalDistrictFilter',vermiCompostFinalDistrictFilter);
+
+router.get('/demonstrationInitial',demonstrationInitial);
+router.post('/demonstrationInitialFilter',demonstrationInitialFilter);
+router.post('/demonstrationInitialDistrictFilter',demonstrationInitialDistrictFilter);
+
+router.get('/demonstrationFinal',demonstrationFinal);
+router.post('/demonstrationFinalFilter',demonstrationFinalFilter);
+router.post('/demonstrationFinalDistrictFilter',demonstrationFinalDistrictFilter);
 module.exports = router;

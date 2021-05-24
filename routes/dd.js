@@ -5,6 +5,8 @@ const app=express();
 const {ddsignup,ddsignuppost,allupazilla,ddlogin,ddloginpost,ddDashboard,irrigationEdit,irrigationEditPost,machineryEdit,machineryEditPost,motivationEdit,motivationEditPost,fieldDayEdit,fieldDayEditPost
     ,initialTrialEdit,initialTrialEditPost,finalTrialEdit,finalTrialEditPost,agriFairEdit,agriFairEditPost,
     trainedFarmer,trainedFarmerFilter,initialTrial,initialTrialFilter,trainedFarmerEditPost,trainedFarmerEdit,
+    vermiCompostInitial,vermiCompostInitialFilter,vermiCompostFinal,vermiCompostFinalFilter,
+    demonstrationInitial,demonstrationInitialFilter,demonstrationFinal,demonstrationFinalFilter,
     finalTrial,finalTrialFilter,agriFair,agriFairFilter,irrigation,irrigationFilter,machinery,machineryFilter,motivation,motivationFilter,fieldDay,fieldDayFilter} = require('../controllers/dd.controller');
 router.get('/',allupazilla);
 router.get('/login',ddlogin);
@@ -54,8 +56,18 @@ router.post('/fieldDayFilter',fieldDayFilter);
 router.get('/fieldDayEdit/:id',fieldDayEdit);
 router.post('/fieldDayEditPost/:id',fieldDayEditPost);
 
+router.get('/vermiCompostInitial',vermiCompostInitial);
+router.post('/vermiCompostInitialFilter',vermiCompostInitialFilter);
+
+router.get('/vermiCompostFinal',vermiCompostFinal);
+router.post('/vermiCompostFinalFilter',vermiCompostFinalFilter);
 
 
+router.get('/demonstrationInitial',demonstrationInitial);
+router.post('/demonstrationInitialFilter',demonstrationInitialFilter);
+
+router.get('/demonstrationFinal',demonstrationFinal);
+router.post('/demonstrationFinalFilter',demonstrationFinalFilter);
 
 
 

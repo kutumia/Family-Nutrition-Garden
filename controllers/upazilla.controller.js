@@ -11,6 +11,11 @@ const machinery = db.machinery;
 const motivation = db.motivation;
 const fieldDay = db.fieldDay;
 const agriFair = db.agriFair;
+const vermiCompostInitial = db.vermiCompostInitial;
+const vermiCompostFinal = db.vermiCompostFinal;
+
+const demonstrationInitial = db.demonstrationInitial;       
+const demonstrationFinal = db.demonstrationFinal;
 
 const multer = require("multer");
 const path = require("path");
@@ -23,7 +28,7 @@ const express = require('express');
 
 
 module.exports.upazillalogin=async(req,res)=>{
-    res.render('upazilla/login', { title: 'নোয়াখালী, ফেনী, লক্ষীপুর, চট্টগ্রাম ও চাঁদপুর কৃষি উন্নয়ন প্রকল্প এ স্বাগতম',msg:'' });
+    res.render('upazilla/login', { title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'' });
     res.send("log");
 };
 module.exports.upazillaloginpost=async(req,res)=>{
@@ -48,11 +53,11 @@ module.exports.upazillaloginpost=async(req,res)=>{
                         res.redirect('/upazilla/dashboard');
                     }
                     else{
-                        return res.status(200).render('upazilla/login', { title: 'নোয়াখালী, ফেনী, লক্ষীপুর, চট্টগ্রাম ও চাঁদপুর কৃষি উন্নয়ন প্রকল্প এ স্বাগতম',msg:'Please provide a username and password' });
+                        return res.status(200).render('upazilla/login', { title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'Please provide a username and password' });
                     }
                 });
             }else{
-                return res.status(200).render('upazilla/login', { title: 'নোয়াখালী, ফেনী, লক্ষীপুর, চট্টগ্রাম ও চাঁদপুর কৃষি উন্নয়ন প্রকল্প এ স্বাগতম',msg:'Please provide a username and password' });
+                return res.status(200).render('upazilla/login', { title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'Please provide a username and password' });
             }
         })
         .catch(err => {
@@ -91,7 +96,7 @@ module.exports.upazillaloginpost=async(req,res)=>{
 };
 module.exports.upazillaDashboard = async(req,res) => {
     console.log("upazilladashboard",res.locals.type);
-    res.render('upazilla/dashboard', { title: 'নোয়াখালী, ফেনী, লক্ষীপুর, চট্টগ্রাম ও চাঁদপুর কৃষি উন্নয়ন প্রকল্প এ স্বাগতম',msg:'Welcome' });
+    res.render('upazilla/dashboard', { title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'Welcome' });
 };
 //logIn controller end
 
@@ -100,11 +105,11 @@ module.exports.upazillasignup=async(req,res)=>{
     await dd.findAll()
     .then(data => {
         console.log("inside");
-        res.render('upazilla/signup', { title: 'নোয়াখালী, ফেনী, লক্ষীপুর, চট্টগ্রাম ও চাঁদপুর কৃষি উন্নয়ন প্রকল্প এ স্বাগতম',msg:'',records: data });
+        res.render('upazilla/signup', { title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'',records: data });
     })
     .catch(err => {
         console.log("outside");
-        res.render('upazilla/signup', { title: 'নোয়াখালী, ফেনী, লক্ষীপুর, চট্টগ্রাম ও চাঁদপুর কৃষি উন্নয়ন প্রকল্প এ স্বাগতম',msg:'',records: err });
+        res.render('upazilla/signup', { title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'',records: err });
     })
 };
 module.exports.upazillasignuppost=async(req,res)=>{
@@ -114,10 +119,10 @@ module.exports.upazillasignuppost=async(req,res)=>{
         const data = await upazilla.findAll({ where: {uname: uname} });
         
         if(data.length > 0){
-            res.render('upazilla/signup',{title: 'নোয়াখালী, ফেনী, লক্ষীপুর, চট্টগ্রাম ও চাঁদপুর কৃষি উন্নয়ন প্রকল্প এ স্বাগতম',msg:'ERROR: The upazilla is already enrolled!',records: ddata})
+            res.render('upazilla/signup',{title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'ERROR: The upazilla is already enrolled!',records: ddata})
         }
         else if(password !== confirmPassword){
-           res.render('upazilla/signup',{title: 'নোয়াখালী, ফেনী, লক্ষীপুর, চট্টগ্রাম ও চাঁদপুর কৃষি উন্নয়ন প্রকল্প এ স্বাগতম',msg:'ERROR: Passwords do not match!',records: ddata})
+           res.render('upazilla/signup',{title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'ERROR: Passwords do not match!',records: ddata})
         }
         else{
             const hashedPassword = await bcrypt.hash(password, 10);
@@ -130,7 +135,7 @@ module.exports.upazillasignuppost=async(req,res)=>{
                     dd_id:dds,
                     pd_id:1
                     })
-                res.render('upazilla/signup',{title: 'নোয়াখালী, ফেনী, লক্ষীপুর, চট্টগ্রাম ও চাঁদপুর কৃষি উন্নয়ন প্রকল্প এ স্বাগতম',msg:'upazilla Registered Successfully!',records: ddata})
+                res.render('upazilla/signup',{title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'upazilla Registered Successfully!',records: ddata})
             }
             catch (err) {
                 console.log(err);
@@ -469,7 +474,7 @@ module.exports.finalTrialEdit=async(req,res)=>{
 //agriFair controller
 module.exports.agriFair=async(req,res)=>{
 
-        res.render('upazilla/agriFair/agriFair', { title: 'কৃষি মেলা তথ্য',success:'' });
+        res.render('upazilla/agriFair/agriFair', { title: 'সেমিনার তথ্য',success:'' });
 
     //  records:result
 
@@ -498,7 +503,7 @@ module.exports.agriFairForm=async(req,res)=>{
     var ddss=await dd.findOne({ where: {id:ddata} });
     var dds=ddss.district;
     try{
-    res.render('upazilla/agriFair/agriFairForm', { title: 'কৃষি মেলার তথ্য',msg:'' ,success:'',dds:dds,upazillas:upazillas,user_id: req.session.user_id});
+    res.render('upazilla/agriFair/agriFairForm', { title: 'সেমিনারর তথ্য',msg:'' ,success:'',dds:dds,upazillas:upazillas,user_id: req.session.user_id});
     }
     catch{
         console.log(err);
@@ -1071,3 +1076,462 @@ module.exports.motivationDelete=async(req,res)=>{
     }
 };
 //motivation controller end
+//vermiCompostInitial controller
+module.exports.vermiCompostInitial=async(req,res)=>{
+    await vermiCompostInitial.findAll({
+        where: {upazilla_id: req.session.user_id}
+    })
+    .then(data => {
+        console.log("inside");
+        res.render('upazilla/vermiCompostInitial/vermiCompostInitial', { title: 'প্রদর্শনীর (ভার্মি কম্পোস্ট) প্রাথমিক প্রতিবেদন',success:'', records: data });
+    })
+    .catch(err => {
+        console.log("outside");
+        res.render('upazilla/vermiCompostInitial/vermiCompostInitial', { title: 'প্রদর্শনীর (ভার্মি কম্পোস্ট) প্রাথমিক প্রতিবেদন',success:'', records: err });
+    })
+     
+    //  records:result
+
+};
+module.exports.vermiCompostInitialYear=async(req,res)=>{
+    await vermiCompostInitial.findAll({
+        where: {year: req.body.year,upazilla_id: req.session.user_id}
+    })
+    .then(data => {
+        res.render('upazilla/vermiCompostInitial/vermiCompostInitialTable', {records: data} ,function(err, html) {
+            res.send(html);
+        });
+    })
+    .catch(err => {
+        console.log(err);
+    })
+
+};
+module.exports.vermiCompostInitialForm=async(req,res)=>{
+    res.render('upazilla/vermiCompostInitial/vermiCompostInitialForm', { title: 'প্রদর্শনীর (ভার্মি কম্পোস্ট) প্রাথমিক প্রতিবেদন ফর্ম',msg:'' ,success:'',user_id: req.session.user_id});
+};
+module.exports.vermiCompostInitialFormPost=async(req,res)=>{
+    var name= req.body.name;
+    var nid= req.body.nid;
+    var saao= req.body.saao;
+    var supply=req.body.supply;
+    var date= req.body.date;
+    var comment= req.body.comment;
+    var year =req.body.year;
+    var user_id =req.body.user_id;
+
+    await vermiCompostInitial.create({
+        name: name,
+        nid:nid,
+        saao:saao,
+        supply:supply,
+        date: date,
+        comment:comment,
+        year:year,
+        upazilla_id:user_id
+    })
+        .then(data => {
+            res.redirect('/upazilla/vermiCompostInitial');
+        }).catch(err => {
+            res.render('errorpage',err);
+        });
+  
+};
+module.exports.vermiCompostInitialFormEdit=async(req,res)=>{
+    await vermiCompostInitial.findByPk(req.params.id)
+    .then(data => {
+        console.log("inside");
+        res.render('upazilla/vermiCompostInitial/vermiCompostInitialFormEdit', { title: 'প্রদর্শনীর (ভার্মি কম্পোস্ট) প্রাথমিক প্রতিবেদন ফর্ম',msg:'' ,success:'',records:data,upazilla_id: req.session.user_id});
+    })
+    .catch(err => {
+        console.log("outside");
+        res.render('upazilla/vermiCompostInitial/vermiCompostInitialFormEdit', { title: 'প্রদর্শনীর (ভার্মি কম্পোস্ট) প্রাথমিক প্রতিবেদন ফর্ম',msg:'' ,success:'',records:err});
+    })
+};
+module.exports.vermiCompostInitialFormEditPost=async(req,res)=>{
+    var name= req.body.name;
+    var nid= req.body.nid;
+    var saao= req.body.saao;
+    var supply=req.body.supply;
+    var date= req.body.date;
+    var comment= req.body.comment;
+
+    await vermiCompostInitial.update({
+        name: name,
+        nid:nid,
+        saao:saao,
+        supply:supply,
+        date: date,
+        comment:comment,
+    },
+    {
+        where: {id: req.params.id}
+    })
+       .then(data => {
+            res.redirect('/upazilla/vermiCompostInitial');
+        }).catch(err => {
+            res.render('errorpage',err);
+        });
+  
+  
+};
+module.exports.vermiCompostInitialDelete=async(req,res)=>{
+    var vermiCompostInitialDelete = await vermiCompostInitial.findByPk(req.params.id);
+    try {
+        vermiCompostInitialDelete.destroy();
+        res.redirect("/upazilla/vermiCompostInitial");
+    }
+    catch{
+        res.render('errorpage',err);
+    }
+};
+//vermiCompostInitial controller end
+
+//vermiCompostFinal controller
+module.exports.vermiCompostFinal=async(req,res)=>{
+    await vermiCompostFinal.findAll({
+        where: {upazilla_id: req.session.user_id}
+    })
+    .then(data => {
+        console.log("inside");
+        res.render('upazilla/vermiCompostFinal/vermiCompostFinal', { title: 'প্রদর্শনীর (ভার্মি কম্পোস্ট) চূড়ান্ত প্রতিবেদন',success:'', records: data });
+    })
+    .catch(err => {
+        console.log("outside");
+        res.render('upazilla/vermiCompostFinal/vermiCompostFinal', { title: 'প্রদর্শনীর (ভার্মি কম্পোস্ট) চূড়ান্ত প্রতিবেদন',success:'', records: err });
+    })
+     
+    //  records:result
+
+};
+module.exports.vermiCompostFinalYear=async(req,res)=>{
+    await vermiCompostFinal.findAll({
+        where: {year: req.body.year,upazilla_id: req.session.user_id}
+    })
+    .then(data => {
+        res.render('upazilla/vermiCompostFinal/vermiCompostFinalTable', {records: data} ,function(err, html) {
+            res.send(html);
+        });
+    })
+    .catch(err => {
+        console.log(err);
+    })
+
+};
+module.exports.vermiCompostFinalForm=async(req,res)=>{
+    res.render('upazilla/vermiCompostFinal/vermiCompostFinalForm', { title: 'প্রদর্শনীর (ভার্মি কম্পোস্ট) চূড়ান্ত প্রতিবেদন ফর্ম',msg:'' ,success:'',user_id: req.session.user_id});
+};
+module.exports.vermiCompostFinalFormPost=async(req,res)=>{
+    var name= req.body.name;
+    var mobile= req.body.mobile;
+    var breed= req.body.breed;
+    var bdate=req.body.bdate;
+    var kdate= req.body.kdate;
+    var folon= req.body.folon;
+    var bij= req.body.bij;
+    var comment=req.body.comment;
+    var year =req.body.year;
+    var user_id =req.body.user_id;
+
+    await vermiCompostFinal.create({
+        name: name,
+        mobile:mobile,
+        breed:breed,
+        bdate:bdate,
+        kdate: kdate,
+        folon:folon,
+        bij:bij,
+        comment:comment,
+        year:year,
+        upazilla_id:user_id
+    })
+        .then(data => {
+            res.redirect('/upazilla/vermiCompostFinal');
+        }).catch(err => {
+            res.render('errorpage',err);
+        });
+  
+};
+module.exports.vermiCompostFinalFormEdit=async(req,res)=>{
+    await vermiCompostFinal.findByPk(req.params.id)
+    .then(data => {
+        console.log("inside");
+        res.render('upazilla/vermiCompostFinal/vermiCompostFinalFormEdit', { title: 'প্রদর্শনীর (ভার্মি কম্পোস্ট) চূড়ান্ত প্রতিবেদন ফর্ম',msg:'' ,success:'',records:data,upazilla_id: req.session.user_id});
+    })
+    .catch(err => {
+        console.log("outside");
+        res.render('upazilla/vermiCompostFinal/vermiCompostFinalFormEdit', { title: 'প্রদর্শনীর (ভার্মি কম্পোস্ট) চূড়ান্ত প্রতিবেদন ফর্ম',msg:'' ,success:'',records:err});
+    })
+};
+module.exports.vermiCompostFinalFormEditPost=async(req,res)=>{
+    var name= req.body.name;
+    var mobile= req.body.mobile;
+    var breed= req.body.breed;
+    var bdate=req.body.bdate;
+    var kdate= req.body.kdate;
+    var folon= req.body.folon;
+    var bij= req.body.bij;
+    var comment=req.body.comment;
+
+    await vermiCompostFinal.update({
+        name: name,
+        mobile:mobile,
+        breed:breed,
+        bdate:bdate,
+        kdate: kdate,
+        folon:folon,
+        bij:bij,
+        comment:comment,
+    },
+    {
+        where: {id: req.params.id}
+    })
+       .then(data => {
+            res.redirect('/upazilla/vermiCompostFinal');
+        }).catch(err => {
+            res.render('errorpage',err);
+        });
+  
+  
+};
+module.exports.vermiCompostFinalDelete=async(req,res)=>{
+    var vermiCompostFinalDelete = await vermiCompostFinal.findByPk(req.params.id);
+    try {
+        vermiCompostFinalDelete.destroy();
+        res.redirect("/upazilla/vermiCompostFinal");
+    }
+    catch{
+        res.render('errorpage',err);
+    }
+};
+//vermiCompostFinal controller end
+
+//demonstrationInitial controller
+module.exports.demonstrationInitial=async(req,res)=>{
+    await demonstrationInitial.findAll({
+        where: {upazilla_id: req.session.user_id}
+    })
+    .then(data => {
+        console.log("inside");
+        res.render('upazilla/demonstrationInitial/demonstrationInitial', { title: 'প্রদর্শনীর (দানাদার ধরণের) প্রাথমিক প্রতিবেদন',success:'', records: data });
+    })
+    .catch(err => {
+        console.log("outside");
+        res.render('upazilla/demonstrationInitial/demonstrationInitial', { title: 'প্রদর্শনীর (দানাদার ধরণের) প্রাথমিক প্রতিবেদন',success:'', records: err });
+    })
+     
+    //  records:result
+
+};
+module.exports.demonstrationInitialYear=async(req,res)=>{
+    await demonstrationInitial.findAll({
+        where: {year: req.body.year,upazilla_id: req.session.user_id}
+    })
+    .then(data => {
+        res.render('upazilla/demonstrationInitial/demonstrationInitialTable', {records: data} ,function(err, html) {
+            res.send(html);
+        });
+    })
+    .catch(err => {
+        res.render('upazilla/demonstrationInitial/demonstrationInitialYear', { title: 'প্রদর্শনীর (দানাদার ধরণের) প্রাথমিক প্রতিবেদন ফর্ম',success:'', records: err });
+    })
+
+};
+module.exports.demonstrationInitialForm=async(req,res)=>{
+    res.render('upazilla/demonstrationInitial/demonstrationInitialForm', { title: 'প্রদর্শনীর (দানাদার ধরণের) প্রাথমিক প্রতিবেদন ফর্ম',msg:'' ,success:'',user_id: req.session.user_id});
+};
+module.exports.demonstrationInitialFormPost=async(req,res)=>{
+    var name= req.body.name;
+    var nid= req.body.nid;
+    var saao= req.body.saao;
+    var supply=req.body.supply;
+    var date= req.body.date;
+    var comment= req.body.comment;
+    var year =req.body.year;
+    var user_id =req.body.user_id;
+
+    await demonstrationInitial.create({
+        name: name,
+        nid:nid,
+        saao:saao,
+        supply:supply,
+        date: date,
+        comment:comment,
+        year:year,
+        upazilla_id:user_id
+    })
+        .then(data => {
+            res.redirect('/upazilla/demonstrationInitial');
+        }).catch(err => {
+            res.render('errorpage',err);
+        });
+  
+};
+module.exports.demonstrationInitialFormEdit=async(req,res)=>{
+    await demonstrationInitial.findByPk(req.params.id)
+    .then(data => {
+        console.log("inside");
+        res.render('upazilla/demonstrationInitial/demonstrationInitialFormEdit', { title: 'প্রদর্শনীর (দানাদার ধরণের) প্রাথমিক প্রতিবেদন ফর্ম',msg:'' ,success:'',records:data,upazilla_id: req.session.user_id});
+    })
+    .catch(err => {
+        console.log("outside");
+        res.render('upazilla/demonstrationInitial/demonstrationInitialFormEdit', { title: 'প্রদর্শনীর (দানাদার ধরণের) প্রাথমিক প্রতিবেদন ফর্ম',msg:'' ,success:'',records:err});
+    })
+};
+module.exports.demonstrationInitialFormEditPost=async(req,res)=>{
+    var name= req.body.name;
+    var nid= req.body.nid;
+    var saao= req.body.saao;
+    var supply=req.body.supply;
+    var date= req.body.date;
+    var comment= req.body.comment;
+
+    await demonstrationInitial.update({
+        name: name,
+        nid:nid,
+        saao:saao,
+        supply:supply,
+        date: date,
+        comment:comment,
+    },
+    {
+        where: {id: req.params.id}
+    })
+       .then(data => {
+            res.redirect('/upazilla/demonstrationInitial');
+        }).catch(err => {
+            res.render('errorpage',err);
+        });
+  
+  
+};
+module.exports.demonstrationInitialDelete=async(req,res)=>{
+    var demonstrationInitialDelete = await demonstrationInitial.findByPk(req.params.id);
+    try {
+        demonstrationInitialDelete.destroy();
+        res.redirect("/upazilla/demonstrationInitial");
+    }
+    catch{
+        res.render('errorpage',err);
+    }
+};
+//demonstrationInitial controller end
+
+//demonstrationFinal controller
+module.exports.demonstrationFinal=async(req,res)=>{
+    await demonstrationFinal.findAll({
+        where: {upazilla_id: req.session.user_id}
+    })
+    .then(data => {
+        console.log("inside");
+        res.render('upazilla/demonstrationFinal/demonstrationFinal', { title: 'প্রদর্শনীর (দানাদার ধরণের) চূড়ান্ত প্রতিবেদন',success:'', records: data });
+    })
+    .catch(err => {
+        console.log("outside");
+        res.render('upazilla/demonstrationFinal/demonstrationFinal', { title: 'প্রদর্শনীর (দানাদার ধরণের) চূড়ান্ত প্রতিবেদন',success:'', records: err });
+    })
+     
+    //  records:result
+
+};
+module.exports.demonstrationFinalYear=async(req,res)=>{
+    await demonstrationFinal.findAll({
+        where: {year: req.body.year,upazilla_id: req.session.user_id}
+    })
+    .then(data => {
+        res.render('upazilla/demonstrationFinal/demonstrationFinalTable', {records: data} ,function(err, html) {
+            res.send(html);
+        });
+    })
+    .catch(err => {
+        res.render('upazilla/demonstrationFinal/demonstrationFinalYear', { title: 'প্রদর্শনীর (দানাদার ধরণের) চূড়ান্ত প্রতিবেদন ফর্ম',success:'', records: err });
+    })
+
+};
+module.exports.demonstrationFinalForm=async(req,res)=>{
+    res.render('upazilla/demonstrationFinal/demonstrationFinalForm', { title: 'প্রদর্শনীর (দানাদার ধরণের) চূড়ান্ত প্রতিবেদন ফর্ম',msg:'' ,success:'',user_id: req.session.user_id});
+};
+module.exports.demonstrationFinalFormPost=async(req,res)=>{
+    var name= req.body.name;
+    var mobile= req.body.mobile;
+    var breed= req.body.breed;
+    var bdate=req.body.bdate;
+    var kdate= req.body.kdate;
+    var folon= req.body.folon;
+    var bij= req.body.bij;
+    var comment=req.body.comment;
+    var year =req.body.year;
+    var user_id =req.body.user_id;
+
+    await demonstrationFinal.create({
+        name: name,
+        mobile:mobile,
+        breed:breed,
+        bdate:bdate,
+        kdate: kdate,
+        folon:folon,
+        bij:bij,
+        comment:comment,
+        year:year,
+        upazilla_id:user_id
+    })
+        .then(data => {
+            res.redirect('/upazilla/demonstrationFinal');
+        }).catch(err => {
+            res.render('errorpage',err);
+        });
+  
+};
+module.exports.demonstrationFinalFormEdit=async(req,res)=>{
+    await demonstrationFinal.findByPk(req.params.id)
+    .then(data => {
+        console.log("inside");
+        res.render('upazilla/demonstrationFinal/demonstrationFinalFormEdit', { title: 'প্রদর্শনীর (দানাদার ধরণের) চূড়ান্ত প্রতিবেদন ফর্ম',msg:'' ,success:'',records:data,upazilla_id: req.session.user_id});
+    })
+    .catch(err => {
+        console.log("outside");
+        res.render('upazilla/demonstrationFinal/demonstrationFinalFormEdit', { title: 'প্রদর্শনীর (দানাদার ধরণের) চূড়ান্ত প্রতিবেদন ফর্ম',msg:'' ,success:'',records:err});
+    })
+};
+module.exports.demonstrationFinalFormEditPost=async(req,res)=>{
+    var name= req.body.name;
+    var mobile= req.body.mobile;
+    var breed= req.body.breed;
+    var bdate=req.body.bdate;
+    var kdate= req.body.kdate;
+    var folon= req.body.folon;
+    var bij= req.body.bij;
+    var comment=req.body.comment;
+
+    await demonstrationFinal.update({
+        name: name,
+        mobile:mobile,
+        breed:breed,
+        bdate:bdate,
+        kdate: kdate,
+        folon:folon,
+        bij:bij,
+        comment:comment,
+    },
+    {
+        where: {id: req.params.id}
+    })
+       .then(data => {
+            res.redirect('/upazilla/demonstrationFinal');
+        }).catch(err => {
+            res.render('errorpage',err);
+        });
+  
+  
+};
+module.exports.demonstrationFinalDelete=async(req,res)=>{
+    var demonstrationFinalDelete = await demonstrationFinal.findByPk(req.params.id);
+    try {
+        demonstrationFinalDelete.destroy();
+        res.redirect("/upazilla/demonstrationFinal");
+    }
+    catch{
+        res.render('errorpage',err);
+    }
+};
+//demonstrationFinal controller end
