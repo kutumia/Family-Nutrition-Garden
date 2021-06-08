@@ -85,6 +85,19 @@
           <p>তারিখঃ <%= new Date().toLocaleDateString();%></p>
         </div>
         <%if (records.length >0){ %>
+          <style>
+            table,
+            th,
+            td {
+              border: 1px solid black;
+              border-collapse: collapse;
+            }
+            th,
+            td {
+              padding: 1px;
+              text-align: left;
+            }
+          </style>
           <table class="table table-bordered table-striped" id="tblCustomers" cellspacing="0" cellpadding="0">
           <thead>
           <tr>
@@ -107,8 +120,8 @@
               <th rowspan="2">কর্মকর্তার মন্তব্য</th>
           </tr>
           <tr>
-              <th >লক্ষ্যমাত্রা(ব্যাচ) </th>
-              <th >অর্জন(ব্যাচ) </th>
+              <th >লক্ষ্যমাত্রা<br>(ব্যাচ) </th>
+              <th >অর্জন<br>(ব্যাচ) </th>
               <th >বীজ/চারা </th>
               <th >ইউরিয়া </th>
               <th >টিএসপি/ডিএপি </th>
