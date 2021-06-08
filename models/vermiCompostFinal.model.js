@@ -5,36 +5,93 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true,
         autoIncrement:true
       },
-      name: {
+      pname: {
         type: Sequelize.STRING
       },
-      mobile: {
+      psize: {
         type: Sequelize.STRING
       },
-      breed: {
+      target: {
         type: Sequelize.STRING
       },
-      bdate: {
+      achieved: {
         type: Sequelize.STRING
       },
-      kdate: {
-        type: Sequelize.STRING
-      },
-      folon: {
-        type: Sequelize.STRING
-      },
-      bij: {
-        type: Sequelize.STRING
-      },
-      comment: {
-        type: Sequelize.STRING
-      },
-      year: {
-        type: Sequelize.STRING
-      },
-      upazilla_id: {
-        type: Sequelize.INTEGER
-      }
+    name: {
+      type: Sequelize.STRING
+    },
+    nid: {
+      type: Sequelize.STRING
+    },
+    saao: {
+      type: Sequelize.STRING
+    },
+    crop: {
+      type: Sequelize.STRING
+    },
+    date: {
+      type: Sequelize.STRING
+    },
+    bij: {
+      type: Sequelize.STRING
+    },
+    uria: {
+      type: Sequelize.STRING
+    },
+    tsp: {
+      type: Sequelize.STRING
+    },
+    mop: {
+      type: Sequelize.STRING
+    },
+    vermi: {
+      type: Sequelize.STRING
+    },
+    other: {
+      type: Sequelize.STRING
+    },
+    garden: {
+      type: Sequelize.STRING
+    },
+    water: {
+      type: Sequelize.STRING
+    },
+    pot: {
+      type: Sequelize.STRING
+    },
+    cother: {
+      type: Sequelize.STRING
+    },
+    signboard: {
+      type: Sequelize.STRING
+    },
+    bdate: {
+      type: Sequelize.STRING
+    },
+    comment: {
+      type: Sequelize.STRING
+    },
+    sobjiDate: {
+      type: Sequelize.STRING
+    },
+    pfolon: {
+      type: Sequelize.STRING
+    },
+    hfolon: {
+      type: Sequelize.STRING
+    },
+    fcomment: {
+      type: Sequelize.STRING
+    },
+    kcomment: {
+      type: Sequelize.STRING
+    },
+    year: {
+      type: Sequelize.STRING
+    },
+    upazilla_id: {
+      type: Sequelize.INTEGER
+    }
     });
   
     return vermiCompostFinal;

@@ -87,7 +87,7 @@ db.sequelize
   })
   .then(
     function () {
-      console.log("DB connection sucessful.", PORT);
+      console.log("DB connection sucessful.");
     },
     function (err) {
       // catch error here

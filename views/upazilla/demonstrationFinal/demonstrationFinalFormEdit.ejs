@@ -9,7 +9,8 @@
                     <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                         <div class="panel panel-info">
                             <div class="panel-heading">
-                                <div class="panel-title"><h2>চূড়ান্ত প্রতিবেদন ফর্ম</h2></div>
+                                <div class="panel-title"><h2>পারিবারিক সবজি ও পুষ্টি
+                                    বাগান স্থাপন প্রদর্শনী এর চূড়ান্ত প্রতিবেদন ফর্ম</h2></div>
                                 <p><%
                                 if(success !=''){ %>
                                 <%= success %>
@@ -22,63 +23,34 @@
                                         <p>Error:</p>
                                         <span></span>
                                     </div>
-
                                     <div class="form-group">
-                                        <label for="name" class="col-md-3 control-label">কৃষকের নাম ও পিতার নাম</label>
+                                        <label for="bdate" class="col-md-3 control-label">সব্জি ও ফসল কর্তনের তারিখ</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="name" placeholder="কৃষকের নাম ও পিতার নাম" value="<%=records.name%>">
+                                            <input type="date" class="form-control" name="sobjiDate" placeholder="সব্জি ও ফসল কর্তনের তারিখ" value="<%=records.sobjiDate%>">
                                         </div>
                                     </div>
-
-
                                     <div class="form-group">
-                                        <label for="mobile" class="col-md-3 control-label">মোবাইল নম্বর ও জাতীয় পরিচয়পত্র নম্বর</label>
+                                        <label for="comment" class="col-md-3 control-label">প্রদর্শনী প্লটের ফলন(কেজি)</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="mobile" placeholder="মোবাইল নম্বর ও জাতীয় পরিচয়পত্র নম্বর" value="<%=records.mobile%>">
+                                            <input type="text" class="form-control" name="pfolon" placeholder="প্রদর্শনী প্লটের ফলন(কেজি)" value="<%=records.pfolon%>">
                                         </div>
                                     </div>
-
                                     <div class="form-group">
-                                        <label for="breed" class="col-md-3 control-label">জাতের নাম</label>
+                                        <label for="bdate" class="col-md-3 control-label">ফলন/হেঃ (মেঃ টন)</label>
                                         <div class="col-md-9">
-                                            <input type="text" class="form-control" name="breed" placeholder="জাতের নাম" value="<%=records.breed%>">
+                                            <input type="text" class="form-control" name="hfolon" placeholder="ফলন/হেঃ (মেঃ টন)" value="<%=records.hfolon%>">
                                         </div>
                                     </div>
-
-
                                     <div class="form-group">
-                                        <label for="bdate" class="col-md-3 control-label">বীজতলায় বপনের তারিখ</label>
+                                        <label for="comment" class="col-md-3 control-label">কৃষকের মন্তব্য</label>
                                         <div class="col-md-9">
-                                            <input type="date" class="form-control" name="bdate" placeholder="বীজতলায় বপনের তারিখ" value="<%=records.bdate%>">
+                                            <input type="text" class="form-control" name="fcomment" placeholder="কৃষকের মন্তব্য" value="<%=records.fcomment%>">
                                         </div>
                                     </div>
-
                                     <div class="form-group">
-                                        <label for="kdate" class="col-md-3 control-label">কর্তনের তারিখ</label>
+                                        <label for="comment" class="col-md-3 control-label">কর্মকর্তার মন্তব্য</label>
                                         <div class="col-md-9">
-                                            <input type="date" class="form-control" name="kdate" placeholder="কর্তনের তারিখ" value="<%=records.kdate%>">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="folon" class="col-md-3 control-label">হেক্টর ফলন</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="folon" placeholder="হেক্টর ফলন" value="<%=records.folon%>">
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label for="bij" class="col-md-3 control-label">সংরক্ষিত বীজের পরিমাণ</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="bij" placeholder="সংরক্ষিত বীজের পরিমাণ" value="<%=records.bij%>">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="comment" class="col-md-3 control-label">মন্তব্য</label>
-                                        <div class="col-md-9">
-                                            <input type="text" class="form-control" name="comment" placeholder="মন্তব্য" value="<%=records.comment%>">
+                                            <input type="text" class="form-control" name="kcomment" placeholder="কর্মকর্তার মন্তব্য" value="<%=records.kcomment%>">
                                         </div>
                                     </div>
 

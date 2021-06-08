@@ -3,15 +3,21 @@ const router = express.Router();
 // const { Router } = require("express");
 const app=express();
 
-const {pdsignup,pdsignuppost,pdlogin,pdloginpost,pdDashboard,trainedFarmerEditPost,trainedFarmerEdit,
+const {pdsignup,pdsignuppost,pdlogin,pdloginpost,pdDashboard,trainedFarmerEditPost,trainedFarmerEdit,trainedFarmerDistrictFilter,
     trainedFarmer,trainedFarmerFilter,initialTrial,initialTrialFilter,irrigationEdit,irrigationEditPost,machineryEdit,machineryEditPost,motivationEdit,motivationEditPost,fieldDayEdit,fieldDayEditPost
 ,initialTrialEdit,initialTrialEditPost,finalTrialEdit,finalTrialEditPost,agriFairEdit,agriFairEditPost,
-    finalTrial,finalTrialFilter,trainedFarmerDistrictFilter,finalTrialDistrictFilter,initialTrialDistrictFilter,
+    finalTrial,finalTrialFilter,finalTrialDistrictFilter,initialTrialDistrictFilter,
     agriFair,agriFairFilter,irrigation,irrigationFilter,machinery,machineryFilter,motivation,motivationFilter,fieldDay,fieldDayFilter,
     agriFairDistrictFilter,irrigationDistrictFilter,machineryDistrictFilter,motivationDistrictFilter,fieldDayDistrictFilter,
     vermiCompostInitial,vermiCompostInitialFilter,vermiCompostInitialDistrictFilter,
-    vermiCompostFinal,vermiCompostFinalFilter,vermiCompostFinalDistrictFilter,   demonstrationInitial,demonstrationInitialFilter,demonstrationInitialDistrictFilter,
-    demonstrationFinal,demonstrationFinalFilter,demonstrationFinalDistrictFilter,
+    vermiCompostFinal,vermiCompostFinalFilter,vermiCompostFinalDistrictFilter,demonstrationInitial,demonstrationInitialFilter,demonstrationInitialDistrictFilter,
+    demonstrationFinal,demonstrationFinalFilter,demonstrationFinalDistrictFilter,generatePdfadademonstrationFinal,
+    adademonstrationInitial,adademonstrationInitialFilter,adademonstrationInitialDistrictFilter,
+    adademonstrationFinal,adademonstrationFinalFilter,adademonstrationFinalDistrictFilter,
+    kochudemonstrationInitial,kochudemonstrationInitialFilter,kochudemonstrationInitialDistrictFilter,
+    kochudemonstrationFinal,kochudemonstrationFinalFilter,kochudemonstrationFinalDistrictFilter,
+    saaoEditPost,saaoEdit,saaoDistrictFilter,
+    saao,saaoFilter,
     
 } = require('../controllers/pd.controller');
 router.get('/login',pdlogin);
@@ -27,6 +33,12 @@ router.post('/trainedFarmerFilter',trainedFarmerFilter);
 router.post('/trainedFarmerDistrictFilter',trainedFarmerDistrictFilter);
 router.get('/trainedFarmerEdit/:id',trainedFarmerEdit);
 router.post('/trainedFarmerEditPost/:id',trainedFarmerEditPost);
+
+router.get('/saao',saao);
+router.post('/saaoFilter',saaoFilter);
+router.post('/saaoDistrictFilter',saaoDistrictFilter);
+router.get('/saaoEdit/:id',saaoEdit);
+router.post('/saaoEditPost/:id',saaoEditPost);
 
 
 router.get('/initialTrial',initialTrial);
@@ -87,4 +99,22 @@ router.post('/demonstrationInitialDistrictFilter',demonstrationInitialDistrictFi
 router.get('/demonstrationFinal',demonstrationFinal);
 router.post('/demonstrationFinalFilter',demonstrationFinalFilter);
 router.post('/demonstrationFinalDistrictFilter',demonstrationFinalDistrictFilter);
+
+router.get('/kochudemonstrationInitial',kochudemonstrationInitial);
+router.post('/kochudemonstrationInitialFilter',kochudemonstrationInitialFilter);
+router.post('/kochudemonstrationInitialDistrictFilter',kochudemonstrationInitialDistrictFilter);
+
+router.get('/kochudemonstrationFinal',kochudemonstrationFinal);
+router.post('/kochudemonstrationFinalFilter',kochudemonstrationFinalFilter);
+router.post('/kochudemonstrationFinalDistrictFilter',kochudemonstrationFinalDistrictFilter);
+
+router.get('/adademonstrationInitial',adademonstrationInitial);
+router.post('/adademonstrationInitialFilter',adademonstrationInitialFilter);
+router.post('/adademonstrationInitialDistrictFilter',adademonstrationInitialDistrictFilter);
+
+router.get('/adademonstrationFinal',adademonstrationFinal);
+router.post('/adademonstrationFinalFilter',adademonstrationFinalFilter);
+router.post('/adademonstrationFinalDistrictFilter',adademonstrationFinalDistrictFilter);
+router.post('/generatePdfadademonstrationFinal',generatePdfadademonstrationFinal);
+
 module.exports = router;

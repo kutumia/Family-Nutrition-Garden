@@ -5,28 +5,28 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true,
         autoIncrement:true
       },
-      name: {
-        type: Sequelize.STRING
-      },
-      vname: {
-        type: Sequelize.STRING
-      },
-      mnum: {
-        type: Sequelize.STRING
-      },
-      nid: {
-        type: Sequelize.STRING
-      },
       topic: {
         type: Sequelize.STRING
       },
+      target: {
+        type: Sequelize.INTEGER
+      },
+      achieved: {
+        type: Sequelize.INTEGER
+      },
+      name: {
+        type: Sequelize.STRING
+      },    
       date: {
         type: Sequelize.STRING
       },
       finishDate: {
         type: Sequelize.STRING
       },
-      card: {
+      resource: {
+        type: Sequelize.STRING
+      },
+      feedback: {
         type: Sequelize.STRING
       },
       ddComment: {

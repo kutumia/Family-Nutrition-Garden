@@ -4,6 +4,7 @@ const dd = db.dd;
 const ad = db.ad;       
 const upazilla = db.upazilla;
 const trainedFarmer = db.trainedFarmer;
+const saao = db.saao;
 const initialTrial = db.initialTrial;
 const finalTrial = db.finalTrial;
 const irrigation = db.irrigation;
@@ -15,6 +16,10 @@ const vermiCompostInitial = db.vermiCompostInitial;
 const vermiCompostFinal = db.vermiCompostFinal;
 const demonstrationInitial = db.demonstrationInitial;       
 const demonstrationFinal = db.demonstrationFinal;
+const kochudemonstrationInitial = db.kochudemonstrationInitial;       
+const kochudemonstrationFinal = db.kochudemonstrationFinal;
+const adademonstrationInitial = db.adademonstrationInitial;       
+const adademonstrationFinal = db.adademonstrationFinal;
 
 const jwt= require('jsonwebtoken');
 const bcrypt= require('bcryptjs'); 
@@ -175,6 +180,7 @@ module.exports.trainedFarmerFilter=async(req,res)=>{
         where: {year: req.body.year,upazilla_id: req.body.upazilla,batch:req.body.batch}
     })
     .then(data => {
+        console.log("data",data,req.body.year,req.body.upazilla,req.body.batch)
         res.render('dd/trainedFarmer/trainedFarmerTable', {records: data} ,function(err, html) {
             res.send(html);
         });
@@ -216,6 +222,71 @@ await trainedFarmer.update({
     });
 };
 //trainedFarmer controller end
+
+//saao controller
+module.exports.saao=async(req,res)=>{ 
+    try{
+        var upazillass=await upazilla.findAll({where: {dd_id: req.session.user_id}});
+        console.log("inside");
+        res.render('dd/saao/saao', { title: 'এসএএও প্রশিক্ষণ তথ্য',success:'',upazillas:upazillass });
+    }
+    catch(err){
+        console.log("outside",err);
+        res.render('dd/saao/saao', { title: 'প্রশিক্ষণপ্রাপ্ত কৃষকের তথ্য',success:'', upazillas:err });
+    }
+     
+    //  records:result
+
+};
+
+module.exports.saaoFilter=async(req,res)=>{
+    await saao.findAll({ 
+        where: {year: req.body.year,upazilla_id: req.body.upazilla,batch:req.body.batch}
+    })
+    .then(data => {
+        console.log("data",data,req.body.year,req.body.upazilla,req.body.batch)
+        res.render('dd/saao/saaoTable', {records: data} ,function(err, html) {
+            res.send(html);
+        });
+    })
+    .catch(err => {
+        res.render('dd/saao/saaoYear', { title: 'প্রশিক্ষণপ্রাপ্ত কৃষকের তথ্য',success:'', records: err });
+    })
+
+};
+
+module.exports.saaoEdit=async(req,res)=>{
+    await saao.findByPk(req.params.id)
+    .then(data => {
+        console.log("inside",data);
+        res.render('dd/saao/saaoEdit', { title: 'এসএএও প্রশিক্ষণ তথ্য ফর্ম',success:'',records: data });
+    })
+    .catch(err => {
+        console.log("outside",err);
+    })
+
+//  records:result
+
+};
+
+module.exports.saaoEditPost=async(req,res)=>{
+var ddComment= req.body.ddComment;
+console.log("req.params.id",req.params.id);
+await saao.update({
+    ddComment:ddComment
+},{
+    where: {id: req.params.id}
+})
+
+    
+    .then(data => {
+        res.redirect('/dd/saao');
+    }).catch(err => {
+        res.render('errorpage',err);
+    });
+};
+//saao controller end
+
 
 //initialTrial controller
 module.exports.initialTrial=async(req,res)=>{
@@ -406,7 +477,7 @@ module.exports.irrigation=async(req,res)=>{
     try{
         var upazillass=await upazilla.findAll({where: {dd_id: req.session.user_id}});
         console.log("inside");
-        res.render('dd/irrigation/irrigation', { title: 'সেচ অবকাঠামো নির্মাণ তথ্য',success:'',upazillas:upazillass });
+        res.render('dd/irrigation/irrigation', { title: 'জিরো এনার্জি কুল চেম্বার স্থাপন',success:'',upazillas:upazillass });
     }
     catch(err){
         console.log("outside",err);
@@ -468,7 +539,7 @@ module.exports.machinery=async(req,res)=>{
     try{
         var upazillass=await upazilla.findAll({where: {dd_id: req.session.user_id}});
         console.log("inside");
-        res.render('dd/machinery/machinery', { title: 'কৃষি যন্ত্রপাতি বিতরণ প্রতিবেদন',success:'',upazillas:upazillass });
+        res.render('dd/machinery/machinery', { title: 'ক্ষুদ্র কৃষি যন্ত্রপাতি বিতরণ প্রতিবেদন',success:'',upazillas:upazillass });
     }
     catch(err){
         console.log("outside",err);
@@ -654,7 +725,7 @@ module.exports.vermiCompostInitial=async(req,res)=>{
     try{
         var upazillass=await upazilla.findAll({where: {dd_id: req.session.user_id}});
         console.log("inside");
-        res.render('dd/vermiCompostInitial/vermiCompostInitial', { title: 'প্রদর্শনীর (ভার্মি কম্পোস্ট) প্রাথমিক প্রতিবেদন',success:'',upazillas:upazillass });
+        res.render('dd/vermiCompostInitial/vermiCompostInitial', { title: 'কমিউনিটি বেইজড ভার্মি কম্পোস্ট উৎপাদন পিট স্থাপন প্রদর্শনী এর প্রাথমিক প্রতিবেদন',success:'',upazillas:upazillass });
     }
     catch(err){
         console.log("outside",err);
@@ -686,7 +757,7 @@ module.exports.vermiCompostFinal=async(req,res)=>{
     try{
         var upazillass=await upazilla.findAll({where: {dd_id: req.session.user_id}});
         console.log("inside");
-        res.render('dd/vermiCompostFinal/vermiCompostFinal', { title: 'প্রদর্শনীর (ভার্মি কম্পোস্ট) চূড়ান্ত প্রতিবেদন',success:'',upazillas:upazillass });
+        res.render('dd/vermiCompostFinal/vermiCompostFinal', { title: 'কমিউনিটি বেইজড ভার্মি কম্পোস্ট উৎপাদন পিট স্থাপন প্রদর্শনী এর চূড়ান্ত প্রতিবেদন',success:'',upazillas:upazillass });
     }
     catch(err){
         console.log("outside",err);
@@ -702,6 +773,7 @@ module.exports.vermiCompostFinalFilter=async(req,res)=>{
         where: {year: req.body.year,upazilla_id: req.body.upazilla}
     })
     .then(data => {
+        console.log("data",data,req.body.year,req.body.upazilla)
         res.render('dd/vermiCompostFinal/vermiCompostFinalTable', {records: data} ,function(err, html) {
             res.send(html);
         });
@@ -712,12 +784,13 @@ module.exports.vermiCompostFinalFilter=async(req,res)=>{
 
 };
 //vermiCompostFinal controller end
+
 //demonstrationInitial controller
 module.exports.demonstrationInitial=async(req,res)=>{ 
     try{
         var upazillass=await upazilla.findAll({where: {dd_id: req.session.user_id}});
         console.log("inside");
-        res.render('dd/demonstrationInitial/demonstrationInitial', { title: 'প্রদর্শনীর (দানাদার ধরণের) প্রাথমিক প্রতিবেদন',success:'',upazillas:upazillass });
+        res.render('dd/demonstrationInitial/demonstrationInitial', { title: 'পারিবারিক সবজি ও পুষ্টি বাগান স্থাপন প্রদর্শনী এর প্রাথমিক প্রতিবেদন',success:'',upazillas:upazillass });
     }
     catch(err){
         console.log("outside",err);
@@ -749,7 +822,7 @@ module.exports.demonstrationFinal=async(req,res)=>{
     try{
         var upazillass=await upazilla.findAll({where: {dd_id: req.session.user_id}});
         console.log("inside");
-        res.render('dd/demonstrationFinal/demonstrationFinal', { title: 'প্রদর্শনীর (দানাদার ধরণের) চূড়ান্ত প্রতিবেদন',success:'',upazillas:upazillass });
+        res.render('dd/demonstrationFinal/demonstrationFinal', { title: 'পারিবারিক সবজি ও পুষ্টি বাগান স্থাপন প্রদর্শনী এর চূড়ান্ত প্রতিবেদন',success:'',upazillas:upazillass });
     }
     catch(err){
         console.log("outside",err);
@@ -775,3 +848,131 @@ module.exports.demonstrationFinalFilter=async(req,res)=>{
 
 };
 //demonstrationFinal controller end
+
+//adademonstrationInitial controller
+module.exports.adademonstrationInitial=async(req,res)=>{ 
+    try{
+        var upazillass=await upazilla.findAll({where: {dd_id: req.session.user_id}});
+        console.log("inside");
+        res.render('dd/adademonstrationInitial/adademonstrationInitial', { title: 'ছায়াযুক্ত স্থান/বসতবাড়িতে আদা/হলুদ চাষ প্রদর্শনী এর প্রাথমিক প্রতিবেদন',success:'',upazillas:upazillass });
+    }
+    catch(err){
+        console.log("outside",err);
+        res.render('dd/adademonstrationInitial/adademonstrationInitial', { title: 'প্রদর্শনীর (দানাদার ধরণের) প্রাথমিক প্রতিবেদন',success:'', upazillas:err });
+    }
+     
+    //  records:result
+
+};
+
+module.exports.adademonstrationInitialFilter=async(req,res)=>{
+    await adademonstrationInitial.findAll({ 
+        where: {year: req.body.year,upazilla_id: req.body.upazilla}
+    })
+    .then(data => {
+        res.render('dd/adademonstrationInitial/adademonstrationInitialTable', {records: data} ,function(err, html) {
+            res.send(html);
+        });
+    })
+    .catch(err => {
+        res.render('dd/adademonstrationInitial/adademonstrationInitialYear', { title: 'প্রদর্শনীর (দানাদার ধরণের) প্রাথমিক প্রতিবেদন',success:'', records: err });
+    })
+
+};
+//adademonstrationInitial controller end
+
+//adademonstrationFinal controller
+module.exports.adademonstrationFinal=async(req,res)=>{ 
+    try{
+        var upazillass=await upazilla.findAll({where: {dd_id: req.session.user_id}});
+        console.log("inside");
+        res.render('dd/adademonstrationFinal/adademonstrationFinal', { title: 'ছায়াযুক্ত স্থান/বসতবাড়িতে আদা/হলুদ চাষ প্রদর্শনী এর চূড়ান্ত প্রতিবেদন',success:'',upazillas:upazillass });
+    }
+    catch(err){
+        console.log("outside",err);
+        res.render('dd/adademonstrationFinal/adademonstrationFinal', { title: 'প্রদর্শনীর (দানাদার ধরণের) চূড়ান্ত প্রতিবেদন',success:'', upazillas:err });
+    }
+     
+    //  records:result
+
+};
+
+module.exports.adademonstrationFinalFilter=async(req,res)=>{
+    await adademonstrationFinal.findAll({ 
+        where: {year: req.body.year,upazilla_id: req.body.upazilla}
+    })
+    .then(data => {
+        res.render('dd/adademonstrationFinal/adademonstrationFinalTable', {records: data} ,function(err, html) {
+            res.send(html);
+        });
+    })
+    .catch(err => {
+        res.render('dd/adademonstrationFinal/adademonstrationFinalYear', { title: 'প্রদর্শনীর (দানাদার ধরণের) চূড়ান্ত প্রতিবেদন',success:'', records: err });
+    })
+
+};
+//adademonstrationFinal controller end
+
+//kochudemonstrationInitial controller
+module.exports.kochudemonstrationInitial=async(req,res)=>{ 
+    try{
+        var upazillass=await upazilla.findAll({where: {dd_id: req.session.user_id}});
+        console.log("inside");
+        res.render('dd/kochudemonstrationInitial/kochudemonstrationInitial', { title: 'স্যাঁতস্যাঁতে জমিতে কচু জাতীয় সবজি চাষ প্রদর্শনী এর প্রাথমিক প্রতিবেদন',success:'',upazillas:upazillass });
+    }
+    catch(err){
+        console.log("outside",err);
+        res.render('dd/kochudemonstrationInitial/kochudemonstrationInitial', { title: 'প্রদর্শনীর (দানাদার ধরণের) প্রাথমিক প্রতিবেদন',success:'', upazillas:err });
+    }
+     
+    //  records:result
+
+};
+
+module.exports.kochudemonstrationInitialFilter=async(req,res)=>{
+    await kochudemonstrationInitial.findAll({ 
+        where: {year: req.body.year,upazilla_id: req.body.upazilla}
+    })
+    .then(data => {
+        res.render('dd/kochudemonstrationInitial/kochudemonstrationInitialTable', {records: data} ,function(err, html) {
+            res.send(html);
+        });
+    })
+    .catch(err => {
+        res.render('dd/kochudemonstrationInitial/kochudemonstrationInitialYear', { title: 'প্রদর্শনীর (দানাদার ধরণের) প্রাথমিক প্রতিবেদন',success:'', records: err });
+    })
+
+};
+//kochudemonstrationInitial controller end
+
+//kochudemonstrationFinal controller
+module.exports.kochudemonstrationFinal=async(req,res)=>{ 
+    try{
+        var upazillass=await upazilla.findAll({where: {dd_id: req.session.user_id}});
+        console.log("inside");
+        res.render('dd/kochudemonstrationFinal/kochudemonstrationFinal', { title: 'স্যাঁতস্যাঁতে জমিতে কচু জাতীয় সবজি চাষ প্রদর্শনী এর চূড়ান্ত প্রতিবেদন',success:'',upazillas:upazillass });
+    }
+    catch(err){
+        console.log("outside",err);
+        res.render('dd/kochudemonstrationFinal/kochudemonstrationFinal', { title: 'প্রদর্শনীর (দানাদার ধরণের) চূড়ান্ত প্রতিবেদন',success:'', upazillas:err });
+    }
+     
+    //  records:result
+
+};
+
+module.exports.kochudemonstrationFinalFilter=async(req,res)=>{
+    await kochudemonstrationFinal.findAll({ 
+        where: {year: req.body.year,upazilla_id: req.body.upazilla}
+    })
+    .then(data => {
+        res.render('dd/kochudemonstrationFinal/kochudemonstrationFinalTable', {records: data} ,function(err, html) {
+            res.send(html);
+        });
+    })
+    .catch(err => {
+        res.render('dd/kochudemonstrationFinal/kochudemonstrationFinalYear', { title: 'প্রদর্শনীর (দানাদার ধরণের) চূড়ান্ত প্রতিবেদন',success:'', records: err });
+    })
+
+};
+//kochudemonstrationFinal controller end

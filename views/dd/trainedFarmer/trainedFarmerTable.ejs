@@ -2,35 +2,39 @@
     <table class="table table-bordered table-striped" id="tblCustomers" cellspacing="0" cellpadding="0">
     <thead>
     <tr>
-        <th>ক্রমিক নং</th>
-        <th>প্রশিক্ষণার্থীর নাম ও পিতা/স্বামীর নাম</th>
-        <th>গ্রাম ও ব্লক</th>
-        <th>মোবাইল নম্বর (যদি থাকে)</th>
-        <th>জাতীয় পরিচয়পত্র নম্বর</th>
-        <th>কৃষি উপকরণ কার্ডের নং</th>
-        <th>প্রশিক্ষণের বিষয়</th>
-        <th>প্রশিক্ষণ শুরুর তারিখ</th>
-        <th>প্রশিক্ষণ সমাপ্তির তারিখ</th>
-        <th>উপ-পরিচালকের মন্তব্য</th>
-        <th>প্রকল্প পরিচালকের মন্তব্য</th>
-        <th>মন্তব্য করুন</th>
+        <th rowspan="2">ক্রমিক নং</th>
+        <th rowspan="2">কৃষক প্রশিক্ষণের বিষয়</th>
+        <th colspan="2" style="text-align:center">প্রশিক্ষণের </th>
+        <th rowspan="2">কৃষক/কৃষাণীর নাম,ঠিকানা,পরিচিতি নম্বর ও মোবাইল নং</th>
+        <th rowspan="2">প্রশিক্ষণ শুরুর তারিখ</th>
+        <th rowspan="2">প্রশিক্ষণ সমাপ্তির তারিখ</th>
+        <th rowspan="2">প্রশিক্ষক/রিসোর্স পারসনের নাম ও পদবী</th>
+        <th rowspan="2">প্রশিক্ষণ সম্বন্ধে কৃষক/কৃষাণীর মন্তব্য/ফিডব্যাক</th>
+        <th rowspan="2">উপ-পরিচালকের মন্তব্য</th>
+        <th rowspan="2">প্রকল্প পরিচালকের মন্তব্য</th>
+        <th rowspan="2">মন্তব্য করুন</th>
+    </tr>
+    <tr>
+        <th >লক্ষ্যমাত্রা(ব্যাচ) </th>
+        <th >অর্জন(ব্যাচ) </th>
     </tr>
     </thead>
     <tbody>
         <% records.forEach(function(row,index) { %>
             <tr>
                 <td><%= index+1 %></td>
-                <td><%= row.name %></td>
-                <td><%= row.vname %></td>
-                <td><%= row.mnum %></td>
-                <td><%= row.nid %></td>
-                <td><%= row.card%></td>
                 <td><%= row.topic%></td>
+                <td><%= row.target%></td>
+                <td><%= row.achieved%></td>
+                <td><%= row.name %></td>
                 <td><%= row.date %></td>
                 <td><%= row.finishDate %></td>
+                <td><%= row.resource %></td>
+                <td><%= row.feedback %></td>
                 <td><%= row.ddComment %></td>
                 <td><%= row.pdComment %></td>
-                <td><a class="btn btn-primary btn-xs" href="/dd/trainedFarmerEdit/<%= row.id %>"><i class="fa fa-edit"></i></a></td>
+                <td><a class="btn btn-primary btn-xs" href="/dd/trainedFarmerEdit/<%= row.id %>"><i class="fa fa-edit"></i></a>
+                </td>
             </tr>
         <% }) %>
     </tbody>
@@ -39,17 +43,20 @@
     <table class="table table-bordered table-striped" id="tblCustomers" cellspacing="0" cellpadding="0">
         <thead>
         <tr>
-            <th>ক্রমিক নং</th>
-            <th>প্রশিক্ষণার্থীর নাম ও পিতা/স্বামীর নাম</th>
-            <th>গ্রাম ও ব্লক</th>
-            <th>মোবাইল নম্বর (যদি থাকে)</th>
-            <th>জাতীয় পরিচয়পত্র নম্বর</th>
-            <th>কৃষি উপকরণ কার্ডের নং</th>
-            <th>প্রশিক্ষণের বিষয়</th>
-            <th>প্রশিক্ষণ শুরুর তারিখ</th>
-        <th>প্রশিক্ষণ সমাপ্তির তারিখ</th>
-            <th>উপ-পরিচালকের মন্তব্য</th>
-            <th>প্রকল্প পরিচালকের মন্তব্য</th>
+            <th rowspan="2">ক্রমিক নং</th>
+            <th rowspan="2">কৃষক প্রশিক্ষণের বিষয়</th>
+            <th colspan="2" style="text-align:center">প্রশিক্ষণের </th>
+            <th rowspan="2">কৃষক/কৃষাণীর নাম,ঠিকানা,পরিচিতি নম্বর ও মোবাইল নং</th>
+            <th rowspan="2">প্রশিক্ষণ শুরুর তারিখ</th>
+            <th rowspan="2">প্রশিক্ষণ সমাপ্তির তারিখ</th>
+            <th rowspan="2">প্রশিক্ষক/রিসোর্স পারসনের নাম ও পদবী</th>
+            <th rowspan="2">প্রশিক্ষণ সম্বন্ধে কৃষক/কৃষাণীর মন্তব্য/ফিডব্যাক</th>
+            <th rowspan="2">উপ-পরিচালকের মন্তব্য</th>
+            <th rowspan="2">প্রকল্প পরিচালকের মন্তব্য</th>
+        </tr>
+        <tr>
+            <th >লক্ষ্যমাত্রা(ব্যাচ) </th>
+            <th >অর্জন(ব্যাচ) </th>
         </tr>
         </thead>
         <tbody>

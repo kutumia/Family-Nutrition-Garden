@@ -1,0 +1,111 @@
+
+<%if (records.length >0){ %>
+    <table class="table table-bordered table-striped" id="tblCustomers" cellspacing="0" cellpadding="0">
+    <thead>
+    <tr>
+        <th rowspan="2">ক্রমিক নং</th>
+        <th rowspan="2">প্রদর্শনীর ধরণ/নাম</th>
+        <th rowspan="2">প্রদর্শনীর আয়তন</th>
+        <th colspan="2" style="text-align:center">প্রদর্শনী স্থাপনের </th>
+        <th rowspan="2">কৃষক/কৃষাণীর নাম ও ঠিকানা</th>
+        <th rowspan="2">কৃষক/কৃষাণীর পরিচিতি নম্বর, NID ও মোবাইল নং</th>
+        <th rowspan="2">সংশ্লিষ্ট এসএএওর নাম, ব্লক ও মোবাইল নং</th>
+        <th rowspan="2">প্রদর্শনীভূক্ত ফসল ও জাত/প্রযুক্তি</th>
+        <th rowspan="2">স্থাপনের তারিখ</th>
+        <th colspan="11" style="text-align:center">উপকরণ সরবরাহের পরিমাণ (কেজি/সংখ্যা)</th>
+        <th rowspan="2">উপকরণ বিতরণের তারিখ</th>
+        <th rowspan="2">মন্তব্য</th>
+        <th rowspan="2">পরিবর্তন/মুছুন</th>
+    </tr>
+    <tr>
+        <th >লক্ষ্যমাত্রা(ব্যাচ) </th>
+        <th >অর্জন(ব্যাচ) </th>
+        <th >বীজ/চারা </th>
+        <th >ইউরিয়া </th>
+        <th >টিএসপি/ডিএপি </th>
+        <th >এমওপি </th>
+        <th >ভার্মি কম্পোস্ট </th>
+        <th >অন্যান্য সার </th>
+        <th >গার্ডেন নেট </th>
+        <th >পানির ঝাঝড়ি </th>
+        <th >বীজ সংরক্ষণ পাত্র </th>
+        <th >অন্যান্য উপকরণ </th>
+        <th >সাইনবোর্ড </th>
+    </tr>
+    </thead>
+    <tbody>
+        <% records.forEach(function(row,index) { %>
+            <tr>
+                <td><%= index+1 %></td>
+                <td><%= row.pname %></td>
+                <td><%= row.psize %></td>
+                <td><%= row.target %></td>
+                <td><%= row.achieved %></td>
+                <td><%= row.name %></td>
+                <td><%= row.nid %></td>
+                <td><%= row.saao %></td>
+                <td><%= row.crop %></td>
+                <td><%= row.date %></td>
+                <td><%= row.bij %></td>
+                <td><%= row.uria %></td>
+                <td><%= row.tsp %></td>
+                <td><%= row.mop %></td>
+                <td><%= row.vermi %></td>
+                <td><%= row.other %></td>
+                <td><%= row.garden %></td>
+                <td><%= row.water %></td>
+                <td><%= row.pot %></td>
+                <td><%= row.cother %></td>
+                <td><%= row.signboard %></td>
+                <td><%= row.bdate %></td>
+                <td><%= row.comment %></td>                
+                <td><a class="btn btn-primary btn-xs" href="/upazilla/adademonstrationInitialFormEdit/<%= row.id %>"><i class="fa fa-edit"></i></a>
+                    <a class="btn btn-danger btn-xs" href="/upazilla/adademonstrationInitialDelete/<%= row.id %>"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
+<% }else{ %>
+    <table class="table table-bordered table-striped" id="tblCustomers" cellspacing="0" cellpadding="0">
+        <thead>
+            <tr>
+                <th rowspan="2">ক্রমিক নং</th>
+                <th rowspan="2">প্রদর্শনীর ধরণ/নাম</th>
+                <th rowspan="2">প্রদর্শনীর আয়তন</th>
+                <th colspan="2" style="text-align:center">প্রদর্শনী স্থাপনের </th>
+                <th rowspan="2">কৃষক/কৃষাণীর নাম ও ঠিকানা</th>
+                <th rowspan="2">কৃষক/কৃষাণীর পরিচিতি নম্বর, NID ও মোবাইল নং</th>
+                <th rowspan="2">সংশ্লিষ্ট এসএএওর নাম, ব্লক ও মোবাইল নং</th>
+                <th rowspan="2">প্রদর্শনীভূক্ত ফসল ও জাত/প্রযুক্তি</th>
+                <th rowspan="2">স্থাপনের তারিখ</th>
+                <th colspan="11" style="text-align:center">উপকরণ সরবরাহের পরিমাণ (কেজি/সংখ্যা)</th>
+                <th rowspan="2">উপকরণ বিতরণের তারিখ</th>
+                <th rowspan="2">মন্তব্য</th>
+                <th rowspan="2">পরিবর্তন/মুছুন</th>
+            </tr>
+            <tr>
+                <th >লক্ষ্যমাত্রা(ব্যাচ) </th>
+                <th >অর্জন(ব্যাচ) </th>
+                <th >বীজ/চারা </th>
+                <th >ইউরিয়া </th>
+                <th >টিএসপি/ডিএপি </th>
+                <th >এমওপি </th>
+                <th >ভার্মি কম্পোস্ট </th>
+                <th >অন্যান্য সার </th>
+                <th >গার্ডেন নেট </th>
+                <th >পানির ঝাঝড়ি </th>
+                <th >বীজ সংরক্ষণ পাত্র </th>
+                <th >অন্যান্য উপকরণ </th>
+                <th >সাইনবোর্ড </th>
+            </tr>
+        </thead>
+        <tbody>
+        <% records.forEach(function(row){ %>
+            <tr>
+                <td colspan="10">No data Found</td>
+            </tr>
+        <% }) %>
+        </tbody>
+    </table>
+<% } %>

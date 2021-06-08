@@ -1,0 +1,202 @@
+<%- include('../../includes/header')-%>
+        <div class="wrapper">
+          <%- include('../../includes/topbar')-%>
+            <div class="page-wrap">
+              <%- include('../../includes/sidebar')-%>
+              <div class="main-content">
+                <div class="container-fluid">
+                    <div class="row clearfix">
+                    <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <div class="panel-title"><h2>ছায়াযুক্ত স্থান/বসতবাড়িতে আদা/হলুদ চাষ প্রদর্শনী এর প্রাথমিক প্রতিবেদন ফর্ম</h2></div>
+                                <p><%
+                                if(success !=''){ %>
+                                <%= success %>
+                                    <% } %>
+                                </p>
+                                </div>  
+                            <div class="panel-body" >
+                                <form action="/upazilla/adademonstrationInitalFormEditPost/<%= records.id %>" id="FieldTrialForm" class="form-horizontal" method="post"  role="form">
+                                    <div id="signupalert" style="display:none" class="alert alert-danger">
+                                        <p>Error:</p>
+                                        <span></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="name" class="col-md-3 control-label">কৃষকের নাম ও ঠিকানা</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="name" placeholder="কৃষকের নাম ও ঠিকানা" value="<%=records.name%>">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="name" class="col-md-3 control-label">প্রদর্শনীর ধরণ/নাম</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="pname" placeholder="প্রদর্শনীর ধরণ/নাম" value="<%=records.pname%>">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="name" class="col-md-3 control-label">প্রদর্শনীর আয়তন</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="psize" placeholder="প্রদর্শনীর আয়তন" value="<%=records.psize%>">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="target" class="col-md-3 control-label">প্রশিক্ষণের লক্ষ্যমাত্রা(ব্যাচ)  </label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="target" placeholder="প্র্রশিক্ষণের লক্ষ্যমাত্রা(ব্যাচ)" value="<%=records.target%>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="achieved" class="col-md-3 control-label">প্রশিক্ষণের অর্জন(ব্যাচ)</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="achieved" placeholder="প্র্রশিক্ষণের অর্জন(ব্যাচ)" value="<%=records.achieved%>">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="name" class="col-md-3 control-label">কৃষক/কৃষাণীর নাম ও ঠিকানা</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="name" placeholder="কৃষক/কৃষাণীর নাম ও ঠিকানা" value="<%=records.name%>">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="nid" class="col-md-3 control-label">কৃষক/কৃষাণীর পরিচিতি নম্বর, NID ও মোবাইল নং</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="nid" placeholder="কৃষক/কৃষাণীর পরিচিতি নম্বর, NID ও মোবাইল নং" value="<%=records.nid%>">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="saao" class="col-md-3 control-label">সংশ্লিষ্ট এসএএওর নাম, ব্লক ও মোবাইল নং</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="saao" placeholder="সংশ্লিষ্ট এসএএওর নাম, ব্লক ও মোবাইল নং" value="<%=records.saao%>">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="supply" class="col-md-3 control-label">প্রদর্শনীভূক্ত ফসল ও জাত/প্রযুক্তি</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="crop" placeholder="প্রদর্শনীভূক্ত ফসল ও জাত/প্রযুক্তি" value="<%=records.crop%>">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="date" class="col-md-3 control-label">স্থাপনের তারিখ</label>
+                                        <div class="col-md-9">
+                                            <input type="date" class="form-control" name="date" placeholder="স্থাপনের তারিখ" value="<%=records.date%>">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="bij" class="col-md-3 control-label">বীজ/চারা সরবরাহের পরিমাণ (কেজি/সংখ্যা)</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="bij" placeholder="বীজ/চারা সরবরাহের পরিমাণ (কেজি/সংখ্যা)" value="<%=records.bij%>">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="comment" class="col-md-3 control-label">ইউরিয়া সরবরাহের পরিমাণ (কেজি/সংখ্যা)</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="uria" placeholder="ইউরিয়া সরবরাহের পরিমাণ (কেজি/সংখ্যা)" value="<%=records.uria%>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="comment" class="col-md-3 control-label">টিএসপি/ডিএপি সরবরাহের পরিমাণ (কেজি/সংখ্যা)</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="tsp" placeholder="টিএসপি/ডিএপি সরবরাহের পরিমাণ (কেজি/সংখ্যা)" value="<%=records.tsp%>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="comment" class="col-md-3 control-label">এমওপি সরবরাহের পরিমাণ (কেজি/সংখ্যা)</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="mop" placeholder="এমওপি সরবরাহের পরিমাণ (কেজি/সংখ্যা)" value="<%=records.mop%>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="comment" class="col-md-3 control-label">ভার্মি কম্পোস্ট সরবরাহের পরিমাণ (কেজি/সংখ্যা)</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="vermi" placeholder="ভার্মি কম্পোস্ট সরবরাহের পরিমাণ (কেজি/সংখ্যা)" value="<%=records.vermi%>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="comment" class="col-md-3 control-label">অন্যান্য সার  সরবরাহের পরিমাণ (কেজি/সংখ্যা)</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="other" placeholder="অন্যান্য সার  সরবরাহের পরিমাণ (কেজি/সংখ্যা)" value="<%=records.other%>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="comment" class="col-md-3 control-label">গার্ডেন নেট সরবরাহের পরিমাণ (কেজি/সংখ্যা)</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="garden" placeholder="গার্ডেন নেট সরবরাহের পরিমাণ (কেজি/সংখ্যা)" value="<%=records.garden%>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="comment" class="col-md-3 control-label">পানির ঝাঝড়ি সরবরাহের পরিমাণ (কেজি/সংখ্যা)</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="water" placeholder="পানির ঝাঝড়ি সরবরাহের পরিমাণ (কেজি/সংখ্যা)" value="<%=records.water%>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="comment" class="col-md-3 control-label">বীজ সংরক্ষণ পাত্র সরবরাহের পরিমাণ (কেজি/সংখ্যা)</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="pot" placeholder="বীজ সংরক্ষণ পাত্র সরবরাহের পরিমাণ (কেজি/সংখ্যা)" value="<%=records.pot%>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="comment" class="col-md-3 control-label">অন্যান্য উপকরণ সরবরাহের পরিমাণ (কেজি/সংখ্যা)</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="cother" placeholder="অন্যান্য উপকরণ সরবরাহের পরিমাণ (কেজি/সংখ্যা)" value="<%=records.cother%>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="comment" class="col-md-3 control-label">সাইনবোর্ড সরবরাহের পরিমাণ (কেজি/সংখ্যা)</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="signboard" placeholder="সাইনবোর্ড সরবরাহের পরিমাণ (কেজি/সংখ্যা)" value="<%=records.signboard%>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bdate" class="col-md-3 control-label">উপকরণ বিতরণের তারিখ</label>
+                                        <div class="col-md-9">
+                                            <input type="date" class="form-control" name="bdate" placeholder="উপকরণ বিতরণের তারিখ" value="<%=records.bdate%>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="comment" class="col-md-3 control-label">মন্তব্য</label>
+                                        <div class="col-md-9">
+                                            <input type="text" class="form-control" name="comment" placeholder="মন্তব্য" value="<%=records.comment%>">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-9">
+                                            <input type="hidden" class="form-control" name="user_id" placeholder="id" value="<%= user_id %>">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <!-- Button -->                                        
+                                        <div class="col-md-offset-3 col-md-9">
+                                        <input type="submit" name="submit" value="submit" class="btn btn-primary">   
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                        
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include('../../includes/footer')-%>

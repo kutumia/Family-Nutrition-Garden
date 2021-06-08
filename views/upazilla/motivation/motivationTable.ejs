@@ -3,14 +3,14 @@
     <thead>
     <tr>
         <th>ক্রমিক নং</th>
-        <th>জেলার নাম</th>
-        <th>উপজেলার নাম</th>
         <th>কৃষকের/কৃষাণির নাম ও পিতা/স্বামীর নাম</th>
         <th>জাতীয় পরিচয়পত্র নম্বর</th>
         <th>গ্রাম ও ব্লক</th>
         <th>মোবাইল নম্বর</th>
         <th>উদ্বোধণকারীর নাম ও পদবী</th>
         <th>ভ্রমণকৃত স্থানের নাম ও বর্ণনা</th>
+        <th>ভ্রমণ শুরুর তারিখ</th>
+        <th>ভ্রমণ শেষের তারিখ</th>
         <th>উপজেলা কৃষি অফিসারের মন্তব্য</th>
         <th>উপ-পরিচালকের মন্তব্য</th>
         <th>প্রকল্প পরিচালকের মন্তব্য</th>
@@ -22,8 +22,6 @@
         <% records.forEach(function(row,index){ %>
             <tr>
                 <td><%= index+1 %></td>
-                <td><%= row.district %></td>
-                <td><%= row.upazilla %></td>
                 <td><%= row.name %></td>
                 <td><%= row.nid %></td>
                 <td><%= row.village%></td>
@@ -31,6 +29,8 @@
                 <td><%= row.comment %></td>
                 <td><%= row.podobi %></td>
                 <td><%= row.bornona %></td>
+                <td><%= row.sdate %></td>
+                <td><%= row.fdate %></td>
                 <td><%= row.ddComment %></td>
                 <td><%= row.pdComment %></td>
                 <td><a class="btn btn-primary btn-xs" href="/upazilla/motivationEdit/<%= row.id %>"><i class="fa fa-edit"></i></a>
@@ -45,14 +45,14 @@
         <thead>
         <tr>
             <th>ক্রমিক নং</th>
-        <th>জেলার নাম</th>
-        <th>উপজেলার নাম</th>
         <th>কৃষকের/কৃষাণির নাম ও পিতা/স্বামীর নাম</th>
         <th>জাতীয় পরিচয়পত্র নম্বর</th>
         <th>গ্রাম ও ব্লক</th>
         <th>মোবাইল নম্বর</th>
         <th>উদ্বোধণকারীর নাম ও পদবী</th>
         <th>ভ্রমণকৃত স্থানের নাম ও বর্ণনা</th>
+        <th>ভ্রমণ শুরুর তারিখ</th>
+        <th>ভ্রমণ শেষের তারিখ</th>
         <th>উপজেলা কৃষি অফিসারের মন্তব্য</th>
         <th>উপ-পরিচালকের মন্তব্য</th>
         <th>প্রকল্প পরিচালকের মন্তব্য</th>

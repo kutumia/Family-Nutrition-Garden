@@ -4,9 +4,12 @@ const router = express.Router();
 const app=express();
 const {ddsignup,ddsignuppost,allupazilla,ddlogin,ddloginpost,ddDashboard,irrigationEdit,irrigationEditPost,machineryEdit,machineryEditPost,motivationEdit,motivationEditPost,fieldDayEdit,fieldDayEditPost
     ,initialTrialEdit,initialTrialEditPost,finalTrialEdit,finalTrialEditPost,agriFairEdit,agriFairEditPost,
-    trainedFarmer,trainedFarmerFilter,initialTrial,initialTrialFilter,trainedFarmerEditPost,trainedFarmerEdit,
+    trainedFarmer,trainedFarmerFilter,trainedFarmerEditPost,trainedFarmerEdit,initialTrial,initialTrialFilter,
     vermiCompostInitial,vermiCompostInitialFilter,vermiCompostFinal,vermiCompostFinalFilter,
     demonstrationInitial,demonstrationInitialFilter,demonstrationFinal,demonstrationFinalFilter,
+    adademonstrationInitial,adademonstrationInitialFilter,adademonstrationFinal,adademonstrationFinalFilter,
+    kochudemonstrationInitial,kochudemonstrationInitialFilter,kochudemonstrationFinal,kochudemonstrationFinalFilter,
+    saao,saaoFilter,saaoEditPost,saaoEdit,
     finalTrial,finalTrialFilter,agriFair,agriFairFilter,irrigation,irrigationFilter,machinery,machineryFilter,motivation,motivationFilter,fieldDay,fieldDayFilter} = require('../controllers/dd.controller');
 router.get('/',allupazilla);
 router.get('/login',ddlogin);
@@ -15,6 +18,11 @@ router.get('/dashboard',ddDashboard);
 
 router.get('/signup',ddsignup);
 router.post('/signups',ddsignuppost);
+
+router.get('/saao',saao);
+router.post('/saaoFilter',saaoFilter);
+router.get('/saaoEdit/:id',saaoEdit);
+router.post('/saaoEditPost/:id',saaoEditPost);
 
 router.get('/trainedFarmer',trainedFarmer);
 router.post('/trainedFarmerFilter',trainedFarmerFilter);
@@ -68,6 +76,18 @@ router.post('/demonstrationInitialFilter',demonstrationInitialFilter);
 
 router.get('/demonstrationFinal',demonstrationFinal);
 router.post('/demonstrationFinalFilter',demonstrationFinalFilter);
+
+router.get('/kochudemonstrationInitial',kochudemonstrationInitial);
+router.post('/kochudemonstrationInitialFilter',kochudemonstrationInitialFilter);
+
+router.get('/kochudemonstrationFinal',kochudemonstrationFinal);
+router.post('/kochudemonstrationFinalFilter',kochudemonstrationFinalFilter);
+
+router.get('/adademonstrationInitial',adademonstrationInitial);
+router.post('/adademonstrationInitialFilter',adademonstrationInitialFilter);
+
+router.get('/adademonstrationFinal',adademonstrationFinal);
+router.post('/adademonstrationFinalFilter',adademonstrationFinalFilter);
 
 
 

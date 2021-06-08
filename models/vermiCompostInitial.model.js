@@ -5,6 +5,18 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true,
         autoIncrement:true
       },
+        pname: {
+          type: Sequelize.STRING
+        },
+        psize: {
+          type: Sequelize.STRING
+        },
+        target: {
+          type: Sequelize.STRING
+        },
+        achieved: {
+          type: Sequelize.STRING
+        },
       name: {
         type: Sequelize.STRING
       },
@@ -14,10 +26,46 @@ module.exports = (sequelize, Sequelize) => {
       saao: {
         type: Sequelize.STRING
       },
-      supply: {
+      crop: {
         type: Sequelize.STRING
       },
       date: {
+        type: Sequelize.STRING
+      },
+      bij: {
+        type: Sequelize.STRING
+      },
+      uria: {
+        type: Sequelize.STRING
+      },
+      tsp: {
+        type: Sequelize.STRING
+      },
+      mop: {
+        type: Sequelize.STRING
+      },
+      vermi: {
+        type: Sequelize.STRING
+      },
+      other: {
+        type: Sequelize.STRING
+      },
+      garden: {
+        type: Sequelize.STRING
+      },
+      water: {
+        type: Sequelize.STRING
+      },
+      pot: {
+        type: Sequelize.STRING
+      },
+      cother: {
+        type: Sequelize.STRING
+      },
+      signboard: {
+        type: Sequelize.STRING
+      },
+      bdate: {
         type: Sequelize.STRING
       },
       comment: {

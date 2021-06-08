@@ -5,19 +5,22 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true,
         autoIncrement:true
       },
-      district: {
+      topic: {
         type: Sequelize.STRING
       },
-      upazilla: {
-        type: Sequelize.STRING
-      },
-      booth: {
-        type: Sequelize.STRING
-      },
-      technology: {
+      date: {
         type: Sequelize.STRING
       },
       name: {
+        type: Sequelize.STRING
+      },
+      place: {
+        type: Sequelize.STRING
+      },
+      mobile: {
+        type: Sequelize.STRING
+      },
+      resource: {
         type: Sequelize.STRING
       },
       comment: {

@@ -5,10 +5,10 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true,
         autoIncrement:true
       },
-      district: {
+      sdate: {
         type: Sequelize.STRING
       },
-      upazilla: {
+      fdate: {
         type: Sequelize.STRING
       },
       name: {

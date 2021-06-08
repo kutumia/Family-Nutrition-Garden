@@ -4,9 +4,9 @@ const router = express.Router();
 const app=express();
 
 const {fieldDayYear,agriFair,agriFairYear,agriFairForm,agriFairFormPost,fieldDayForm,fieldDayFormPost,upazillasignup,upazillasignuppost,upazillalogin,upazillaloginpost,upazillaDashboard,
-    trainedFarmer,trainedFarmerYear,trainedFarmerForm,trainedFarmerFormPost,initialTrial,initialTrialYear,initialTrialFormPost,
+    initialTrial,initialTrialYear,initialTrialFormPost,
     finalTrial,finalTrialYear,finalTrialForm,finalTrialFormPost,agriFairEdit,agriFairDelete,fieldDayEditPost,machineryEditPost,
-    trainedFarmerEdit,trainedFarmerDelete,initialTrialEdit,trainedFarmerFormEditPost,finalTrialEdit,agriFairEditPost,
+    trainedFarmer,trainedFarmerYear,trainedFarmerForm,trainedFarmerFormPost,trainedFarmerEdit,trainedFarmerFormEditPost,trainedFarmerDelete,initialTrialEdit,finalTrialEdit,agriFairEditPost,
     fieldDay,fieldDayEdit,fieldDayDelete,irrigation,irrigationYear,irrigationForm,irrigationFormPost,irrigationEdit,irrigationDelete,
 machinery,machineryYear,machineryForm,machineryFormPost,machineryEdit,machineryDelete,irrigationEditPost,motivationEditPost,
 motivation,motivationYear,motivationForm,motivationFormPost,motivationEdit,motivationDelete,
@@ -18,6 +18,18 @@ vermiCompostInitial,vermiCompostInitialYear,vermiCompostInitialForm,vermiCompost
     demonstrationInitialFormEdit,demonstrationInitialDelete,demonstrationInitialFormEditPost,
     demonstrationFinal,demonstrationFinalYear,demonstrationFinalForm,demonstrationFinalFormPost,
     demonstrationFinalFormEdit,demonstrationFinalDelete,demonstrationFinalFormEditPost,
+
+    adademonstrationInitial,adademonstrationInitialYear,adademonstrationInitialForm,adademonstrationInitialFormPost,
+    adademonstrationInitialFormEdit,adademonstrationInitialDelete,adademonstrationInitialFormEditPost,
+    adademonstrationFinal,adademonstrationFinalYear,adademonstrationFinalForm,adademonstrationFinalFormPost,
+    adademonstrationFinalFormEdit,adademonstrationFinalDelete,adademonstrationFinalFormEditPost,
+
+    kochudemonstrationInitial,kochudemonstrationInitialYear,kochudemonstrationInitialForm,kochudemonstrationInitialFormPost,
+    kochudemonstrationInitialFormEdit,kochudemonstrationInitialDelete,kochudemonstrationInitialFormEditPost,
+    kochudemonstrationFinal,kochudemonstrationFinalYear,kochudemonstrationFinalForm,kochudemonstrationFinalFormPost,
+    kochudemonstrationFinalFormEdit,kochudemonstrationFinalDelete,kochudemonstrationFinalFormEditPost,
+
+    saao,saaoYear,saaoForm,saaoFormPost,saaoEdit,saaoDelete,saaoFormEditPost,
 } = require('../controllers/upazilla.controller');
 
 router.get('/login',upazillalogin);
@@ -34,6 +46,14 @@ router.post('/trainedFarmerFormPost',trainedFarmerFormPost);
 router.get('/trainedFarmerEdit/:id',trainedFarmerEdit);
 router.post('/trainedFarmerFormEditPost/:id',trainedFarmerFormEditPost);
 router.get('/trainedFarmerDelete/:id',trainedFarmerDelete);
+
+router.get('/saao',saao);
+router.post('/saaoYear',saaoYear);
+router.get('/saaoForm',saaoForm);
+router.post('/saaoFormPost',saaoFormPost);
+router.get('/saaoEdit/:id',saaoEdit);
+router.post('/saaoFormEditPost/:id',saaoFormEditPost);
+router.get('/saaoDelete/:id',saaoDelete);
 
 router.get('/initialTrial',initialTrial);
 router.post('/initialTrialYear',initialTrialYear);
@@ -117,4 +137,36 @@ router.post('/demonstrationFinalFormPost',demonstrationFinalFormPost);
 router.get('/demonstrationFinalFormEdit/:id',demonstrationFinalFormEdit);
 router.post('/demonstrationFinalFormEditPost/:id',demonstrationFinalFormEditPost);
 router.get('/demonstrationFinalDelete/:id',demonstrationFinalDelete);
+
+router.get('/kochudemonstrationInitial',kochudemonstrationInitial);
+router.post('/kochudemonstrationInitialYear',kochudemonstrationInitialYear);
+router.get('/kochudemonstrationInitialForm',kochudemonstrationInitialForm);
+router.post('/kochudemonstrationInitialFormPost',kochudemonstrationInitialFormPost);
+router.get('/kochudemonstrationInitialFormEdit/:id',kochudemonstrationInitialFormEdit);
+router.post('/kochudemonstrationInitialFormEditPost/:id',kochudemonstrationInitialFormEditPost);
+router.get('/kochudemonstrationInitialDelete/:id',kochudemonstrationInitialDelete);
+
+router.get('/kochudemonstrationFinal',kochudemonstrationFinal);
+router.post('/kochudemonstrationFinalYear',kochudemonstrationFinalYear);
+router.get('/kochudemonstrationFinalForm',kochudemonstrationFinalForm);
+router.post('/kochudemonstrationFinalFormPost',kochudemonstrationFinalFormPost);
+router.get('/kochudemonstrationFinalFormEdit/:id',kochudemonstrationFinalFormEdit);
+router.post('/kochudemonstrationFinalFormEditPost/:id',kochudemonstrationFinalFormEditPost);
+router.get('/kochudemonstrationFinalDelete/:id',kochudemonstrationFinalDelete);
+
+router.get('/adademonstrationInitial',adademonstrationInitial);
+router.post('/adademonstrationInitialYear',adademonstrationInitialYear);
+router.get('/adademonstrationInitialForm',adademonstrationInitialForm);
+router.post('/adademonstrationInitialFormPost',adademonstrationInitialFormPost);
+router.get('/adademonstrationInitialFormEdit/:id',adademonstrationInitialFormEdit);
+router.post('/adademonstrationInitialFormEditPost/:id',adademonstrationInitialFormEditPost);
+router.get('/adademonstrationInitialDelete/:id',adademonstrationInitialDelete);
+
+router.get('/adademonstrationFinal',adademonstrationFinal);
+router.post('/adademonstrationFinalYear',adademonstrationFinalYear);
+router.get('/adademonstrationFinalForm',adademonstrationFinalForm);
+router.post('/adademonstrationFinalFormPost',adademonstrationFinalFormPost);
+router.get('/adademonstrationFinalFormEdit/:id',adademonstrationFinalFormEdit);
+router.post('/adademonstrationFinalFormEditPost/:id',adademonstrationFinalFormEditPost);
+router.get('/adademonstrationFinalDelete/:id',adademonstrationFinalDelete);
 module.exports = router;
