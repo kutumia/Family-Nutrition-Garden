@@ -104,8 +104,13 @@ module.exports.pdloginpost=async(req,res)=>{
 };
 
 module.exports.pdDashboard = async(req,res) => {
-    console.log("pddashboard",res.locals.type);
-    res.render('pd/dashboard', { title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'Welcome' });
+    try{
+        upazillas=await upazilla.findAll();
+        res.render('pd/dashboard', { title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'Welcome',records:upazillas });
+    }
+        catch{
+            console.log(err);
+        }
 };
 //logIn controller end
 

@@ -3,10 +3,12 @@ const router = express.Router();
 // const { Router } = require("express");
 const app=express();
 
-const {fieldDayYear,agriFair,agriFairYear,agriFairForm,agriFairFormPost,fieldDayForm,fieldDayFormPost,upazillasignup,upazillasignuppost,upazillalogin,upazillaloginpost,upazillaDashboard,
+const {fieldDayYear,agriFair,agriFairYear,agriFairForm,agriFairFormPost,agriFairGallery,uploadagriFair,agriFairGalleryPost,
+    agriFairFile,uploadagriFairFile,agriFairFilePost,
+    fieldDayForm,fieldDayFormPost,upazillasignup,upazillasignuppost,upazillalogin,upazillaloginpost,upazillaDashboard,
     initialTrial,initialTrialYear,initialTrialFormPost,
     finalTrial,finalTrialYear,finalTrialForm,finalTrialFormPost,agriFairEdit,agriFairDelete,fieldDayEditPost,machineryEditPost,
-    trainedFarmer,trainedFarmerYear,trainedFarmerForm,trainedFarmerFormPost,trainedFarmerEdit,trainedFarmerFormEditPost,trainedFarmerDelete,initialTrialEdit,finalTrialEdit,agriFairEditPost,
+    trainedFarmer,trainedFarmerYear,trainedFarmerForm,trainedFarmerFormPost,trainedFarmerEdit,trainedFarmerFormEditPost,trainedFarmerDelete,generatePdftrainedFarmer,initialTrialEdit,finalTrialEdit,agriFairEditPost,
     fieldDay,fieldDayEdit,fieldDayDelete,irrigation,irrigationYear,irrigationForm,irrigationFormPost,irrigationEdit,irrigationDelete,
 machinery,machineryYear,machineryForm,machineryFormPost,machineryEdit,machineryDelete,irrigationEditPost,motivationEditPost,
 motivation,motivationYear,motivationForm,motivationFormPost,motivationEdit,motivationDelete,
@@ -17,7 +19,7 @@ vermiCompostInitial,vermiCompostInitialYear,vermiCompostInitialForm,vermiCompost
     demonstrationInitial,demonstrationInitialYear,demonstrationInitialForm,demonstrationInitialFormPost,
     demonstrationInitialFormEdit,demonstrationInitialDelete,demonstrationInitialFormEditPost,
     demonstrationFinal,demonstrationFinalYear,demonstrationFinalForm,demonstrationFinalFormPost,
-    demonstrationFinalFormEdit,demonstrationFinalDelete,demonstrationFinalFormEditPost,
+    demonstrationFinalFormEdit,demonstrationFinalDelete,demonstrationFinalFormEditPost,generatePdfadademonstrationInitial,generatePdfadademonstrationFinal,
 
     adademonstrationInitial,adademonstrationInitialYear,adademonstrationInitialForm,adademonstrationInitialFormPost,
     adademonstrationInitialFormEdit,adademonstrationInitialDelete,adademonstrationInitialFormEditPost,
@@ -30,6 +32,49 @@ vermiCompostInitial,vermiCompostInitialYear,vermiCompostInitialForm,vermiCompost
     kochudemonstrationFinalFormEdit,kochudemonstrationFinalDelete,kochudemonstrationFinalFormEditPost,
 
     saao,saaoYear,saaoForm,saaoFormPost,saaoEdit,saaoDelete,saaoFormEditPost,
+
+    trainedFarmerGallery,uploadtrainedFarmer,trainedFarmerGalleryPost,
+    trainedFarmerFile,uploadtrainedFarmerFile,trainedFarmerFilePost,
+
+    saaoGallery,uploadsaao,saaoGalleryPost,
+    saaoFile,uploadsaaoFile,saaoFilePost,
+
+    irrigationGallery,uploadirrigation,irrigationGalleryPost,
+    irrigationFile,uploadirrigationFile,irrigationFilePost,
+
+    machineryGallery,uploadmachinery,machineryGalleryPost,
+    machineryFile,uploadmachineryFile,machineryFilePost,
+
+    motivationGallery,uploadmotivation,motivationGalleryPost,
+    motivationFile,uploadmotivationFile,motivationFilePost,
+
+    fieldDayGallery,uploadfieldDay,fieldDayGalleryPost,
+    fieldDayFile,uploadfieldDayFile,fieldDayFilePost,
+
+    vermiCompostInitialGallery,uploadvermiCompostInitial,vermiCompostInitialGalleryPost,
+    vermiCompostInitialFile,uploadvermiCompostInitialFile,vermiCompostInitialFilePost,
+
+    vermiCompostFinalGallery,uploadvermiCompostFinal,vermiCompostFinalGalleryPost,
+    vermiCompostFinalFile,uploadvermiCompostFinalFile,vermiCompostFinalFilePost,
+
+    demonstrationInitialGallery,uploaddemonstrationInitial,demonstrationInitialGalleryPost,
+    demonstrationInitialFile,uploaddemonstrationInitialFile,demonstrationInitialFilePost,
+
+    demonstrationFinalGallery,uploaddemonstrationFinal,demonstrationFinalGalleryPost,
+    demonstrationFinalFile,uploaddemonstrationFinalFile,demonstrationFinalFilePost,
+
+    kochudemonstrationInitialGallery,uploadkochudemonstrationInitial,kochudemonstrationInitialGalleryPost,
+    kochudemonstrationInitialFile,uploadkochudemonstrationInitialFile,kochudemonstrationInitialFilePost,
+
+    kochudemonstrationFinalGallery,uploadkochudemonstrationFinal,kochudemonstrationFinalGalleryPost,
+    kochudemonstrationFinalFile,uploadkochudemonstrationFinalFile,kochudemonstrationFinalFilePost,
+
+    adademonstrationInitialGallery,uploadadademonstrationInitial,adademonstrationInitialGalleryPost,
+    adademonstrationInitialFile,uploadadademonstrationInitialFile,adademonstrationInitialFilePost,
+
+    adademonstrationFinalGallery,uploadadademonstrationFinal,adademonstrationFinalGalleryPost,
+    adademonstrationFinalFile,uploadadademonstrationFinalFile,adademonstrationFinalFilePost,upazillaFile,upazillaEdit,upazillaPassword,upazillaFilePost,upazillaEditPost,upazillaPasswordEditPost
+    
 } = require('../controllers/upazilla.controller');
 
 router.get('/login',upazillalogin);
@@ -38,6 +83,13 @@ router.get('/dashboard',upazillaDashboard);
 
 router.get('/signup',upazillasignup);
 router.post('/signups',upazillasignuppost);
+router.get('/upazillaFile/:id',upazillaFile);
+router.get('/upazillaEdit/:id',upazillaEdit);
+router.get('/upazillaPassword/:id',upazillaPassword);
+router.post('/upazillaFilePost/:id',upazillaFilePost);
+router.post('/upazillaEditPost/:id',upazillaEditPost);
+router.post('/upazillaPasswordEditPost/:id',upazillaPasswordEditPost);
+
 
 router.get('/trainedFarmer',trainedFarmer);
 router.post('/trainedFarmerYear',trainedFarmerYear);
@@ -46,6 +98,8 @@ router.post('/trainedFarmerFormPost',trainedFarmerFormPost);
 router.get('/trainedFarmerEdit/:id',trainedFarmerEdit);
 router.post('/trainedFarmerFormEditPost/:id',trainedFarmerFormEditPost);
 router.get('/trainedFarmerDelete/:id',trainedFarmerDelete);
+router.post('/generatePdftrainedFarmer',generatePdftrainedFarmer);
+
 
 router.get('/saao',saao);
 router.post('/saaoYear',saaoYear);
@@ -73,6 +127,10 @@ router.post('/agriFairFormPost',agriFairFormPost);
 router.get('/agriFairEdit/:id',agriFairEdit);
 router.post('/agriFairEditPost/:id',agriFairEditPost);
 router.get('/agriFairDelete/:id',agriFairDelete);
+router.get("/agriFairGallery", agriFairGallery);
+router.post("/agriFairGalleryPost", uploadagriFair, agriFairGalleryPost);
+router.get("/agriFairFile", agriFairFile);
+router.post("/agriFairFilePost", uploadagriFairFile, agriFairFilePost);
 
 router.get('/fieldDay',fieldDay);
 router.post('/fieldDayYear',fieldDayYear);
@@ -161,6 +219,8 @@ router.post('/adademonstrationInitialFormPost',adademonstrationInitialFormPost);
 router.get('/adademonstrationInitialFormEdit/:id',adademonstrationInitialFormEdit);
 router.post('/adademonstrationInitialFormEditPost/:id',adademonstrationInitialFormEditPost);
 router.get('/adademonstrationInitialDelete/:id',adademonstrationInitialDelete);
+router.post('/generatePdfadademonstrationInitial',generatePdfadademonstrationInitial);
+
 
 router.get('/adademonstrationFinal',adademonstrationFinal);
 router.post('/adademonstrationFinalYear',adademonstrationFinalYear);
@@ -169,4 +229,79 @@ router.post('/adademonstrationFinalFormPost',adademonstrationFinalFormPost);
 router.get('/adademonstrationFinalFormEdit/:id',adademonstrationFinalFormEdit);
 router.post('/adademonstrationFinalFormEditPost/:id',adademonstrationFinalFormEditPost);
 router.get('/adademonstrationFinalDelete/:id',adademonstrationFinalDelete);
+router.post('/generatePdfadademonstrationFinal',generatePdfadademonstrationFinal);
+
+//////////Gallery and File//
+router.get("/trainedFarmerGallery", trainedFarmerGallery);
+router.post("/trainedFarmerGalleryPost", uploadtrainedFarmer, trainedFarmerGalleryPost);
+router.get("/trainedFarmerFile", trainedFarmerFile);
+router.post("/trainedFarmerFilePost", uploadtrainedFarmerFile, trainedFarmerFilePost);
+
+router.get("/saaoGallery", saaoGallery);
+router.post("/saaoGalleryPost", uploadsaao, saaoGalleryPost);
+router.get("/saaoFile", saaoFile);
+router.post("/saaoFilePost", uploadsaaoFile, saaoFilePost);
+
+router.get("/irrigationGallery", irrigationGallery);
+router.post("/irrigationGalleryPost", uploadirrigation, irrigationGalleryPost);
+router.get("/irrigationFile", irrigationFile);
+router.post("/irrigationFilePost", uploadirrigationFile, irrigationFilePost);
+
+router.get("/machineryGallery", machineryGallery);
+router.post("/machineryGalleryPost", uploadmachinery, machineryGalleryPost);
+router.get("/machineryFile", machineryFile);
+router.post("/machineryFilePost", uploadmachineryFile, machineryFilePost);
+
+router.get("/motivationGallery", motivationGallery);
+router.post("/motivationGalleryPost", uploadmotivation, motivationGalleryPost);
+router.get("/motivationFile", motivationFile);
+router.post("/motivationFilePost", uploadmotivationFile, motivationFilePost);
+
+router.get("/fieldDayGallery", fieldDayGallery);
+router.post("/fieldDayGalleryPost", uploadfieldDay, fieldDayGalleryPost);
+router.get("/fieldDayFile", fieldDayFile);
+router.post("/fieldDayFilePost", uploadfieldDayFile, fieldDayFilePost);
+
+router.get("/vermiCompostInitialGallery", vermiCompostInitialGallery);
+router.post("/vermiCompostInitialGalleryPost", uploadvermiCompostInitial, vermiCompostInitialGalleryPost);
+router.get("/vermiCompostInitialFile", vermiCompostInitialFile);
+router.post("/vermiCompostInitialFilePost", uploadvermiCompostInitialFile, vermiCompostInitialFilePost);
+
+router.get("/vermiCompostFinalGallery", vermiCompostFinalGallery);
+router.post("/vermiCompostFinalGalleryPost", uploadvermiCompostFinal, vermiCompostFinalGalleryPost);
+router.get("/vermiCompostFinalFile", vermiCompostFinalFile);
+router.post("/vermiCompostFinalFilePost", uploadvermiCompostFinalFile, vermiCompostFinalFilePost);
+
+router.get("/demonstrationInitialGallery", demonstrationInitialGallery);
+router.post("/demonstrationInitialGalleryPost", uploaddemonstrationInitial, demonstrationInitialGalleryPost);
+router.get("/demonstrationInitialFile", demonstrationInitialFile);
+router.post("/demonstrationInitialFilePost", uploaddemonstrationInitialFile, demonstrationInitialFilePost);
+
+router.get("/demonstrationFinalGallery", demonstrationFinalGallery);
+router.post("/demonstrationFinalGalleryPost", uploaddemonstrationFinal, demonstrationFinalGalleryPost);
+router.get("/demonstrationFinalFile", demonstrationFinalFile);
+router.post("/demonstrationFinalFilePost", uploaddemonstrationFinalFile, demonstrationFinalFilePost);
+
+router.get("/kochudemonstrationInitialGallery", kochudemonstrationInitialGallery);
+router.post("/kochudemonstrationInitialGalleryPost", uploadkochudemonstrationInitial, kochudemonstrationInitialGalleryPost);
+router.get("/kochudemonstrationInitialFile", kochudemonstrationInitialFile);
+router.post("/kochudemonstrationInitialFilePost", uploadkochudemonstrationInitialFile, kochudemonstrationInitialFilePost);
+
+router.get("/kochudemonstrationFinalGallery", kochudemonstrationFinalGallery);
+router.post("/kochudemonstrationFinalGalleryPost", uploadkochudemonstrationFinal, kochudemonstrationFinalGalleryPost);
+router.get("/kochudemonstrationFinalFile", kochudemonstrationFinalFile);
+router.post("/kochudemonstrationFinalFilePost", uploadkochudemonstrationFinalFile, kochudemonstrationFinalFilePost);
+
+router.get("/adademonstrationInitialGallery", adademonstrationInitialGallery);
+router.post("/adademonstrationInitialGalleryPost", uploadadademonstrationInitial, adademonstrationInitialGalleryPost);
+router.get("/adademonstrationInitialFile", adademonstrationInitialFile);
+router.post("/adademonstrationInitialFilePost", uploadadademonstrationInitialFile, adademonstrationInitialFilePost);
+
+router.get("/adademonstrationFinalGallery", adademonstrationFinalGallery);
+router.post("/adademonstrationFinalGalleryPost", uploadadademonstrationFinal, adademonstrationFinalGalleryPost);
+router.get("/adademonstrationFinalFile", adademonstrationFinalFile);
+router.post("/adademonstrationFinalFilePost", uploadadademonstrationFinalFile, adademonstrationFinalFilePost);
+
+
+
 module.exports = router;

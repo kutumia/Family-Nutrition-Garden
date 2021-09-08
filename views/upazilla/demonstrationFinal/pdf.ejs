@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>কৃষক প্রশিক্ষণ তথ্য</title>
+
+    <style>
+      .flex-container {
+        display: flex;
+
+        justify-content: center;
+      }
+      .table,
+      td,
+      th {
+        border: 1px solid black;
+      }
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .center {
+        text-align: center;
+      }
+      .inline-block-child {
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      style="
+        margin-top: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        background-color: #ffffffa6;
+      "
+      class="center"
+    >
+      <div>
+        <div
+          style="
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+          "
+        >
+          <div
+            style="height: 80px; width: 80px; max-height: 80px; max-width: 80px"
+          >
+            <img
+              src="/landingPage/images/daelogo.png"
+              alt="DAE"
+              style="height: 100%; width: 100%; object-fit: contain"
+            />
+          </div>
+          <div>
+            <h1>গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</h1>
+            <h2>কৃষি সম্প্রসারণ অধিদপ্তর</h2>
+            <h3>খামারবাড়ী, ফার্মগেট, ঢাকা-১২১৫</h3>
+            <h3>www.dae.gov.bd</h3>
+            <h2>কৃষক প্রশিক্ষণ তথ্য</h2>
+          </div>
+          <div
+            style="height: 80px; width: 80px; max-height: 80px; max-width: 80px"
+          >
+            <img
+              src="/landingPage/images/bdlogo.png"
+              alt="Homepage"
+              style="height: 100%; width: 100%; object-fit: contain"
+            />
+          </div>
+        </div>
+        <p><b>উপজেলার নাম :</b><%= upazillaNames.upazilla %></p>
+        <div
+          style="
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+          "
+        >
+          <p>স্মারক নংঃ</p>
+          <p>তারিখঃ <%= new Date().toLocaleDateString();%></p>
+        </div>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কৃষক প্রশিক্ষণ তথ্য</title>
+
+    <style>
+        .flex-container {
+            display: flex;
+
+            justify-content: center
+        }
+        .table, td, th {
+            border: 1px solid black;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .center {
+            text-align: center;
+        }
+        .inline-block-child {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div style="margin-top: 5px; padding-top: 5px; padding-bottom: 5px; background-color: #ffffffa6;" class="center">
+    <div>
+        <h1>কৃষক প্রশিক্ষণ তথ্য</h1>
+        <p><b>উপজেলার নাম :</b><%= upazillaNames.upazilla %></p> -->
+        <%if (records.length >0){ %>
+            <table class="table table-bordered table-striped" id="tblCustomers" cellspacing="0" cellpadding="0">
+            <thead>
+            <tr>
+                <th rowspan="2">ক্রমিক নং</th>
+                <th rowspan="2">কৃষক প্রশিক্ষণের বিষয়</th>
+                <th colspan="2" style="text-align:center">প্রশিক্ষণের </th>
+                <th rowspan="2">কৃষক/কৃষাণীর নাম,ঠিকানা,পরিচিতি নম্বর ও মোবাইল নং</th>
+                <th rowspan="2">প্রশিক্ষণ শুরুর তারিখ</th>
+                <th rowspan="2">প্রশিক্ষণ সমাপ্তির তারিখ</th>
+                <th rowspan="2">প্রশিক্ষক/রিসোর্স পারসনের নাম ও পদবী</th>
+                <th rowspan="2">প্রশিক্ষণ সম্বন্ধে কৃষক/কৃষাণীর মন্তব্য/ফিডব্যাক</th>
+                <th rowspan="2">উপ-পরিচালকের মন্তব্য</th>
+                <th rowspan="2">প্রকল্প পরিচালকের মন্তব্য</th>
+            </tr>
+            <tr>
+                <th >লক্ষ্যমাত্রা(ব্যাচ) </th>
+                <th >অর্জন(ব্যাচ) </th>
+            </tr>
+            </thead>
+            <tbody>
+                <% records.forEach(function(row,index) { %>
+                    <tr>
+                        <td><%= index+1 %></td>
+                        <td><%= row.topic%></td>
+                        <td><%= row.target%></td>
+                        <td><%= row.achieved%></td>
+                        <td><%= row.name %></td>
+                        <td><%= row.date %></td>
+                        <td><%= row.finishDate %></td>
+                        <td><%= row.resource %></td>
+                        <td><%= row.feedback %></td>
+                        <td><%= row.ddComment %></td>
+                        <td><%= row.pdComment %></td>
+                   
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        <% }else{ %>
+            <table class="table table-bordered table-striped" id="tblCustomers" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr>
+                    <th rowspan="2">ক্রমিক নং</th>
+                    <th rowspan="2">কৃষক প্রশিক্ষণের বিষয়</th>
+                    <th colspan="2" style="text-align:center">প্রশিক্ষণের </th>
+                    <th rowspan="2">কৃষক/কৃষাণীর নাম,ঠিকানা,পরিচিতি নম্বর ও মোবাইল নং</th>
+                    <th rowspan="2">প্রশিক্ষণ শুরুর তারিখ</th>
+                    <th rowspan="2">প্রশিক্ষণ সমাপ্তির তারিখ</th>
+                    <th rowspan="2">প্রশিক্ষক/রিসোর্স পারসনের নাম ও পদবী</th>
+                    <th rowspan="2">প্রশিক্ষণ সম্বন্ধে কৃষক/কৃষাণীর মন্তব্য/ফিডব্যাক</th>
+                    <th rowspan="2">উপ-পরিচালকের মন্তব্য</th>
+                    <th rowspan="2">প্রকল্প পরিচালকের মন্তব্য</th>
+                </tr>
+                <tr>
+                    <th >লক্ষ্যমাত্রা(ব্যাচ) </th>
+                    <th >অর্জন(ব্যাচ) </th>
+                </tr>
+                </thead>
+                <tbody>
+                <% records.forEach(function(row){ %>
+                    <tr>
+                        <td colspan="10">No data Found</td>
+                    </tr>
+                <% }) %>
+                </tbody>
+            </table>
+        <% } %>
+    </div>
+</div>
+
+</body>
+</html>

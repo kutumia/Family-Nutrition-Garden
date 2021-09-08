@@ -14,13 +14,57 @@ const fieldDay = db.fieldDay;
 const agriFair = db.agriFair;
 const vermiCompostInitial = db.vermiCompostInitial;
 const vermiCompostFinal = db.vermiCompostFinal;
-
+const agriFairGallery = db.agriFairGallery;
+const agriFairFile = db.agriFairFile;
 const demonstrationInitial = db.demonstrationInitial;       
 const demonstrationFinal = db.demonstrationFinal;
 const kochudemonstrationInitial = db.kochudemonstrationInitial;       
 const kochudemonstrationFinal = db.kochudemonstrationFinal;
 const adademonstrationInitial = db.adademonstrationInitial;       
 const adademonstrationFinal = db.adademonstrationFinal;
+
+const adademonstrationFinalGallery = db.adademonstrationFinalGallery;
+const adademonstrationFinalFile = db.adademonstrationFinalFile;
+
+const adademonstrationInitialGallery = db.adademonstrationInitialGallery;
+const adademonstrationInitialFile = db.adademonstrationInitialFile;
+
+const demonstrationFinalGallery = db.demonstrationFinalGallery;
+const demonstrationFinalFile = db.demonstrationFinalFile;
+
+const demonstrationInitialGallery = db.demonstrationInitialGallery;
+const demonstrationInitialFile = db.demonstrationInitialFile;
+
+const fieldDayGallery = db.fieldDayGallery;
+const fieldDayFile = db.fieldDayFile;
+
+const irrigationGallery = db.irrigationGallery;
+const irrigationFile = db.irrigationFile;
+
+const kochudemonstrationFinalGallery = db.kochudemonstrationFinalGallery;
+const kochudemonstrationFinalFile = db.kochudemonstrationFinalFile;
+
+const kochudemonstrationInitialGallery = db.kochudemonstrationInitialGallery;
+const kochudemonstrationInitialFile = db.kochudemonstrationInitialFile;
+
+const machineryGallery = db.machineryGallery;
+const machineryFile = db.machineryFile;
+
+const motivationGallery = db.motivationGallery;
+const motivationFile = db.motivationFile;
+
+const saaoGallery = db.saaoGallery;
+const saaoFile = db.saaoFile;
+
+const trainedFarmerGallery = db.trainedFarmerGallery;
+const trainedFarmerFile = db.trainedFarmerFile;
+
+const vermiCompostFinalGallery = db.vermiCompostFinalGallery;
+const vermiCompostFinalFile = db.vermiCompostFinalFile;
+
+const vermiCompostInitialGallery = db.vermiCompostInitialGallery;
+const vermiCompostInitialFile = db.vermiCompostInitialFile;
+
 
 const multer = require("multer");
 const path = require("path");
@@ -30,6 +74,537 @@ const bcrypt= require('bcryptjs');
 
 const { request, response } = require('express');
 const express = require('express');
+let pdf = require("html-pdf");
+let ejs = require("ejs");
+
+
+  //multer setup for upazilla FIle-----------------
+  var storageupazillaFile = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/upazillaFile");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadupazillaFile = multer({
+    storage: storageupazillaFile,
+  }).single("upazillaFile");
+  exports.uploadupazillaFile = uploadupazillaFile;
+
+//multer setup for trainedFarmer image-----------------
+var storagetrainedFarmer = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/trainedFarmerGallery");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadtrainedFarmer = multer({
+    storage: storagetrainedFarmer,
+  }).single("trainedFarmer");
+  exports.uploadtrainedFarmer = uploadtrainedFarmer;
+
+  //multer setup for trainedFarmer FIle-----------------
+var storagetrainedFarmerFile = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/trainedFarmerFile");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadtrainedFarmerFile = multer({
+    storage: storagetrainedFarmerFile,
+  }).single("trainedFarmerFile");
+  exports.uploadtrainedFarmerFile = uploadtrainedFarmerFile;
+
+  //multer setup for saao image-----------------
+var storagesaao = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/saaoGallery");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadsaao = multer({
+    storage: storagesaao,
+  }).single("saao");
+  exports.uploadsaao = uploadsaao;
+
+  //multer setup for saao FIle-----------------
+var storagesaaoFile = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/saaoFile");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadsaaoFile = multer({
+    storage: storagesaaoFile,
+  }).single("saaoFile");
+  exports.uploadsaaoFile = uploadsaaoFile;
+
+  //multer setup for irrigation image-----------------
+var storageirrigation = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/irrigationGallery");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadirrigation = multer({
+    storage: storageirrigation,
+  }).single("irrigation");
+  exports.uploadirrigation = uploadirrigation;
+
+  //multer setup for irrigation FIle-----------------
+var storageirrigationFile = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/irrigationFile");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadirrigationFile = multer({
+    storage: storageirrigationFile,
+  }).single("irrigationFile");
+  exports.uploadirrigationFile = uploadirrigationFile;
+
+  //multer setup for machinery image-----------------
+var storagemachinery = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/machineryGallery");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadmachinery = multer({
+    storage: storagemachinery,
+  }).single("machinery");
+  exports.uploadmachinery = uploadmachinery;
+
+  //multer setup for machinery FIle-----------------
+var storagemachineryFile = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/machineryFile");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadmachineryFile = multer({
+    storage: storagemachineryFile,
+  }).single("machineryFile");
+  exports.uploadmachineryFile = uploadmachineryFile;
+
+  //multer setup for motivation image-----------------
+var storagemotivation = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/motivationGallery");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadmotivation = multer({
+    storage: storagemotivation,
+  }).single("motivation");
+  exports.uploadmotivation = uploadmotivation;
+
+  //multer setup for motivation FIle-----------------
+var storagemotivationFile = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/motivationFile");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadmotivationFile = multer({
+    storage: storagemotivationFile,
+  }).single("motivationFile");
+  exports.uploadmotivationFile = uploadmotivationFile;
+
+  //multer setup for fieldDay image-----------------
+var storagefieldDay = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/fieldDayGallery");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadfieldDay = multer({
+    storage: storagefieldDay,
+  }).single("fieldDay");
+  exports.uploadfieldDay = uploadfieldDay;
+
+  //multer setup for fieldDay FIle-----------------
+var storagefieldDayFile = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/fieldDayFile");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadfieldDayFile = multer({
+    storage: storagefieldDayFile,
+  }).single("fieldDayFile");
+  exports.uploadfieldDayFile = uploadfieldDayFile;
+
+
+//multer setup for agriFair image-----------------
+var storageagriFair = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/agriFairGallery");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadagriFair = multer({
+    storage: storageagriFair,
+  }).single("agriFair");
+  exports.uploadagriFair = uploadagriFair;
+
+  //multer setup for agriFair FIle-----------------
+var storageagriFairFile = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/agriFairFile");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadagriFairFile = multer({
+    storage: storageagriFairFile,
+  }).single("agriFairFile");
+  exports.uploadagriFairFile = uploadagriFairFile;
+
+  //multer setup for adademonstrationFinal image-----------------
+var storageadademonstrationFinal = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/adademonstrationFinalGallery");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadadademonstrationFinal = multer({
+    storage: storageadademonstrationFinal,
+  }).single("adademonstrationFinal");
+  exports.uploadadademonstrationFinal = uploadadademonstrationFinal;
+
+  //multer setup for adademonstrationFinal FIle-----------------
+var storageadademonstrationFinalFile = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/adademonstrationFinalFile");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadadademonstrationFinalFile = multer({
+    storage: storageadademonstrationFinalFile,
+  }).single("adademonstrationFinalFile");
+  exports.uploadadademonstrationFinalFile = uploadadademonstrationFinalFile;
+
+  //multer setup for adademonstrationInitial image-----------------
+var storageadademonstrationInitial = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/adademonstrationInitialGallery");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadadademonstrationInitial = multer({
+    storage: storageadademonstrationInitial,
+  }).single("adademonstrationInitial");
+  exports.uploadadademonstrationInitial = uploadadademonstrationInitial;
+
+  //multer setup for adademonstrationInitial FIle-----------------
+var storageadademonstrationInitialFile = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/adademonstrationInitialFile");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadadademonstrationInitialFile = multer({
+    storage: storageadademonstrationInitialFile,
+  }).single("adademonstrationInitialFile");
+  exports.uploadadademonstrationInitialFile = uploadadademonstrationInitialFile;
+
+  //multer setup for demonstrationFinal image-----------------
+var storagedemonstrationFinal = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/demonstrationFinalGallery");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploaddemonstrationFinal = multer({
+    storage: storagedemonstrationFinal,
+  }).single("demonstrationFinal");
+  exports.uploaddemonstrationFinal = uploaddemonstrationFinal;
+
+  //multer setup for demonstrationFinal FIle-----------------
+var storagedemonstrationFinalFile = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/demonstrationFinalFile");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploaddemonstrationFinalFile = multer({
+    storage: storagedemonstrationFinalFile,
+  }).single("demonstrationFinalFile");
+  exports.uploaddemonstrationFinalFile = uploaddemonstrationFinalFile;
+
+  //multer setup for demonstrationInitial image-----------------
+var storagedemonstrationInitial = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/demonstrationInitialGallery");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploaddemonstrationInitial = multer({
+    storage: storagedemonstrationInitial,
+  }).single("demonstrationInitial");
+  exports.uploaddemonstrationInitial = uploaddemonstrationInitial;
+
+  //multer setup for demonstrationInitial FIle-----------------
+var storagedemonstrationInitialFile = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/demonstrationInitialFile");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploaddemonstrationInitialFile = multer({
+    storage: storagedemonstrationInitialFile,
+  }).single("demonstrationInitialFile");
+  exports.uploaddemonstrationInitialFile = uploaddemonstrationInitialFile;
+
+  //multer setup for kochudemonstrationFinal image-----------------
+var storagekochudemonstrationFinal = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/kochudemonstrationFinalGallery");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadkochudemonstrationFinal = multer({
+    storage: storagekochudemonstrationFinal,
+  }).single("kochudemonstrationFinal");
+  exports.uploadkochudemonstrationFinal = uploadkochudemonstrationFinal;
+
+  //multer setup for kochudemonstrationFinal FIle-----------------
+var storagekochudemonstrationFinalFile = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/kochudemonstrationFinalFile");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadkochudemonstrationFinalFile = multer({
+    storage: storagekochudemonstrationFinalFile,
+  }).single("kochudemonstrationFinalFile");
+  exports.uploadkochudemonstrationFinalFile = uploadkochudemonstrationFinalFile;
+
+  //multer setup for kochudemonstrationInitial image-----------------
+var storagekochudemonstrationInitial = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/kochudemonstrationInitialGallery");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadkochudemonstrationInitial = multer({
+    storage: storagekochudemonstrationInitial,
+  }).single("kochudemonstrationInitial");
+  exports.uploadkochudemonstrationInitial = uploadkochudemonstrationInitial;
+
+  //multer setup for kochudemonstrationInitial FIle-----------------
+var storagekochudemonstrationInitialFile = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/kochudemonstrationInitialFile");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadkochudemonstrationInitialFile = multer({
+    storage: storagekochudemonstrationInitialFile,
+  }).single("kochudemonstrationInitialFile");
+  exports.uploadkochudemonstrationInitialFile = uploadkochudemonstrationInitialFile;
+
+  //multer setup for vermiCompostFinal image-----------------
+var storagevermiCompostFinal = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/vermiCompostFinalGallery");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadvermiCompostFinal = multer({
+    storage: storagevermiCompostFinal,
+  }).single("vermiCompostFinal");
+  exports.uploadvermiCompostFinal = uploadvermiCompostFinal;
+
+  //multer setup for vermiCompostFinal FIle-----------------
+var storagevermiCompostFinalFile = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/vermiCompostFinalFile");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadvermiCompostFinalFile = multer({
+    storage: storagevermiCompostFinalFile,
+  }).single("vermiCompostFinalFile");
+  exports.uploadvermiCompostFinalFile = uploadvermiCompostFinalFile;
+
+  //multer setup for vermiCompostInitial image-----------------
+var storagevermiCompostInitial = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/vermiCompostInitialGallery");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadvermiCompostInitial = multer({
+    storage: storagevermiCompostInitial,
+  }).single("vermiCompostInitial");
+  exports.uploadvermiCompostInitial = uploadvermiCompostInitial;
+
+  //multer setup for vermiCompostInitial FIle-----------------
+var storagevermiCompostInitialFile = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, "./public/vermiCompostInitialFile");
+    },
+    filename: function (req, file, cb) {
+      cb(
+        null,
+        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+      );
+    },
+  });
+  var uploadvermiCompostInitialFile = multer({
+    storage: storagevermiCompostInitialFile,
+  }).single("vermiCompostInitialFile");
+  exports.uploadvermiCompostInitialFile = uploadvermiCompostInitialFile;
 
 
 module.exports.upazillalogin=async(req,res)=>{
@@ -101,7 +676,76 @@ module.exports.upazillaloginpost=async(req,res)=>{
 };
 module.exports.upazillaDashboard = async(req,res) => {
     console.log("upazilladashboard",res.locals.type);
-    res.render('upazilla/dashboard', { title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'Welcome' });
+    try{
+        upazillas=await upazilla.findOne({where: {id:req.session.user_id}});
+        dds=await dd.findOne({where: {id:upazillas.dd_id}});
+        res.render('upazilla/dashboard', { title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'Welcome',records:upazillas,dds:dds });
+    }
+        catch{
+            console.log(err);
+        }
+};
+module.exports.upazillaEdit=async(req,res)=>{
+    await upazilla.findByPk(req.params.id)
+    .then(data => {
+        res.render('upazilla/upazillaEdit', { title: 'প্রশিক্ষণপ্রাপ্ত কৃষকের তথ্য',msg:'' ,success:'',records:data,user_id: req.session.user_id});
+    })
+    .catch(err => {
+        console.log("err");
+    })
+};
+module.exports.upazillaEditPost=async(req,res)=>{
+    var upazillas= req.body.upazilla;
+    var officer= req.body.officer;
+    var mobile= req.body.mobile;
+    var uname= req.body.uname;
+    var user_id =req.body.user_id;
+
+    await upazilla.update({
+        officer: officer,
+        upazilla:upazillas,
+        mobile:mobile,
+        uname:uname,
+    },
+    {
+        where: {id: req.params.id}
+    })
+        
+        .then(data => {
+            res.redirect('/upazilla/dashboard');
+        }).catch(err => {
+            res.render('errorpage',err);
+        });
+  
+  
+};
+module.exports.upazillaPassword=async(req,res)=>{
+    await upazilla.findByPk(req.params.id)
+    .then(data => {
+        res.render('upazilla/upazillaPassword', { title: 'পাসওয়ার্ড',msg:'' ,success:'',records:data,user_id: req.session.user_id});
+    })
+    .catch(err => {
+        console.log("err");
+    })
+};
+module.exports.upazillaPasswordEditPost=async(req,res)=>{
+    var password= req.body.password;
+    var user_id =req.body.user_id;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await upazilla.update({
+        password: hashedPassword,
+    },
+    {
+        where: {id: req.params.id}
+    })
+        
+        .then(data => {
+            res.redirect('/upazilla/dashboard');
+        }).catch(err => {
+            res.render('errorpage',err);
+        });
+  
+  
 };
 //logIn controller end
 
@@ -171,8 +815,9 @@ module.exports.trainedFarmer=async(req,res)=>{
 
 };
 module.exports.trainedFarmerYear=async(req,res)=>{
+    console.log("batch",req.body.batch);
     await trainedFarmer.findAll({
-        where: {year: req.body.year,upazilla_id: req.session.user_id}
+        where: {year: req.body.year,batch: req.body.batch,upazilla_id: req.session.user_id}
     })
     .then(data => {
         res.render('upazilla/trainedFarmer/trainedFarmerTable', {records: data} ,function(err, html) {
@@ -274,6 +919,49 @@ module.exports.trainedFarmerDelete=async(req,res)=>{
         console.log("outside",err);
     }
 };
+module.exports.generatePdftrainedFarmer = async (req, res) => {
+    try {
+      var upazillaName= await upazilla.findOne({
+        where: { id: req.session.user_id },
+      })
+      console.log("year",req.body.year)
+    var data= await trainedFarmer.findAll({
+        where: {year: req.body.year,batch: req.body.batch,upazilla_id: req.session.user_id}
+    })
+        ejs.renderFile(
+            path.join(__dirname, "../views/upazilla/trainedFarmer/", "pdf.ejs"),
+            { records: data,upazillaNames:upazillaName,dirname: __dirname },
+            (err, data) => {
+              if (err) {
+                console.log("error", err);
+                res.send(err);
+              } else {
+                var assesPath = path.join(__dirname, "../public/");
+                // console.log(assesPath);
+                assesPath = assesPath.replace(new RegExp(/\\/g), "/");
+  
+                var options = {
+                  height: "11.25in",
+                  width: "18.5in",
+                  header: {
+                    height: "20mm",
+                  },
+                  footer: {
+                    height: "20mm",
+                  },
+                  base: "file:///" + assesPath,
+                };
+                res.json({ html: data });
+              }
+            }
+        )
+      
+      
+    } catch (e) {
+      console.log(e);
+    }
+  
+  };
 //trainedFarmer controller end
 
 //saao controller
@@ -2145,6 +2833,48 @@ module.exports.adademonstrationInitialDelete=async(req,res)=>{
         res.render('errorpage',err);
     }
 };
+module.exports.generatePdfadademonstrationInitial = async (req, res) => {
+    try {
+      var upazillaName= await upazilla.findOne({
+        where: { id: req.session.user_id },
+      })
+    var data= await adademonstrationInitial.findAll({
+        where: {year: req.body.year,upazilla_id: req.session.user_id}
+    })
+        ejs.renderFile(
+            path.join(__dirname, "../views/upazilla/adademonstrationInitial/", "pdf.ejs"),
+            { records: data,upazillaNames:upazillaName,dirname: __dirname },
+            (err, data) => {
+              if (err) {
+                console.log("error", err);
+                res.send(err);
+              } else {
+                var assesPath = path.join(__dirname, "../public/");
+                // console.log(assesPath);
+                assesPath = assesPath.replace(new RegExp(/\\/g), "/");
+  
+                var options = {
+                  height: "11.25in",
+                  width: "18.5in",
+                  header: {
+                    height: "20mm",
+                  },
+                  footer: {
+                    height: "20mm",
+                  },
+                  base: "file:///" + assesPath,
+                };
+                res.json({ html: data });
+              }
+            }
+        )
+      
+      
+    } catch (e) {
+      console.log(e);
+    }
+  
+  };
 //adademonstrationInitial controller end
 
 //adademonstrationFinal controller
@@ -2254,6 +2984,48 @@ module.exports.adademonstrationFinalDelete=async(req,res)=>{
         res.render('errorpage',err);
     }
 };
+module.exports.generatePdfadademonstrationFinal = async (req, res) => {
+    try {
+      var upazillaName= await upazilla.findOne({
+        where: { id: req.session.user_id },
+      })
+    var data= await adademonstrationFinal.findAll({
+        where: {year: req.body.year,upazilla_id: req.session.user_id}
+    })
+        ejs.renderFile(
+            path.join(__dirname, "../views/upazilla/adademonstrationFinal/", "pdf.ejs"),
+            { records: data,upazillaNames:upazillaName,dirname: __dirname },
+            (err, data) => {
+              if (err) {
+                console.log("error", err);
+                res.send(err);
+              } else {
+                var assesPath = path.join(__dirname, "../public/");
+                // console.log(assesPath);
+                assesPath = assesPath.replace(new RegExp(/\\/g), "/");
+  
+                var options = {
+                  height: "11.25in",
+                  width: "18.5in",
+                  header: {
+                    height: "20mm",
+                  },
+                  footer: {
+                    height: "20mm",
+                  },
+                  base: "file:///" + assesPath,
+                };
+                res.json({ html: data });
+              }
+            }
+        )
+      
+      
+    } catch (e) {
+      console.log(e);
+    }
+  
+  };
 //adademonstrationFinal controller end
 
 //kochudemonstrationInitial controller
@@ -2591,3 +3363,1064 @@ module.exports.kochudemonstrationFinalDelete=async(req,res)=>{
     }
 };
 //kochudemonstrationFinal controller end
+
+
+/////////Gallery and File Storage/////////
+
+
+//agriFair Start
+module.exports.agriFairGallery=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await agriFairGallery.findAll();
+        res.render('upazilla/agriFair/agriFairGallery', { title: 'সেমিনার গ্যালারী',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.agriFairGalleryPost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/agriFairGallery/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const agriFairGalleryPost = agriFairGallery.create({
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/agriFairGallery');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+module.exports.agriFairFile=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await agriFairFile.findAll();
+        res.render('upazilla/agriFair/agriFairFile', { title: 'সেমিনার ফাইল বোর্ড',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.agriFairFilePost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/agriFairFile/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const agriFairFilePost = agriFairFile.create({
+            title:title,
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/agriFairFile');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+///agriFair File and Gallery Finish
+
+//adademonstrationFinal Start
+module.exports.adademonstrationFinalGallery=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await adademonstrationFinalGallery.findAll();
+        res.render('upazilla/adademonstrationFinal/adademonstrationFinalGallery', { title: 'সেমিনার গ্যালারী',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.adademonstrationFinalGalleryPost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/adademonstrationFinalGallery/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const adademonstrationFinalGalleryPost = adademonstrationFinalGallery.create({
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/adademonstrationFinalGallery');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+module.exports.adademonstrationFinalFile=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await adademonstrationFinalFile.findAll();
+        res.render('upazilla/adademonstrationFinal/adademonstrationFinalFile', { title: 'সেমিনার ফাইল বোর্ড',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.adademonstrationFinalFilePost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/adademonstrationFinalFile/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const adademonstrationFinalFilePost = adademonstrationFinalFile.create({
+            title:title,
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/adademonstrationFinalFile');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+///adademonstrationFinal File and Gallery Finish
+
+//adademonstrationInitial Start
+module.exports.adademonstrationInitialGallery=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await adademonstrationInitialGallery.findAll();
+        res.render('upazilla/adademonstrationInitial/adademonstrationInitialGallery', { title: 'সেমিনার গ্যালারী',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.adademonstrationInitialGalleryPost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/adademonstrationInitialGallery/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const adademonstrationInitialGalleryPost = adademonstrationInitialGallery.create({
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/adademonstrationInitialGallery');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+module.exports.adademonstrationInitialFile=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await adademonstrationInitialFile.findAll();
+        res.render('upazilla/adademonstrationInitial/adademonstrationInitialFile', { title: 'সেমিনার ফাইল বোর্ড',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.adademonstrationInitialFilePost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/adademonstrationInitialFile/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const adademonstrationInitialFilePost = adademonstrationInitialFile.create({
+            title:title,
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/adademonstrationInitialFile');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+///adademonstrationInitial File and Gallery Finish
+
+//demonstrationFinal Start
+module.exports.demonstrationFinalGallery=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await demonstrationFinalGallery.findAll();
+        res.render('upazilla/demonstrationFinal/demonstrationFinalGallery', { title: 'সেমিনার গ্যালারী',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.demonstrationFinalGalleryPost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/demonstrationFinalGallery/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const demonstrationFinalGalleryPost = demonstrationFinalGallery.create({
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/demonstrationFinalGallery');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+module.exports.demonstrationFinalFile=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await demonstrationFinalFile.findAll();
+        res.render('upazilla/demonstrationFinal/demonstrationFinalFile', { title: 'সেমিনার ফাইল বোর্ড',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.demonstrationFinalFilePost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/demonstrationFinalFile/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const demonstrationFinalFilePost = demonstrationFinalFile.create({
+            title:title,
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/demonstrationFinalFile');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+///demonstrationFinal File and Gallery Finish
+
+
+
+//demonstrationInitial Start
+module.exports.demonstrationInitialGallery=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await demonstrationInitialGallery.findAll();
+        res.render('upazilla/demonstrationInitial/demonstrationInitialGallery', { title: 'সেমিনার গ্যালারী',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.demonstrationInitialGalleryPost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/demonstrationInitialGallery/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const demonstrationInitialGalleryPost = demonstrationInitialGallery.create({
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/demonstrationInitialGallery');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+module.exports.demonstrationInitialFile=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await demonstrationInitialFile.findAll();
+        res.render('upazilla/demonstrationInitial/demonstrationInitialFile', { title: 'সেমিনার ফাইল বোর্ড',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.demonstrationInitialFilePost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/demonstrationInitialFile/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const demonstrationInitialFilePost = demonstrationInitialFile.create({
+            title:title,
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/demonstrationInitialFile');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+///demonstrationInitial File and Gallery Finish
+
+//fieldDay Start
+module.exports.fieldDayGallery=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await fieldDayGallery.findAll();
+        res.render('upazilla/fieldDay/fieldDayGallery', { title: 'সেমিনার গ্যালারী',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.fieldDayGalleryPost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/fieldDayGallery/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const fieldDayGalleryPost = fieldDayGallery.create({
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/fieldDayGallery');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+module.exports.fieldDayFile=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await fieldDayFile.findAll();
+        res.render('upazilla/fieldDay/fieldDayFile', { title: 'সেমিনার ফাইল বোর্ড',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.fieldDayFilePost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/fieldDayFile/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const fieldDayFilePost = fieldDayFile.create({
+            title:title,
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/fieldDayFile');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+///fieldDay File and Gallery Finish
+
+//irrigation Start
+module.exports.irrigationGallery=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await irrigationGallery.findAll();
+        res.render('upazilla/irrigation/irrigationGallery', { title: 'সেমিনার গ্যালারী',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.irrigationGalleryPost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/irrigationGallery/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const irrigationGalleryPost = irrigationGallery.create({
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/irrigationGallery');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+module.exports.irrigationFile=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await irrigationFile.findAll();
+        res.render('upazilla/irrigation/irrigationFile', { title: 'সেমিনার ফাইল বোর্ড',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.irrigationFilePost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/irrigationFile/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const irrigationFilePost = irrigationFile.create({
+            title:title,
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/irrigationFile');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+///irrigation File and Gallery Finish
+
+//kochudemonstrationFinal Start
+module.exports.kochudemonstrationFinalGallery=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await kochudemonstrationFinalGallery.findAll();
+        res.render('upazilla/kochudemonstrationFinal/kochudemonstrationFinalGallery', { title: 'সেমিনার গ্যালারী',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.kochudemonstrationFinalGalleryPost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/kochudemonstrationFinalGallery/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const kochudemonstrationFinalGalleryPost = kochudemonstrationFinalGallery.create({
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/kochudemonstrationFinalGallery');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+module.exports.kochudemonstrationFinalFile=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await kochudemonstrationFinalFile.findAll();
+        res.render('upazilla/kochudemonstrationFinal/kochudemonstrationFinalFile', { title: 'সেমিনার ফাইল বোর্ড',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.kochudemonstrationFinalFilePost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/kochudemonstrationFinalFile/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const kochudemonstrationFinalFilePost = kochudemonstrationFinalFile.create({
+            title:title,
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/kochudemonstrationFinalFile');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+///kochudemonstrationFinal File and Gallery Finish
+//kochudemonstrationInitial Start
+module.exports.kochudemonstrationInitialGallery=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await kochudemonstrationInitialGallery.findAll();
+        res.render('upazilla/kochudemonstrationInitial/kochudemonstrationInitialGallery', { title: 'সেমিনার গ্যালারী',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.kochudemonstrationInitialGalleryPost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/kochudemonstrationInitialGallery/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const kochudemonstrationInitialGalleryPost = kochudemonstrationInitialGallery.create({
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/kochudemonstrationInitialGallery');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+module.exports.kochudemonstrationInitialFile=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await kochudemonstrationInitialFile.findAll();
+        res.render('upazilla/kochudemonstrationInitial/kochudemonstrationInitialFile', { title: 'সেমিনার ফাইল বোর্ড',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.kochudemonstrationInitialFilePost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/kochudemonstrationInitialFile/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const kochudemonstrationInitialFilePost = kochudemonstrationInitialFile.create({
+            title:title,
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/kochudemonstrationInitialFile');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+///kochudemonstrationInitial File and Gallery Finish
+
+//machinery Start
+module.exports.machineryGallery=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await machineryGallery.findAll();
+        res.render('upazilla/machinery/machineryGallery', { title: 'সেমিনার গ্যালারী',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.machineryGalleryPost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/machineryGallery/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const machineryGalleryPost = machineryGallery.create({
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/machineryGallery');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+module.exports.machineryFile=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await machineryFile.findAll();
+        res.render('upazilla/machinery/machineryFile', { title: 'সেমিনার ফাইল বোর্ড',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.machineryFilePost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/machineryFile/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const machineryFilePost = machineryFile.create({
+            title:title,
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/machineryFile');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+///machinery File and Gallery Finish
+
+//motivation Start
+module.exports.motivationGallery=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await motivationGallery.findAll();
+        res.render('upazilla/motivation/motivationGallery', { title: 'সেমিনার গ্যালারী',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.motivationGalleryPost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/motivationGallery/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const motivationGalleryPost = motivationGallery.create({
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/motivationGallery');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+module.exports.motivationFile=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await motivationFile.findAll();
+        res.render('upazilla/motivation/motivationFile', { title: 'সেমিনার ফাইল বোর্ড',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.motivationFilePost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/motivationFile/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const motivationFilePost = motivationFile.create({
+            title:title,
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/motivationFile');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+///motivation File and Gallery Finish
+
+//saao Start
+module.exports.saaoGallery=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await saaoGallery.findAll();
+        res.render('upazilla/saao/saaoGallery', { title: 'সেমিনার গ্যালারী',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.saaoGalleryPost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/saaoGallery/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const saaoGalleryPost = saaoGallery.create({
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/saaoGallery');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+module.exports.saaoFile=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await saaoFile.findAll();
+        res.render('upazilla/saao/saaoFile', { title: 'সেমিনার ফাইল বোর্ড',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.saaoFilePost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/saaoFile/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const saaoFilePost = saaoFile.create({
+            title:title,
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/saaoFile');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+///saao File and Gallery Finish
+
+//trainedFarmer Start
+module.exports.trainedFarmerGallery=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await trainedFarmerGallery.findAll();
+        res.render('upazilla/trainedFarmer/trainedFarmerGallery', { title: 'সেমিনার গ্যালারী',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.trainedFarmerGalleryPost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/trainedFarmerGallery/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const trainedFarmerGalleryPost = trainedFarmerGallery.create({
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/trainedFarmerGallery');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+module.exports.trainedFarmerFile=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await trainedFarmerFile.findAll();
+        res.render('upazilla/trainedFarmer/trainedFarmerFile', { title: 'সেমিনার ফাইল বোর্ড',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.trainedFarmerFilePost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/trainedFarmerFile/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const trainedFarmerFilePost = trainedFarmerFile.create({
+            title:title,
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/trainedFarmerFile');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+///trainedFarmer File and Gallery Finish
+
+//vermiCompostFinal Start
+module.exports.vermiCompostFinalGallery=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await vermiCompostFinalGallery.findAll();
+        res.render('upazilla/vermiCompostFinal/vermiCompostFinalGallery', { title: 'সেমিনার গ্যালারী',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.vermiCompostFinalGalleryPost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/vermiCompostFinalGallery/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const vermiCompostFinalGalleryPost = vermiCompostFinalGallery.create({
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/vermiCompostFinalGallery');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+module.exports.vermiCompostFinalFile=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await vermiCompostFinalFile.findAll();
+        res.render('upazilla/vermiCompostFinal/vermiCompostFinalFile', { title: 'সেমিনার ফাইল বোর্ড',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.vermiCompostFinalFilePost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/vermiCompostFinalFile/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const vermiCompostFinalFilePost = vermiCompostFinalFile.create({
+            title:title,
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/vermiCompostFinalFile');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+///vermiCompostFinal File and Gallery Finish
+
+//vermiCompostInitial Start
+module.exports.vermiCompostInitialGallery=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await vermiCompostInitialGallery.findAll();
+        res.render('upazilla/vermiCompostInitial/vermiCompostInitialGallery', { title: 'সেমিনার গ্যালারী',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.vermiCompostInitialGalleryPost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/vermiCompostInitialGallery/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const vermiCompostInitialGalleryPost = vermiCompostInitialGallery.create({
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/vermiCompostInitialGallery');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+module.exports.vermiCompostInitialFile=async(req,res)=>{
+    try{
+        var districts = await dd.findAll();
+        const data = await vermiCompostInitialFile.findAll();
+        res.render('upazilla/vermiCompostInitial/vermiCompostInitialFile', { title: 'সেমিনার ফাইল বোর্ড',success:'', records: data, district:districts });
+    }
+    catch (e) {
+        console.log(e)
+    }
+};
+module.exports.vermiCompostInitialFilePost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/vermiCompostInitialFile/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const vermiCompostInitialFilePost = vermiCompostInitialFile.create({
+            title:title,
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        })
+        res.redirect('/upazilla/vermiCompostInitialFile');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+
+module.exports.upazillaFile=async(req,res)=>{
+    await upazilla.findByPk(req.params.id)
+    .then(data => {
+        res.render('upazilla/upazillaFile', { title: 'ফাইল বোর্ড',msg:'' ,success:'',records: req.session.user_id});
+    })
+    .catch(err => {
+        console.log("err");
+    })
+};
+module.exports.upazillaFilePost=async(req,res)=>{
+    const path = req.file && req.file.path;
+    if(path){
+
+      try{
+        var imagePath = "/upazillaFile/" + req.file.filename;
+        const data = await upazilla.findByPk(req.session.user_id);
+        const upazillaFilePost = upazillaFile.create({
+            title:title,
+          image: imagePath,
+          dd_id: data.dd_id,
+          upazilla_id: req.session.user_id
+        },
+        {
+            where: {id: req.params.id}
+        })
+        res.redirect('/upazilla/upazillaFile');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    }
+    else{
+        console.log("file not uploaded successfully");
+    }
+};
+///vermiCompostInitial File and Gallery Finish

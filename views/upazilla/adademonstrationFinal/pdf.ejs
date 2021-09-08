@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>কৃষক প্রশিক্ষণ তথ্য</title>
+
+    <style>
+      .flex-container {
+        display: flex;
+
+        justify-content: center;
+      }
+      .table,
+      td,
+      th {
+        border: 1px solid black;
+      }
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .center {
+        text-align: center;
+      }
+      .inline-block-child {
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      style="
+        margin-top: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        background-color: #ffffffa6;
+      "
+      class="center"
+    >
+      <div>
+        <div
+          style="
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+          "
+        >
+          <div
+            style="height: 80px; width: 80px; max-height: 80px; max-width: 80px"
+          >
+            <img
+              src="/landingPage/images/daelogo.png"
+              alt="DAE"
+              style="height: 100%; width: 100%; object-fit: contain"
+            />
+          </div>
+          <div>
+            <h1>গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</h1>
+            <h2>কৃষি সম্প্রসারণ অধিদপ্তর</h2>
+            <h3>খামারবাড়ী, ফার্মগেট, ঢাকা-১২১৫</h3>
+            <h3>www.dae.gov.bd</h3>
+            <h2>কৃষক প্রশিক্ষণ তথ্য</h2>
+          </div>
+          <div
+            style="height: 80px; width: 80px; max-height: 80px; max-width: 80px"
+          >
+            <img
+              src="/landingPage/images/bdlogo.png"
+              alt="Homepage"
+              style="height: 100%; width: 100%; object-fit: contain"
+            />
+          </div>
+        </div>
+        <p><b>উপজেলার নাম :</b><%= upazillaNames.upazilla %></p>
+        <div
+          style="
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+          "
+        >
+          <p>স্মারক নংঃ</p>
+          <p>তারিখঃ <%= new Date().toLocaleDateString();%></p>
+        </div>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>কৃষক প্রশিক্ষণ তথ্য</title>
+
+    <style>
+        .flex-container {
+            display: flex;
+
+            justify-content: center
+        }
+        .table, td, th {
+            border: 1px solid black;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .center {
+            text-align: center;
+        }
+        .inline-block-child {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div style="margin-top: 5px; padding-top: 5px; padding-bottom: 5px; background-color: #ffffffa6;" class="center">
+    <div>
+        <h1>কৃষক প্রশিক্ষণ তথ্য</h1>
+        <p><b>উপজেলার নাম :</b><%= upazillaNames.upazilla %></p> -->
+        <%if (records.length >0){ %>
+          <table class="table table-bordered table-striped" id="tblCustomers" cellspacing="0" cellpadding="0">
+          <thead>
+          <tr>
+              <th rowspan="2">ক্রমিক নং</th>
+              <th rowspan="2">প্রদর্শনীর ধরণ/নাম</th>
+              <th rowspan="2">প্রদর্শনীর আয়তন</th>
+              <th colspan="2" style="text-align:center">প্রদর্শনী স্থাপনের </th>
+              <th rowspan="2">কৃষক/কৃষাণীর নাম ও ঠিকানা</th>
+              <th rowspan="2">কৃষক/কৃষাণীর পরিচিতি নম্বর, NID ও মোবাইল নং</th>
+              <th rowspan="2">সংশ্লিষ্ট এসএএওর নাম, ব্লক ও মোবাইল নং</th>
+              <th rowspan="2">প্রদর্শনীভূক্ত ফসল ও জাত/প্রযুক্তি</th>
+              <th rowspan="2">স্থাপনের তারিখ</th>
+              <th colspan="11" style="text-align:center">উপকরণ সরবরাহের পরিমাণ (কেজি/সংখ্যা)</th>
+              <th rowspan="2">উপকরণ বিতরণের তারিখ</th>
+              <!-- <th rowspan="2">মন্তব্য</th> -->
+              <th rowspan="2">সব্জি ও ফসল কর্তনের তারিখ</th>
+              <th rowspan="2">প্রদর্শনী প্লটের ফলন(কেজি)</th>
+              <th rowspan="2">ফলন/হেঃ (মেঃ টন)</th>
+              <!-- <th rowspan="2">কৃষকের মন্তব্য</th>
+              <th rowspan="2">কর্মকর্তার মন্তব্য</th> -->
+          </tr>
+          <tr>
+              <th >লক্ষ্যমাত্রা(ব্যাচ) </th>
+              <th >অর্জন(ব্যাচ) </th>
+              <th >বীজ/চারা </th>
+              <th >ইউরিয়া </th>
+              <th >টিএসপি/ডিএপি </th>
+              <th >এমওপি </th>
+              <th >ভার্মি কম্পোস্ট </th>
+              <th >অন্যান্য সার </th>
+              <th >গার্ডেন নেট </th>
+              <th >পানির ঝাঝড়ি </th>
+              <th >বীজ সংরক্ষণ পাত্র </th>
+              <th >অন্যান্য উপকরণ </th>
+              <th >সাইনবোর্ড </th>
+          </tr>
+          </thead>
+          <tbody>
+              <% records.forEach(function(row,index) { %>
+                  <tr>
+                      <td><%= index+1 %></td>
+                      <td><%= row.pname %></td>
+                      <td><%= row.psize %></td>
+                      <td><%= row.target %></td>
+                      <td><%= row.achieved %></td>
+                      <td><%= row.name %></td>
+                      <td><%= row.nid %></td>
+                      <td><%= row.saao %></td>
+                      <td><%= row.crop %></td>
+                      <td><%= row.date %></td>
+                      <td><%= row.bij %></td>
+                      <td><%= row.uria %></td>
+                      <td><%= row.tsp %></td>
+                      <td><%= row.mop %></td>
+                      <td><%= row.vermi %></td>
+                      <td><%= row.other %></td>
+                      <td><%= row.garden %></td>
+                      <td><%= row.water %></td>
+                      <td><%= row.pot %></td>
+                      <td><%= row.cother %></td>
+                      <td><%= row.signboard %></td>
+                      <td><%= row.bdate %></td>
+                      <td><%= row.sobjiDate %></td>
+                      <td><%= row.pfolon %></td>
+                      <td><%= row.hfolon %></td>
+                        
+                  
+                  </tr>
+              <% }) %>
+          </tbody>
+      </table>
+      <% }else{ %>
+          <table class="table table-bordered table-striped" id="tblCustomers" cellspacing="0" cellpadding="0">
+              <thead>
+                  <tr>
+                      <th rowspan="2">ক্রমিক নং</th>
+                      <th rowspan="2">প্রদর্শনীর ধরণ/নাম</th>
+                      <th rowspan="2">প্রদর্শনীর আয়তন</th>
+                      <th colspan="2" style="text-align:center">প্রদর্শনী স্থাপনের </th>
+                      <th rowspan="2">কৃষক/কৃষাণীর নাম ও ঠিকানা</th>
+                      <th rowspan="2">কৃষক/কৃষাণীর পরিচিতি নম্বর, NID ও মোবাইল নং</th>
+                      <th rowspan="2">সংশ্লিষ্ট এসএএওর নাম, ব্লক ও মোবাইল নং</th>
+                      <th rowspan="2">প্রদর্শনীভূক্ত ফসল ও জাত/প্রযুক্তি</th>
+                      <th rowspan="2">স্থাপনের তারিখ</th>
+                      <th colspan="11" style="text-align:center">উপকরণ সরবরাহের পরিমাণ (কেজি/সংখ্যা)</th>
+                      <th rowspan="2">উপকরণ বিতরণের তারিখ</th>
+                      <th rowspan="2">মন্তব্য</th>
+                      <th rowspan="2">সব্জি ও ফসল কর্তনের তারিখ</th>
+                      <th rowspan="2">প্রদর্শনী প্লটের ফলন(কেজি)</th>
+                      <th rowspan="2">ফলন/হেঃ (মেঃ টন)</th>
+                      <th rowspan="2">কৃষকের মন্তব্য</th>
+                      <th rowspan="2">কর্মকর্তার মন্তব্য</th>
+                  </tr>
+                  <tr>
+                      <th >লক্ষ্যমাত্রা(ব্যাচ) </th>
+                      <th >অর্জন(ব্যাচ) </th>
+                      <th >বীজ/চারা </th>
+                      <th >ইউরিয়া </th>
+                      <th >টিএসপি/ডিএপি </th>
+                      <th >এমওপি </th>
+                      <th >ভার্মি কম্পোস্ট </th>
+                      <th >অন্যান্য সার </th>
+                      <th >গার্ডেন নেট </th>
+                      <th >পানির ঝাঝড়ি </th>
+                      <th >বীজ সংরক্ষণ পাত্র </th>
+                      <th >অন্যান্য উপকরণ </th>
+                      <th >সাইনবোর্ড </th>
+                  </tr>
+              </thead>
+              <tbody>
+              <% records.forEach(function(row){ %>
+                  <tr>
+                      <td colspan="10">No data Found</td>
+                  </tr>
+              <% }) %>
+              </tbody>
+          </table>
+      <% } %>
+    </div>
+</div>
+
+</body>
+</html>

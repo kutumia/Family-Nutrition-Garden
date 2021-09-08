@@ -1,0 +1,43 @@
+<%- include('../includes/header')-%>
+        <div id="wrapper" class="wrapper" >
+            <%- include('../includes/topbar')-%>
+            <div class="page-wrap">
+                <%- include('../includes/sidebar')-%>
+                <div class="main-content">
+                    <div class="container-fluid">
+                        <div class="row clearfix">
+                            <div class="col-md-10">
+                                <h1 class="text-center"><%= title %></h1>
+                            </div>
+                            <div class="container gallery-container">
+                                <form action="/upazilla/upazillaFilePost/<%= records.id %>" id="FieldTrialForm" class="form-horizontal" method="post"  role="form" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label >নতুন ফাইলের টাইটেল</label>
+                                        <input type="text" id="title" class="form-control" name="title" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label >নতুন ফাইল আপ্লোড করুন</label>
+                                        <input type="file" id="filename" class="form-control" name="agriFairFile" required>
+                                    </div>
+                                                
+                                                
+                             <div class="form-group">
+                                        <!-- Button -->                                        
+                              <div class="col-md-offset-3 col-md-3">
+                                <input type="submit" name="submit" value="আপ্লোড" class="btn btn-primary">   
+                            </div>
+                            </form>
+    
+                                
+                             
+                            
+                            </div>
+                            
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+   

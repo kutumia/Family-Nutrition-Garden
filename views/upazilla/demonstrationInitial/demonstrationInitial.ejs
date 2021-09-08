@@ -24,16 +24,24 @@
                             </div>
                         </div>
                         <div class="row mb-2">
-                            <div class="col-md-12">
+                            <div class="col-md-5">
                                 <a href="/upazilla/demonstrationInitialForm" class="btn btn-success btn-group-sm ">পারিবারিক সবজি ও পুষ্টি
                                     বাগান স্থাপন প্রদর্শনী এর প্রাথমিক প্রতিবেদন ফর্ম</a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="/upazilla/demonstrationInitialFile" class="btn btn-success btn-group-sm "> ফাইল স্টোরেজ</a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="/upazilla/demonstrationInitialGallery" class="btn btn-success btn-group-sm ">গ্যালারী</a>
                             </div>
 
                         </div>
 
                         <div class="table-responsive" id="output"></div>
 
-
+                        <button onclick="exportToPdf()" class="btn btn-success">
+                            Download PDF
+                        </button>
                         <div id="output"></div>
         <!--                    <div id="loading" class="loading"><img src="{{ asset('assets/img/icon/loading.gif') }}" alt=""></div>-->
                     </div>
@@ -44,14 +52,19 @@
 
    
 <%- include('../../includes/footer')-%>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
-    $(document).ready(function(){
-      $('.dropdown a.test').on("click", function(e){
-        $(this).next('ul').toggle();
-        e.stopPropagation();
-        e.preventDefault();
-      });
-    });
+    async function exportToPdf() {
+        var year = $('#year').val();
+        var batch = $('#batch').val();
+        const { data } = await axios.post(`/upazilla/generatePdfdemonstrationInitial`,{year:year,batch:batch});
+        var mywindow = window.open("", "PRINT", "height=400,width=600");
+        mywindow.document.write(data.html);
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10*/
+        mywindow.print();
+        return true;
+    }
 </script>
 <script type="text/javascript">
     $("body").on("click", "#btnExport", function () {

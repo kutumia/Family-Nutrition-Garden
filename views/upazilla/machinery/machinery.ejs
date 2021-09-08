@@ -25,15 +25,23 @@
                             </div>
                         </div>
                         <div class="row mb-2">
-                            <div class="col-md-12">
+                            <div class="col-md-3">
                                 <a href="/upazilla/machineryForm" class="btn btn-success btn-group-sm ">ক্ষুদ্র কৃষি যন্ত্রপাতি বিতরণ প্রতিবেদন ফর্ম</a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="/upazilla/machineryFile" class="btn btn-success btn-group-sm "> ফাইল স্টোরেজ</a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="/upazilla/machineryGallery" class="btn btn-success btn-group-sm ">গ্যালারী</a>
                             </div>
 
                         </div>
 
                         <div class="table-responsive" id="output"></div>
 
-
+                        <button onclick="exportToPdf()" class="btn btn-success">
+                            Download PDF
+                        </button>
                         <div id="output"></div>
         <!--                    <div id="loading" class="loading"><img src="{{ asset('assets/img/icon/loading.gif') }}" alt=""></div>-->
                     </div>
@@ -44,16 +52,19 @@
 
    
 <%- include('../../includes/footer')-%>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
-        
-    $(document).ready(function(){
-        
-      $('.dropdown a.test').on("click", function(e){
-        $(this).next('ul').toggle();
-        e.stopPropagation();
-        e.preventDefault();
-      });
-    });
+    async function exportToPdf() {
+        var year = $('#year').val();
+        var batch = $('#batch').val();
+        const { data } = await axios.post(`/upazilla/generatePdfmachinery`,{year:year,batch:batch});
+        var mywindow = window.open("", "PRINT", "height=400,width=600");
+        mywindow.document.write(data.html);
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10*/
+        mywindow.print();
+        return true;
+    }
 </script>
 
 <script type="text/javascript">

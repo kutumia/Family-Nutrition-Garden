@@ -6,77 +6,61 @@
               <%- include('../includes/sidebar')-%>
 
                 
-                <div class="main-content">
-                    <div class="container-fluid">
-                        <div class="row clearfix">
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="widget">
-                                    <div class="widget-body">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="state">
-                                                <!-- <h6>চারা উৎপাদন</h6>
-                                                <h4>৯০,০০০</h4> -->
-                                            </div>
-                                            <div class="icon">
-                                                <i class="ik ik-award"></i>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                   
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="widget">
-                                    <div class="widget-body">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="state">
-                                                <!-- <h6>চারা বিতরণ</h6>
-                                                <h4>৫০,০০০ </h4> -->
-                                            </div>
-                                            <div class="icon">
-                                                <i class="ik ik-award"></i>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="widget">
-                                    <div class="widget-body">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="state">
-                                                <!-- <h6>চারা সংরক্ষণ/মজুদ</h6>
-                                                <h4>৪০,০০০</h4> -->
-                                            </div>
-                                            <div class="icon">
-                                                <i class="ik ik-award"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="widget">
-                                    <div class="widget-body">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="state">
-                                                <!-- <h6>রাজস্ব আয়</h6>
-                                                <h4>৮০০০০০০ টাকা</h4> -->
-                                            </div>
-                                            <div class="icon">
-                                                <i class="ik ik-award"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
+              <div class="container gallery-container">
+                <h1 text-align:center>নোটিশ বোর্ড</h1>
+                
+                <div class="tz-gallery">
+                    <div class="row">
+                        <%if (upazillas.length >0){ %>
+                            <table class="table table-bordered table-striped" id="tblCustomers" cellspacing="0" cellpadding="0">
+                            <thead>
+                            <tr>
+                                <th>ক্রমিক নং</th>
+                                <th>উপজেলা</th>
+                                <th>উপজেলা কৃষি অফিসারের নাম</th>
+                                <th>উপজেলা কৃষি অফিসারের মোবাইল নং</th>
+                                <th>ইউজার নেম</th>
+                                <th>উপজেলা সংক্রান্ত তথ্য ফাইল</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <% upazillas.forEach(function(row,index){ %>
+                                    <tr>
+                                        <td><%= index+1 %></td>
+                                        <td><%= row.upazilla %></td>   
+                                        <td><%= row.officer %></td>               
+                                        <td><%= row.mobile %></td>
+                                        <td><%= row.uname %></td>
+                                        <td><a  href="<%= row.image %>"><i class="fas fa-file"></i>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                        <% }else{ %>
+                            <table class="table table-bordered table-striped" id="tblexportData" cellspacing="0" cellpadding="0">
+                                <thead>
+                                <tr>
+                                    <th>ক্রমিক নং</th>
+                                    <th>টাইটেল</th>
+                                    <th>ফাইল</th>
+                                    <th>পরিবর্তন/মুছুন</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <% upazillas.forEach(function(row){ %>
+                                    <tr>
+                                        <td colspan="10">No data Found</td>
+                                    </tr>
+                                <% }) %>
+                                </tbody>
+                            </table>
+                        <% } %>
+                        
+
+                    </div>
+            
                 </div>
+            
             </div>
         </div>
         
