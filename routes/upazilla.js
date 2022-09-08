@@ -5,7 +5,7 @@ const app=express();
 
 const {fieldDayYear,agriFair,agriFairYear,agriFairForm,agriFairFormPost,agriFairGallery,uploadagriFair,agriFairGalleryPost,
     agriFairFile,uploadagriFairFile,agriFairFilePost,
-    fieldDayForm,fieldDayFormPost,upazillasignup,upazillasignuppost,upazillalogin,upazillaloginpost,upazillaDashboard,
+    fieldDayForm,fieldDayFormPost,upazillasignup,upazillasignuppost,upazillalogin,upazillaloginpost,upazillaDashboard, uploadupazillaFile,
     initialTrial,initialTrialYear,initialTrialFormPost,
     finalTrial,finalTrialYear,finalTrialForm,finalTrialFormPost,agriFairEdit,agriFairDelete,fieldDayEditPost,machineryEditPost,
     trainedFarmer,trainedFarmerYear,trainedFarmerForm,trainedFarmerFormPost,trainedFarmerEdit,trainedFarmerFormEditPost,trainedFarmerDelete,generatePdftrainedFarmer,initialTrialEdit,finalTrialEdit,agriFairEditPost,
@@ -86,7 +86,7 @@ router.post('/signups',upazillasignuppost);
 router.get('/upazillaFile/:id',upazillaFile);
 router.get('/upazillaEdit/:id',upazillaEdit);
 router.get('/upazillaPassword/:id',upazillaPassword);
-router.post('/upazillaFilePost/:id',upazillaFilePost);
+router.post('/upazillaFilePost/',uploadupazillaFile, upazillaFilePost);
 router.post('/upazillaEditPost/:id',upazillaEditPost);
 router.post('/upazillaPasswordEditPost/:id',upazillaPasswordEditPost);
 

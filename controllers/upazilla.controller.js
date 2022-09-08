@@ -3,6 +3,7 @@ const pd = db.pd;
 const dd = db.dd;
 const ad = db.ad;       
 const upazilla = db.upazilla;
+const upazillaFile = db.upazillaFile;
 const trainedFarmer = db.trainedFarmer;
 const saao = db.saao;
 const initialTrial = db.initialTrial;
@@ -3413,6 +3414,7 @@ module.exports.agriFairFile=async(req,res)=>{
 };
 module.exports.agriFairFilePost=async(req,res)=>{
     const path = req.file && req.file.path;
+    const {title} = req.body;
     if(path){
 
       try{
@@ -3481,6 +3483,7 @@ module.exports.adademonstrationFinalFile=async(req,res)=>{
 };
 module.exports.adademonstrationFinalFilePost=async(req,res)=>{
     const path = req.file && req.file.path;
+    const {title} = req.body;
     if(path){
 
       try{
@@ -3549,6 +3552,7 @@ module.exports.adademonstrationInitialFile=async(req,res)=>{
 };
 module.exports.adademonstrationInitialFilePost=async(req,res)=>{
     const path = req.file && req.file.path;
+    const {title} = req.body;
     if(path){
 
       try{
@@ -3617,6 +3621,7 @@ module.exports.demonstrationFinalFile=async(req,res)=>{
 };
 module.exports.demonstrationFinalFilePost=async(req,res)=>{
     const path = req.file && req.file.path;
+    const {title} = req.body;
     if(path){
 
       try{
@@ -3687,6 +3692,7 @@ module.exports.demonstrationInitialFile=async(req,res)=>{
 };
 module.exports.demonstrationInitialFilePost=async(req,res)=>{
     const path = req.file && req.file.path;
+    const {title} = req.body;
     if(path){
 
       try{
@@ -3755,6 +3761,7 @@ module.exports.fieldDayFile=async(req,res)=>{
 };
 module.exports.fieldDayFilePost=async(req,res)=>{
     const path = req.file && req.file.path;
+    const {title} = req.body;
     if(path){
 
       try{
@@ -3823,6 +3830,7 @@ module.exports.irrigationFile=async(req,res)=>{
 };
 module.exports.irrigationFilePost=async(req,res)=>{
     const path = req.file && req.file.path;
+    const {title} = req.body;
     if(path){
 
       try{
@@ -3891,6 +3899,7 @@ module.exports.kochudemonstrationFinalFile=async(req,res)=>{
 };
 module.exports.kochudemonstrationFinalFilePost=async(req,res)=>{
     const path = req.file && req.file.path;
+    const {title} = req.body;
     if(path){
 
       try{
@@ -3958,6 +3967,7 @@ module.exports.kochudemonstrationInitialFile=async(req,res)=>{
 };
 module.exports.kochudemonstrationInitialFilePost=async(req,res)=>{
     const path = req.file && req.file.path;
+    const {title} = req.body;
     if(path){
 
       try{
@@ -4026,6 +4036,7 @@ module.exports.machineryFile=async(req,res)=>{
 };
 module.exports.machineryFilePost=async(req,res)=>{
     const path = req.file && req.file.path;
+    const {title} = req.body;
     if(path){
 
       try{
@@ -4094,6 +4105,7 @@ module.exports.motivationFile=async(req,res)=>{
 };
 module.exports.motivationFilePost=async(req,res)=>{
     const path = req.file && req.file.path;
+    const {title} = req.body;
     if(path){
 
       try{
@@ -4162,6 +4174,7 @@ module.exports.saaoFile=async(req,res)=>{
 };
 module.exports.saaoFilePost=async(req,res)=>{
     const path = req.file && req.file.path;
+    const {title} = req.body;
     if(path){
 
       try{
@@ -4230,6 +4243,7 @@ module.exports.trainedFarmerFile=async(req,res)=>{
 };
 module.exports.trainedFarmerFilePost=async(req,res)=>{
     const path = req.file && req.file.path;
+    const {title} = req.body;
     if(path){
 
       try{
@@ -4298,6 +4312,7 @@ module.exports.vermiCompostFinalFile=async(req,res)=>{
 };
 module.exports.vermiCompostFinalFilePost=async(req,res)=>{
     const path = req.file && req.file.path;
+    const {title} = req.body;
     if(path){
 
       try{
@@ -4366,6 +4381,7 @@ module.exports.vermiCompostInitialFile=async(req,res)=>{
 };
 module.exports.vermiCompostInitialFilePost=async(req,res)=>{
     const path = req.file && req.file.path;
+    const {title} = req.body;
     if(path){
 
       try{
@@ -4399,6 +4415,7 @@ module.exports.upazillaFile=async(req,res)=>{
 };
 module.exports.upazillaFilePost=async(req,res)=>{
     const path = req.file && req.file.path;
+    const {title} = req.body;
     if(path){
 
       try{
@@ -4409,10 +4426,7 @@ module.exports.upazillaFilePost=async(req,res)=>{
           image: imagePath,
           dd_id: data.dd_id,
           upazilla_id: req.session.user_id
-        },
-        {
-            where: {id: req.params.id}
-        })
+        })     
         res.redirect('/upazilla/upazillaFile');
       }
       catch (e) {
@@ -4423,4 +4437,4 @@ module.exports.upazillaFilePost=async(req,res)=>{
         console.log("file not uploaded successfully");
     }
 };
-///vermiCompostInitial File and Gallery Finish
+//vermiCompostInitial File and Gallery Finish
