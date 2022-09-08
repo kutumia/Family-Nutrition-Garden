@@ -83,10 +83,10 @@ router.get('/dashboard',upazillaDashboard);
 
 router.get('/signup',upazillasignup);
 router.post('/signups',upazillasignuppost);
-router.get('/upazillaFile/:id',upazillaFile);
+router.get('/upazillaFile',upazillaFile);
 router.get('/upazillaEdit/:id',upazillaEdit);
 router.get('/upazillaPassword/:id',upazillaPassword);
-router.post('/upazillaFilePost/',uploadupazillaFile, upazillaFilePost);
+router.post('/upazillaFilePost',uploadupazillaFile, upazillaFilePost);
 router.post('/upazillaEditPost/:id',upazillaEditPost);
 router.post('/upazillaPasswordEditPost/:id',upazillaPasswordEditPost);
 

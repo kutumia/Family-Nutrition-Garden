@@ -23,6 +23,7 @@ db.pd = require("./pd.model.js")(sequelize, Sequelize);
 db.dd = require("./dd.model.js")(sequelize, Sequelize);
 db.ad = require("./ad.model.js")(sequelize, Sequelize);
 db.upazilla = require("./upazilla.model.js")(sequelize, Sequelize);
+db.upazillaFile = require("./upazillaFile.model.js")(sequelize, Sequelize);
 db.trainedFarmer = require("./trainedFarmer.model.js")(sequelize, Sequelize);
 db.saao = require("./saao.model.js")(sequelize, Sequelize);
 db.initialTrial = require("./initialTrial.model.js")(sequelize, Sequelize);
