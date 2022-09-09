@@ -17,7 +17,7 @@ dotenv.config()
 const { DBHOST, DBUSER, DBPASSWORD, DB } = process.env
 //console.log(DBHOST, DBHOST, DBUSER, DBPASSWORD, DB)
 module.exports = {
-  HOST: DBHOST,
+  HOST: "127.0.0.1",
   PORT: 3306,
   USER: DBUSER,
   PASSWORD: DBPASSWORD,
