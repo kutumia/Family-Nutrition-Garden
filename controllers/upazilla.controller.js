@@ -679,8 +679,8 @@ module.exports.upazillaDashboard = async(req,res) => {
     console.log("upazilladashboard",res.locals.type);
     try{
         upazillas=await upazilla.findOne({where: {id:req.session.user_id}});
-        dds=await dd.findOne({where: {id:upazillas.dd_id}});
-        res.render('upazilla/dashboard', { title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'Welcome',records:upazillas,dds:dds });
+        // dds=await dd.findOne({where: {id:upazillas.dd_id}});
+        res.render('upazilla/dashboard', { title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'Welcome',records:upazillas});
     }
         catch{
             console.log(err);
@@ -779,6 +779,7 @@ module.exports.upazillasignuppost=async(req,res)=>{
             console.log(hashedPassword);
             try{
                 const createupazilla = await upazilla.create({
+                    district: dds,
                     uname: uname,
                     upazilla:upazillas,
                     password:hashedPassword,
