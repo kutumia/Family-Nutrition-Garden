@@ -117,7 +117,7 @@ module.exports.pdDashboard = async(req,res) => {
 //signUp controller
 module.exports.pdsignup=async(req,res)=>{
     res.render('pd/signup', { title: 'অনাবাদী পতিত জমি ও বসতবসড়ির আঙ্গিনায় পারিবারিক পুষ্টি বাগান স্থাপন প্রকল্প এ স্বাগতম',msg:'' });
-    res.send("log");
+    // res.send("log");
 };
 module.exports.pdsignuppost=async(req,res)=>{
     try {
